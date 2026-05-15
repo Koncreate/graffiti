@@ -1,5 +1,11 @@
 # @drop-in/graffiti
 
+## 4.24.6
+
+### Patch Changes
+
+- Tune `color-mix()` percentages for `.primary`, `.error`, `.warning`, `.success` button variants to preserve saturation. The previous 18%/28% / 35%/45% mixes were calibrated for a neutral gray base and washed out vivid variants in both color schemes. Variants now override the bg-top/bg-bottom/hover/active stops with high color-percentage mixes for a solid, saturated surface.
+
 ## 4.24.5
 
 ### Patch Changes

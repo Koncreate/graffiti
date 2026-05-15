@@ -788,21 +788,163 @@
     &.primary {
       --button-color: var(--primary);
       --button-text: var(--white);
+
+      /* Vivid solid surface — high color percentage preserves chroma */
+      --button-bg-top: light-dark(
+        color-mix(in oklab, var(--button-color) 92%, white),
+        color-mix(in oklab, var(--button-color) 88%, black)
+      );
+      --button-bg-bottom: light-dark(
+        color-mix(in oklab, var(--button-color) 98%, white),
+        color-mix(in oklab, var(--button-color) 80%, black)
+      );
+      --button-border: light-dark(
+        color-mix(in oklab, var(--button-color) 75%, black),
+        color-mix(in oklab, var(--button-color) 70%, white)
+      );
+
+      &:hover {
+        --button-bg-top: light-dark(
+          color-mix(in oklab, var(--button-color) 85%, white),
+          color-mix(in oklab, var(--button-color) 95%, black)
+        );
+        --button-bg-bottom: light-dark(
+          color-mix(in oklab, var(--button-color) 92%, white),
+          var(--button-color)
+        );
+      }
+
+      &:active {
+        --button-bg-top: light-dark(
+          color-mix(in oklab, var(--button-color) 88%, black),
+          color-mix(in oklab, var(--button-color) 75%, black)
+        );
+        --button-bg-bottom: light-dark(
+          color-mix(in oklab, var(--button-color) 80%, black),
+          color-mix(in oklab, var(--button-color) 70%, black)
+        );
+      }
     }
 
     &.error {
       --button-color: var(--error);
       --button-text: var(--white);
+
+      --button-bg-top: light-dark(
+        color-mix(in oklab, var(--button-color) 92%, white),
+        color-mix(in oklab, var(--button-color) 88%, black)
+      );
+      --button-bg-bottom: light-dark(
+        color-mix(in oklab, var(--button-color) 98%, white),
+        color-mix(in oklab, var(--button-color) 80%, black)
+      );
+      --button-border: light-dark(
+        color-mix(in oklab, var(--button-color) 75%, black),
+        color-mix(in oklab, var(--button-color) 70%, white)
+      );
+
+      &:hover {
+        --button-bg-top: light-dark(
+          color-mix(in oklab, var(--button-color) 85%, white),
+          color-mix(in oklab, var(--button-color) 95%, black)
+        );
+        --button-bg-bottom: light-dark(
+          color-mix(in oklab, var(--button-color) 92%, white),
+          var(--button-color)
+        );
+      }
+
+      &:active {
+        --button-bg-top: light-dark(
+          color-mix(in oklab, var(--button-color) 88%, black),
+          color-mix(in oklab, var(--button-color) 75%, black)
+        );
+        --button-bg-bottom: light-dark(
+          color-mix(in oklab, var(--button-color) 80%, black),
+          color-mix(in oklab, var(--button-color) 70%, black)
+        );
+      }
     }
 
     &.warning {
       --button-color: var(--warning);
       --button-text: var(--black);
+
+      --button-bg-top: light-dark(
+        color-mix(in oklab, var(--button-color) 95%, white),
+        color-mix(in oklab, var(--button-color) 90%, black)
+      );
+      --button-bg-bottom: light-dark(
+        var(--button-color),
+        color-mix(in oklab, var(--button-color) 82%, black)
+      );
+      --button-border: light-dark(
+        color-mix(in oklab, var(--button-color) 80%, black),
+        color-mix(in oklab, var(--button-color) 65%, black)
+      );
+
+      &:hover {
+        --button-bg-top: light-dark(
+          color-mix(in oklab, var(--button-color) 90%, white),
+          color-mix(in oklab, var(--button-color) 95%, black)
+        );
+        --button-bg-bottom: light-dark(
+          color-mix(in oklab, var(--button-color) 98%, white),
+          var(--button-color)
+        );
+        color: var(--black);
+      }
+
+      &:active {
+        --button-bg-top: light-dark(
+          color-mix(in oklab, var(--button-color) 90%, black),
+          color-mix(in oklab, var(--button-color) 78%, black)
+        );
+        --button-bg-bottom: light-dark(
+          color-mix(in oklab, var(--button-color) 82%, black),
+          color-mix(in oklab, var(--button-color) 72%, black)
+        );
+      }
     }
 
     &.success {
       --button-color: var(--success);
       --button-text: var(--white);
+
+      --button-bg-top: light-dark(
+        color-mix(in oklab, var(--button-color) 92%, white),
+        color-mix(in oklab, var(--button-color) 88%, black)
+      );
+      --button-bg-bottom: light-dark(
+        color-mix(in oklab, var(--button-color) 98%, white),
+        color-mix(in oklab, var(--button-color) 80%, black)
+      );
+      --button-border: light-dark(
+        color-mix(in oklab, var(--button-color) 75%, black),
+        color-mix(in oklab, var(--button-color) 70%, white)
+      );
+
+      &:hover {
+        --button-bg-top: light-dark(
+          color-mix(in oklab, var(--button-color) 85%, white),
+          color-mix(in oklab, var(--button-color) 95%, black)
+        );
+        --button-bg-bottom: light-dark(
+          color-mix(in oklab, var(--button-color) 92%, white),
+          var(--button-color)
+        );
+      }
+
+      &:active {
+        --button-bg-top: light-dark(
+          color-mix(in oklab, var(--button-color) 88%, black),
+          color-mix(in oklab, var(--button-color) 75%, black)
+        );
+        --button-bg-bottom: light-dark(
+          color-mix(in oklab, var(--button-color) 80%, black),
+          color-mix(in oklab, var(--button-color) 70%, black)
+        );
+      }
     }
 
     &.dark {
