@@ -11,12 +11,27 @@
 
   /* Typography */
   :root {
+    /* =====================================================================
+     * Tier 1: Literal tokens — concrete primitives
+     * Colors, lengths, durations, raw scales. These are what consumers
+     * override at the root to retheme.
+     * ===================================================================== */
+
+    /* Typography primitives */
     --font-sans:
       -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica,
       Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 
     --min-vw: 360;
     --max-vw: 800;
+
+    /* Fluid Type */
+    --font-size-min: 16;
+    --font-size-max: 18;
+    --font-ratio-min: 1.2;
+    --font-ratio-max: 1.25;
+    --font-width-min: 320;
+    --font-width-max: 1500;
 
     /* Vertical Spacing */
     --vs-xs: 0.25rem;
@@ -28,14 +43,6 @@
     --vs-xxl: 6rem;
     --vs-xxxl: 8rem;
 
-    /* Border Radius */
-    --br-xs: 2px;
-    --br-s: 4px;
-    --br-m: 8px;
-    --br-l: 16px;
-    --br-xl: 24px;
-    --br-xxl: 32px;
-
     /* Padding */
     --pad-xs: 0.25rem;
     --pad-s: 0.5rem;
@@ -44,6 +51,14 @@
     --pad-xl: 1.5rem;
     --pad-xxl: 2rem;
     --pad-xxxl: 4rem;
+
+    /* Border Radius */
+    --br-xs: 2px;
+    --br-s: 4px;
+    --br-m: 8px;
+    --br-l: 16px;
+    --br-xl: 24px;
+    --br-xxl: 32px;
 
     /* Line Height */
     --lh-xs: 1;
@@ -56,31 +71,6 @@
     --fw-medium: 500;
     --fw-semibold: 600;
     --fw-bold: 700;
-
-    /* Shadows */
-    --shadow-1:
-      0 0 1px 0.5px light-dark(rgb(0 0 0 / 0.05), rgb(0 0 0 / 0.5)),
-      0 2px 2px light-dark(rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.3));
-    --shadow-2:
-      0 1px 1px 2px light-dark(rgb(0 0 0 / 0.03), rgb(0 0 0 / 0.6)),
-      0 4px 4px light-dark(rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.4));
-    --shadow-3:
-      0 2px 4px light-dark(rgb(0 0 0 / 0.05), rgb(0 0 0 / 0.65)),
-      0 4px 8px light-dark(rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.45));
-    --shadow-4:
-      0 4px 8px light-dark(rgb(0 0 0 / 0.06), rgb(0 0 0 / 0.7)),
-      0 8px 16px light-dark(rgb(0 0 0 / 0.12), rgb(0 0 0 / 0.5));
-    --shadow-5:
-      0 8px 16px light-dark(rgb(0 0 0 / 0.08), rgb(0 0 0 / 0.75)),
-      0 12px 24px light-dark(rgb(0 0 0 / 0.14), rgb(0 0 0 / 0.55));
-    --shadow-6:
-      0 12px 24px light-dark(rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.8)),
-      0 16px 32px light-dark(rgb(0 0 0 / 0.16), rgb(0 0 0 / 0.6)),
-      0 24px 48px light-dark(rgb(0 0 0 / 0.18), rgb(0 0 0 / 0.5));
-
-    --box:
-      0 1px 2px rgb(0 0 0 / 0.04), inset -1px 1px 2px rgb(255 255 255 / 0.1),
-      inset 1px 1px 2px rgb(255 255 255 / 0.1);
 
     /* Color System - OKLCH with 1-9 scales */
     /* Base colors (scale 5) */
@@ -303,47 +293,11 @@
     --black-8: oklch(from var(--black) l c h / 0.9);
     --black-9: var(--black);
 
+    /* Foreground / background literals */
     --fg-light: #050505;
     --fg-dark: #fff;
-    --fg: light-dark(var(--fg-light), var(--fg-dark));
-    --fg-05: oklch(from var(--fg) l c h / 0.05);
-    --fg-1: oklch(from var(--fg) l c h / 0.1);
-    --fg-2: oklch(from var(--fg) l c h / 0.2);
-    --fg-3: oklch(from var(--fg) l c h / 0.3);
-    --fg-4: oklch(from var(--fg) l c h / 0.4);
-    --fg-5: oklch(from var(--fg) l c h / 0.5);
-    --fg-6: oklch(from var(--fg) l c h / 0.6);
-    --fg-7: oklch(from var(--fg) l c h / 0.75);
-    --fg-8: oklch(from var(--fg) l c h / 0.9);
-    --fg-9: var(--fg);
-
     --bg-light: #fff;
     --bg-dark: #050505;
-    --bg: light-dark(var(--bg-light), var(--bg-dark));
-
-    --bg-05: oklch(from var(--bg) l c h / 0.05);
-    --bg-1: oklch(from var(--bg) l c h / 0.1);
-    --bg-2: oklch(from var(--bg) l c h / 0.2);
-    --bg-3: oklch(from var(--bg) l c h / 0.3);
-    --bg-4: oklch(from var(--bg) l c h / 0.4);
-    --bg-5: oklch(from var(--bg) l c h / 0.5);
-    --bg-6: oklch(from var(--bg) l c h / 0.6);
-    --bg-7: oklch(from var(--bg) l c h / 0.75);
-    --bg-8: oklch(from var(--bg) l c h / 0.9);
-    --bg-9: var(--bg);
-
-    /* Fluid Type */
-    --font-size-min: 16;
-    --font-size-max: 18;
-    --font-ratio-min: 1.2;
-    --font-ratio-max: 1.25;
-    --font-width-min: 320;
-    --font-width-max: 1500;
-
-    /* Border Tokens */
-    --border-05: solid 1px var(--fg-05);
-    --border-1: solid 1px var(--fg-2);
-    --border-2: solid 2px var(--fg-2);
 
     /* Easing Tokens - Using linear() for modern, natural motion */
     --ease-smooth: linear(
@@ -395,16 +349,43 @@
       1
     );
 
+    /* =====================================================================
+     * Tier 2: Semantic tokens — purpose-bound, consume tier 1
+     * What components should reference. Override these to change UI semantics
+     * without touching color literals.
+     * ===================================================================== */
+
+    /* Theme-resolved fg/bg */
+    --fg: light-dark(var(--fg-light), var(--fg-dark));
+    --fg-05: oklch(from var(--fg) l c h / 0.05);
+    --fg-1: oklch(from var(--fg) l c h / 0.1);
+    --fg-2: oklch(from var(--fg) l c h / 0.2);
+    --fg-3: oklch(from var(--fg) l c h / 0.3);
+    --fg-4: oklch(from var(--fg) l c h / 0.4);
+    --fg-5: oklch(from var(--fg) l c h / 0.5);
+    --fg-6: oklch(from var(--fg) l c h / 0.6);
+    --fg-7: oklch(from var(--fg) l c h / 0.75);
+    --fg-8: oklch(from var(--fg) l c h / 0.9);
+    --fg-9: var(--fg);
+
+    --bg: light-dark(var(--bg-light), var(--bg-dark));
+    --bg-05: oklch(from var(--bg) l c h / 0.05);
+    --bg-1: oklch(from var(--bg) l c h / 0.1);
+    --bg-2: oklch(from var(--bg) l c h / 0.2);
+    --bg-3: oklch(from var(--bg) l c h / 0.3);
+    --bg-4: oklch(from var(--bg) l c h / 0.4);
+    --bg-5: oklch(from var(--bg) l c h / 0.5);
+    --bg-6: oklch(from var(--bg) l c h / 0.6);
+    --bg-7: oklch(from var(--bg) l c h / 0.75);
+    --bg-8: oklch(from var(--bg) l c h / 0.9);
+    --bg-9: var(--bg);
+
+    /* Status colors */
     --primary: var(--blue);
     --accent: var(--primary);
     --error: var(--red);
     --warning: var(--yellow);
     --success: var(--green);
-
-    /* Focus ring tokens — consumed by base, components, and utilities */
-    --focus-ring: 2px solid var(--fg);
-    --focus-ring-offset: 2px;
-    --focus-ring-offset-inset: -2px;
 
     /* Primary scale */
     --primary-1: oklch(from var(--primary) l c h / 0.1);
@@ -450,6 +431,43 @@
     --success-8: oklch(from var(--success) l c h / 0.9);
     --success-9: var(--success);
 
+    /* UI primitives */
+    /* Shadows */
+    --shadow-1:
+      0 0 1px 0.5px light-dark(rgb(0 0 0 / 0.05), rgb(0 0 0 / 0.5)),
+      0 2px 2px light-dark(rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.3));
+    --shadow-2:
+      0 1px 1px 2px light-dark(rgb(0 0 0 / 0.03), rgb(0 0 0 / 0.6)),
+      0 4px 4px light-dark(rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.4));
+    --shadow-3:
+      0 2px 4px light-dark(rgb(0 0 0 / 0.05), rgb(0 0 0 / 0.65)),
+      0 4px 8px light-dark(rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.45));
+    --shadow-4:
+      0 4px 8px light-dark(rgb(0 0 0 / 0.06), rgb(0 0 0 / 0.7)),
+      0 8px 16px light-dark(rgb(0 0 0 / 0.12), rgb(0 0 0 / 0.5));
+    --shadow-5:
+      0 8px 16px light-dark(rgb(0 0 0 / 0.08), rgb(0 0 0 / 0.75)),
+      0 12px 24px light-dark(rgb(0 0 0 / 0.14), rgb(0 0 0 / 0.55));
+    --shadow-6:
+      0 12px 24px light-dark(rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.8)),
+      0 16px 32px light-dark(rgb(0 0 0 / 0.16), rgb(0 0 0 / 0.6)),
+      0 24px 48px light-dark(rgb(0 0 0 / 0.18), rgb(0 0 0 / 0.5));
+
+    --box:
+      0 1px 2px rgb(0 0 0 / 0.04), inset -1px 1px 2px rgb(255 255 255 / 0.1),
+      inset 1px 1px 2px rgb(255 255 255 / 0.1);
+
+    /* Border Tokens */
+    --border-05: solid 1px var(--fg-05);
+    --border-1: solid 1px var(--fg-2);
+    --border-2: solid 2px var(--fg-2);
+
+    /* Focus ring tokens — consumed by base, components, and utilities */
+    --focus-ring: 2px solid var(--fg);
+    --focus-ring-offset: 2px;
+    --focus-ring-offset-inset: -2px;
+
+    /* Automatic contrast helper */
     --l: clamp(0, (l / var(--l-threshold, 0.623) - 1) * -infinity, 1);
 
     color-scheme: light dark;

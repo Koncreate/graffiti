@@ -1,5 +1,11 @@
 # @drop-in/graffiti
 
+## 4.24.2
+
+### Patch Changes
+
+- Reorganize `:root` tokens into two commented tiers — literal tokens (concrete colors, scales, durations) and semantic tokens (`--primary`, `--accent`, `--focus-ring`, `--border-*`, `--shadow-*`, `--fg`, `--bg`). No value changes; only declaration order and comment headers. Aligns with the 2-tier token model documented in `CONTEXT.md`.
+
 ## 4.24.1
 
 ### Patch Changes
