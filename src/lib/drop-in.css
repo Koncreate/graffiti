@@ -1153,14 +1153,13 @@
   input,
   textarea,
   select {
-    &[aria-invalid="true"],
-    &.error {
+    &:where(:user-invalid, [aria-invalid="true"], .error) {
       border-color: var(--red-6);
       &:focus-visible {
         outline-color: var(--red-6);
       }
     }
-    &.success {
+    &:where(:user-valid.success, .success) {
       border-color: var(--green-6);
       &:focus-visible {
         outline-color: var(--green-6);

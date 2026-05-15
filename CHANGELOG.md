@@ -1,5 +1,11 @@
 # @drop-in/graffiti
 
+## 4.24.11
+
+### Patch Changes
+
+- Form fields now style as invalid via `:user-invalid` in addition to `[aria-invalid="true"]` and `.error`. The platform pseudo-class only matches after the user interacts with the field, so required-empty fields no longer show error styling on page load. `:user-valid.success` gates green styling on user interaction too.
+
 ## 4.24.10
 
 ### Patch Changes
