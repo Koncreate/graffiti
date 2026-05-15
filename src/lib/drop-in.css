@@ -480,6 +480,31 @@
     --l: clamp(0, (l / var(--l-threshold, 0.623) - 1) * -infinity, 1);
 
     color-scheme: light dark;
+
+    @media (forced-colors: active) {
+      :root {
+        --fg: CanvasText;
+        --bg: Canvas;
+        --primary: LinkText;
+        --accent: LinkText;
+        --error: Mark;
+        --warning: Mark;
+        --success: LinkText;
+        --focus-ring: 2px solid CanvasText;
+        --border-1: solid 1px CanvasText;
+        --border-2: solid 2px CanvasText;
+        --border-05: solid 1px GrayText;
+        /* Shadows can't survive forced-colors anyway (background-image stripped),
+           so override to none so components don't rely on them */
+        --shadow-1: none;
+        --shadow-2: none;
+        --shadow-3: none;
+        --shadow-4: none;
+        --shadow-5: none;
+        --shadow-6: none;
+        --box: none;
+      }
+    }
   }
 
   html {
@@ -775,6 +800,24 @@
     &:focus-visible {
       outline: var(--focus-ring);
       outline-offset: var(--focus-ring-offset);
+    }
+
+    @media (forced-colors: active) {
+      /* In forced-colors mode, the gradient background and inset gloss disappear.
+         Add an explicit border so the button has a visible edge. */
+      background: ButtonFace;
+      color: ButtonText;
+      border: 1px solid ButtonBorder;
+
+      &:hover {
+        background: Highlight;
+        color: HighlightText;
+      }
+
+      &:disabled {
+        color: GrayText;
+        border-color: GrayText;
+      }
     }
 
     &.mini {
@@ -1886,6 +1929,13 @@
     border-radius: var(--br-l);
     box-shadow: var(--shadow-2);
     overflow: clip;
+
+    @media (forced-colors: active) {
+      /* The box-shadow that conveys card separation is stripped. Use a visible
+         border instead. */
+      border: 1px solid CanvasText;
+      background: Canvas;
+    }
   }
 
   .card.linked {
@@ -1916,6 +1966,12 @@
       border-color: var(--fg-4);
       box-shadow: var(--shadow-2);
       translate: 0;
+    }
+
+    @media (forced-colors: active) {
+      &:hover { border-color: LinkText; }
+      &:active { border-color: ActiveText; }
+      &:focus-visible { outline: 2px solid LinkText; }
     }
   }
 

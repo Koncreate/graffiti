@@ -1,5 +1,11 @@
 # @drop-in/graffiti
 
+## 4.24.8
+
+### Patch Changes
+
+- Add Forced Colors Mode (Windows High Contrast) support. Semantic color tokens override to system keywords (`CanvasText`, `Canvas`, `LinkText`, `Mark`, `ButtonText`, etc.) in `@media (forced-colors: active)`, and `button` / `.card` get structural border fallbacks since `box-shadow` and gradient backgrounds are stripped in this mode.
+
 ## 4.24.7
 
 ### Patch Changes
