@@ -93,6 +93,11 @@
     --fw-semibold: 600;
     --fw-bold: 700;
 
+    /* Heading Letter Spacing */
+    --ls-h1: -0.02em;
+    --ls-h2: -0.015em;
+    --ls-h3: -0.01em;
+
     /* Color System - OKLCH with 1-9 scales */
     /* Base colors (scale 5) */
     --yellow: oklch(0.88 0.15 95);
@@ -821,6 +826,9 @@
     --border-05: solid 1px var(--fg-05);
     --border-1: solid 1px var(--fg-2);
     --border-2: solid 2px var(--fg-2);
+    --border-3: solid 3px var(--fg-2);
+    --border-4: solid 4px var(--fg-2);
+    --border-5: solid 5px var(--fg-2);
 
     /* Focus ring tokens — consumed by base, components, and utilities */
     --focus-ring: 2px solid var(--fg);
@@ -843,6 +851,9 @@
       --focus-ring: 2px solid CanvasText;
       --border-1: solid 1px CanvasText;
       --border-2: solid 2px CanvasText;
+      --border-3: solid 3px CanvasText;
+      --border-4: solid 4px CanvasText;
+      --border-5: solid 5px CanvasText;
       --border-05: solid 1px GrayText;
       /* Shadows can't survive forced-colors anyway (background-image stripped),
          so override to none so components don't rely on them */
@@ -1301,17 +1312,17 @@
   .h1 {
     margin-block: 0 var(--vs-base);
     --fl: 5;
-    letter-spacing: -0.02em;
+    letter-spacing: var(--ls-h1);
   }
   h2,
   .h2 {
     --fl: 4;
-    letter-spacing: -0.015em;
+    letter-spacing: var(--ls-h2);
   }
   h3,
   .h3 {
     --fl: 3;
-    letter-spacing: -0.01em;
+    letter-spacing: var(--ls-h3);
   }
   h4,
   .h4 {
