@@ -4674,6 +4674,8 @@
     translate: 100% 0;
 
     &:popover-open {
+      translate: 0;
+
       @starting-style {
         translate: 100% 0;
       }
