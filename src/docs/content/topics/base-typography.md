@@ -27,6 +27,9 @@ classes:
   - .fs-xxl
   - .fs-xxxl
   - .fc
+  - --ls-h1
+  - --ls-h2
+  - --ls-h3
 demos:
   - TypographyScale
 tags:
@@ -42,3 +45,17 @@ Graffiti type uses a fluid scale controlled by `--fl` and semantic heading class
 - Use `.fc` when typography should respond to container width.
 
 Line-height tokens (`--lh-xs` through `--lh-xl`) are available for tighter or looser rhythm control.
+
+## Heading Letter Spacing
+
+`h1`/`h2`/`h3` apply a subtle negative letter-spacing for tight display type. The values are exposed as tokens so serif or display-font themes can override them without fighting selector specificity:
+
+```css
+:root {
+  --ls-h1: -0.02em;
+  --ls-h2: -0.015em;
+  --ls-h3: -0.01em;
+}
+```
+
+Set these to `0` (or positive em values) for serif and slab faces that don't need tightening.

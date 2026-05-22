@@ -7,6 +7,7 @@ summary: Activity feeds, step indicators, and progress tracking with status vari
 when_to_use: Progress steps and chronological activity flows.
 classes:
   - .timeline
+  - .steps
   - .horizontal
   - .active
   - .completed
@@ -22,6 +23,18 @@ tags:
   - ui-blocks
   - progress
 ---
+
+## `.timeline` and `.steps`
+
+`.timeline` and `.steps` are the same primitive — pick the name that matches intent. Use `.timeline` for chronological event lists (activity feeds, changelogs, history). Use `.steps` for ordered process flows (onboarding, multi-step forms, checkout).
+
+```html
+<ol class="steps">
+  <li>Account</li>
+  <li>Shipping</li>
+  <li>Payment</li>
+</ol>
+```
 
 ## Vertical Timeline (Activity Feed)
 
