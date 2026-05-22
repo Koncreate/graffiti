@@ -9,6 +9,7 @@
   import * as docsRuntime from "../../docs/content/runtime.js";
   import type { FontSettings, ThemeValues, BorderRadiusSettings } from "$lib/types";
   import ThemeControls from "../../docs/ThemeControls.svelte";
+  import Icon from "./Icon.svelte";
 
   // Preset CSS files are pulled in here so the Aesthetic selector in
   // ThemeControls can apply a `.theme-*` class on <html> and the styles
@@ -77,6 +78,20 @@
     })
     .filter((route) => route !== null);
 
+  type IconName =
+    | "sparkles" | "box" | "wrench" | "atom" | "layers"
+    | "grid" | "palette" | "history";
+  const routeIcon: Record<string, IconName> = {
+    "/": "sparkles",
+    "/base": "box",
+    "/utilities": "wrench",
+    "/elements": "atom",
+    "/ui-blocks": "layers",
+    "/templates": "grid",
+    "/themes": "palette",
+    "/changelog": "history",
+  };
+
   $effect(() => {
     const style = document.documentElement.style;
     for (const key in theme_values) {
@@ -142,6 +157,11 @@
       text-decoration-thickness: 5px;
     }
 
+    /* The global thick-underline a {} treatment collides with
+       .sidebar-nav's row borders/gradients. Strip it inside the nav. */
+    .sidebar-nav a {
+      text-decoration: none;
+    }
   </style>
   <header class="header readable">
     <div>
@@ -215,18 +235,26 @@
       class="split vertical box invisible"
       style="top: 44px; max-height: calc(100dvh - 44px);"
     >
-      <nav class="sidebar-nav">
-        <a aria-current={page.url.pathname === "/" ? "page" : null} href="/"
-          >Get Started</a
-        >
+      <nav class="sidebar-nav compact" style="--sn-color: var(--primary);">
+        <div class="sidebar-nav-heading">Start</div>
+        <a aria-current={page.url.pathname === "/" ? "page" : null} href="/">
+          <Icon name="sparkles" /> Get Started
+        </a>
+
+        <div class="sidebar-nav-heading">Foundations</div>
         {#each docsRoutes as route (route.key)}
+          {#if route.key === "elements"}
+            <div class="sidebar-nav-heading">Library</div>
+          {/if}
           <a
             aria-current={page.url.pathname.startsWith(route.path)
               ? "page"
               : null}
             href={route.path}
-            title={route.introTitle}>{route.navLabel}</a
+            title={route.introTitle}
           >
+            <Icon name={routeIcon[route.path]} /> {route.navLabel}
+          </a>
           {#if page.url.pathname.startsWith(route.path)}
             {#each route.topics as topic (topic.id)}
               <a href={`${route.path}#${topic.id}`} class="sub">{topic.title}</a>
@@ -237,23 +265,34 @@
           aria-current={page.url.pathname.startsWith("/templates")
             ? "page"
             : null}
-          href="/templates">Templates</a
+          href="/templates"
         >
+          <Icon name="grid" /> Templates
+        </a>
+
+        <div class="sidebar-nav-heading">Customize</div>
         <a
           aria-current={page.url.pathname.startsWith("/themes")
             ? "page"
             : null}
-          href="/themes">Themes</a
+          href="/themes"
         >
+          <Icon name="palette" /> Themes
+        </a>
         <a
           aria-current={page.url.pathname.startsWith("/changelog")
             ? "page"
             : null}
-          href="/changelog">Changelog</a
+          href="/changelog"
         >
+          <Icon name="history" /> Changelog
+        </a>
       </nav>
-      <div class="stack" style="padding: var(--pad-s) var(--pad-m);">
-        <small>v{version}</small>
+      <div
+        class="cluster"
+        style="padding: var(--pad-s) var(--pad-m); align-items: center; --gap: var(--vs-s);"
+      >
+        <small style="color: var(--fg-7);">v{version}</small>
       </div>
     </aside>
     <section

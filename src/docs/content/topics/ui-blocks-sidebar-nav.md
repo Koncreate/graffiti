@@ -8,7 +8,12 @@ when_to_use: Sectioned app navigation with collapsible groups.
 classes:
   - .sidebar-nav
   - .sidebar-nav.compact
+  - .sidebar-nav.ghost
+  - .sidebar-nav.minimal
+  - .sidebar-nav.strong-active
   - .sub
+tokens:
+  - --sn-color
 demos:
   - SidebarNav
 tags:
@@ -94,7 +99,9 @@ Icons are automatically sized to `20px` (customizable via `--sidebar-nav-icon-si
 - `--sidebar-nav-icon-size` - Icon size (default: 20px)
 - `--sidebar-nav-indent` - Indentation for nested items (default: 1.5rem)
 
-## Compact Variant
+## Variants
+
+### Compact
 
 Use `.compact` when a sidebar needs denser rows:
 
@@ -107,6 +114,56 @@ Use `.compact` when a sidebar needs denser rows:
 ```
 
 Compact mode keeps focus and hover behavior, while reducing row padding and icon size.
+
+### Ghost
+
+`.ghost` swaps the row gradient for a transparent fill with a thin border that strengthens on hover and active. Use it when the sidebar should read as part of a surrounding panel rather than a filled control.
+
+```html
+<nav class="sidebar-nav ghost">
+  <a href="/design">Design</a>
+  <a href="/engineering" aria-current="page">Engineering</a>
+  <a href="/support">Support</a>
+</nav>
+```
+
+### Minimal
+
+`.minimal` drops the row chrome entirely — no border, no background, no shadow. Rows are text only; hierarchy comes from color. Inactive text sits at `--fg-8`; the active row brightens to full `--fg`.
+
+```html
+<nav class="sidebar-nav minimal">
+  <a href="/home">Home</a>
+  <a href="/library" aria-current="page">Library</a>
+  <a href="/archive">Archive</a>
+</nav>
+```
+
+### Strong active
+
+Compose `.strong-active` with `.minimal` or `.ghost` when the default active brightness isn't pulling enough hierarchy. The active row paints in full `--fg` and the hover state matches, so the selected row is clearly the brightest thing in the list.
+
+```html
+<nav class="sidebar-nav minimal strong-active">
+  <a href="/home">Home</a>
+  <a href="/library" aria-current="page">Library</a>
+  <a href="/archive">Archive</a>
+</nav>
+```
+
+### Primary-colored active row
+
+Set `--sn-color` on the nav to opt the active row's gradient + text into a theme color. Pairs cleanly with `var(--primary)` so the highlight re-skins with the rest of the theme.
+
+```html
+<nav class="sidebar-nav" style="--sn-color: var(--primary);">
+  <a href="/dashboard" aria-current="page">Dashboard</a>
+  <a href="/analytics">Analytics</a>
+  <a href="/billing">Billing</a>
+</nav>
+```
+
+`--sn-color` can also point at `var(--success)`, `var(--warning)`, `var(--error)`, or any color you've put in scope.
 
 ## App Shell Pattern (Dashboard / Settings)
 

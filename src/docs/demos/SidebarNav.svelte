@@ -88,15 +88,33 @@
     </a>
   </nav>
 
-  <nav class="sidebar-nav primary" aria-label="Primary sidebar nav variant">
+  <nav class="sidebar-nav compact" aria-label="Compact sidebar">
     <a href="#overview" aria-current="page">Overview</a>
     <a href="#activity">Activity</a>
     <a href="#reports">Reports</a>
+    <a href="#exports">Exports</a>
   </nav>
 
-  <nav class="sidebar-nav dark" aria-label="Dark sidebar nav variant">
+  <nav class="sidebar-nav ghost" aria-label="Ghost outlined sidebar">
     <a href="#design">Design</a>
     <a href="#engineering" aria-current="page">Engineering</a>
     <a href="#support">Support</a>
+  </nav>
+
+  <nav class="sidebar-nav minimal strong-active" aria-label="Minimal text-only sidebar">
+    <a href="#home">Home</a>
+    <a href="#library" aria-current="page">Library</a>
+    <a href="#archive">Archive</a>
+    <a href="#trash">Trash</a>
+  </nav>
+
+  <nav
+    class="sidebar-nav"
+    style="--sn-color: var(--primary);"
+    aria-label="Primary-colored active sidebar"
+  >
+    <a href="#dashboard" aria-current="page">Dashboard</a>
+    <a href="#analytics">Analytics</a>
+    <a href="#billing">Billing</a>
   </nav>
 </div>

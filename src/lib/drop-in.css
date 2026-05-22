@@ -3900,6 +3900,22 @@
       --sn-hover-y: 0px;
     }
 
+    /* Compose with .minimal/.ghost to push the active row to full --fg
+       brightness instead of the default --fg-8 slight emphasis. */
+    &.strong-active {
+      --sn-text: var(--fg);
+      --sn-hover-text: var(--fg);
+    }
+
+    /* Tighter padding for nested .tag so badges/kbd-hints fit a row
+       without inflating its height. Higher specificity than the bare
+       `.tag` rule (defined later in this file) so this actually wins;
+       inline styles still override as usual. */
+    .tag {
+      padding-block: 1px;
+      padding-inline: var(--pad-s);
+    }
+
     .sidebar-nav-heading {
       display: block;
       inline-size: 100%;

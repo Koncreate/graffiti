@@ -1,5 +1,54 @@
 # @drop-in/graffiti
 
+## 4.28.0
+
+### Minor Changes
+
+- **Docs site sidebar redesign + `.sidebar-nav` variations are now documented.**
+
+  The graffiti-ui.com docs site picks up a richer left navigation: grouped sections (Start / Foundations / Library / Customize), inline Lucide icons on every row, `.compact` density, and an opt-in `--sn-color: var(--primary)` highlighted active row. Mobile collapse behavior and routing are unchanged.
+
+  The `/ui-blocks#sidebar-nav` topic now showcases every `.sidebar-nav` variation in a single demo so the modifiers are discoverable from one place:
+  - default (filled active row, sectioned with `<details>` + `.sidebar-nav-heading`)
+  - `.compact` — denser rows, smaller icons
+  - `.ghost` — outlined row, no background gradient
+  - `.minimal` + `.strong-active` — text-only rows with full-brightness active
+  - `--sn-color: var(--primary)` — active row paints with a theme color
+
+  The previously-shown `.sidebar-nav.primary` and `.sidebar-nav.dark` examples were removed; neither modifier exists in the framework, so the demo had been rendering them as fall-through button/tag styling. The topic's `classes` frontmatter is updated to list all real modifiers.
+
+- **`.sidebar-nav` gains a `.strong-active` modifier and tightens nested `.tag` padding.**
+
+  Two small additions to the existing `.sidebar-nav` component, both additive — no existing markup changes meaning.
+
+  **`.strong-active` modifier.** When composed with `.minimal` or `.ghost`, the active row gets full `--fg` color instead of the framework's default `--fg-8` slight emphasis. Useful for sidebars where you want hierarchy via brightness and weight rather than a button-style filled active row.
+
+  ```html
+  <!-- before — active row reads as "slightly darker than inactive" -->
+  <nav class="sidebar-nav minimal">
+    <a aria-current="page">Active</a>
+    <a>Inactive</a>
+  </nav>
+
+  <!-- after — active row reads as "the brightest thing in the list" -->
+  <nav class="sidebar-nav minimal strong-active">
+    <a aria-current="page">Active</a>
+    <a>Inactive</a>
+  </nav>
+  ```
+
+  **Tighter `.tag` padding inside `.sidebar-nav`.** `.tag`'s default padding is designed for standalone pills in cards and headers; inside a sidebar row it inflates row height. A descendant override (`.sidebar-nav .tag`) applies tighter padding (`1px 8px`) so kbd-style hints, status chips, and counts sit comfortably alongside row text.
+
+  ```html
+  <a href="/elements">
+    Elements
+    <span class="tag">g 4</span>
+    <!-- now fits the row -->
+  </a>
+  ```
+
+  Inline `style="…"` overrides on a tag continue to win as they always do; consumers wanting to re-override the padding can target `.sidebar-nav .tag` with equal-or-higher specificity.
+
 ## 4.27.0
 
 ### Minor Changes
