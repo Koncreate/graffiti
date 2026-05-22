@@ -272,15 +272,47 @@
 
     /* Purple Deep opaque scale */
     /* derive:source */
-    --purple-deep-opaque-1: color-mix(in oklab, var(--purple-deep), var(--bg) 90%);
-    --purple-deep-opaque-2: color-mix(in oklab, var(--purple-deep), var(--bg) 80%);
-    --purple-deep-opaque-3: color-mix(in oklab, var(--purple-deep), var(--bg) 65%);
-    --purple-deep-opaque-4: color-mix(in oklab, var(--purple-deep), var(--bg) 40%);
+    --purple-deep-opaque-1: color-mix(
+      in oklab,
+      var(--purple-deep),
+      var(--bg) 90%
+    );
+    --purple-deep-opaque-2: color-mix(
+      in oklab,
+      var(--purple-deep),
+      var(--bg) 80%
+    );
+    --purple-deep-opaque-3: color-mix(
+      in oklab,
+      var(--purple-deep),
+      var(--bg) 65%
+    );
+    --purple-deep-opaque-4: color-mix(
+      in oklab,
+      var(--purple-deep),
+      var(--bg) 40%
+    );
     --purple-deep-opaque-5: var(--purple-deep);
-    --purple-deep-opaque-6: color-mix(in oklab, var(--purple-deep), var(--fg) 30%);
-    --purple-deep-opaque-7: color-mix(in oklab, var(--purple-deep), var(--fg) 50%);
-    --purple-deep-opaque-8: color-mix(in oklab, var(--purple-deep), var(--fg) 70%);
-    --purple-deep-opaque-9: color-mix(in oklab, var(--purple-deep), var(--fg) 90%);
+    --purple-deep-opaque-6: color-mix(
+      in oklab,
+      var(--purple-deep),
+      var(--fg) 30%
+    );
+    --purple-deep-opaque-7: color-mix(
+      in oklab,
+      var(--purple-deep),
+      var(--fg) 50%
+    );
+    --purple-deep-opaque-8: color-mix(
+      in oklab,
+      var(--purple-deep),
+      var(--fg) 70%
+    );
+    --purple-deep-opaque-9: color-mix(
+      in oklab,
+      var(--purple-deep),
+      var(--fg) 90%
+    );
     /* /derive:source */
 
     /* Indigo scale */
@@ -368,15 +400,47 @@
 
     /* Highlighter opaque scale */
     /* derive:source */
-    --highlighter-opaque-1: color-mix(in oklab, var(--highlighter), var(--bg) 90%);
-    --highlighter-opaque-2: color-mix(in oklab, var(--highlighter), var(--bg) 80%);
-    --highlighter-opaque-3: color-mix(in oklab, var(--highlighter), var(--bg) 65%);
-    --highlighter-opaque-4: color-mix(in oklab, var(--highlighter), var(--bg) 40%);
+    --highlighter-opaque-1: color-mix(
+      in oklab,
+      var(--highlighter),
+      var(--bg) 90%
+    );
+    --highlighter-opaque-2: color-mix(
+      in oklab,
+      var(--highlighter),
+      var(--bg) 80%
+    );
+    --highlighter-opaque-3: color-mix(
+      in oklab,
+      var(--highlighter),
+      var(--bg) 65%
+    );
+    --highlighter-opaque-4: color-mix(
+      in oklab,
+      var(--highlighter),
+      var(--bg) 40%
+    );
     --highlighter-opaque-5: var(--highlighter);
-    --highlighter-opaque-6: color-mix(in oklab, var(--highlighter), var(--fg) 30%);
-    --highlighter-opaque-7: color-mix(in oklab, var(--highlighter), var(--fg) 50%);
-    --highlighter-opaque-8: color-mix(in oklab, var(--highlighter), var(--fg) 70%);
-    --highlighter-opaque-9: color-mix(in oklab, var(--highlighter), var(--fg) 90%);
+    --highlighter-opaque-6: color-mix(
+      in oklab,
+      var(--highlighter),
+      var(--fg) 30%
+    );
+    --highlighter-opaque-7: color-mix(
+      in oklab,
+      var(--highlighter),
+      var(--fg) 50%
+    );
+    --highlighter-opaque-8: color-mix(
+      in oklab,
+      var(--highlighter),
+      var(--fg) 70%
+    );
+    --highlighter-opaque-9: color-mix(
+      in oklab,
+      var(--highlighter),
+      var(--fg) 90%
+    );
     /* /derive:source */
 
     /* Brown scale */
@@ -938,15 +1002,47 @@
     --purple-opaque-8: color-mix(in oklab, var(--purple), var(--fg) 70%);
     --purple-opaque-9: color-mix(in oklab, var(--purple), var(--fg) 90%);
 
-    --purple-deep-opaque-1: color-mix(in oklab, var(--purple-deep), var(--bg) 90%);
-    --purple-deep-opaque-2: color-mix(in oklab, var(--purple-deep), var(--bg) 80%);
-    --purple-deep-opaque-3: color-mix(in oklab, var(--purple-deep), var(--bg) 65%);
-    --purple-deep-opaque-4: color-mix(in oklab, var(--purple-deep), var(--bg) 40%);
+    --purple-deep-opaque-1: color-mix(
+      in oklab,
+      var(--purple-deep),
+      var(--bg) 90%
+    );
+    --purple-deep-opaque-2: color-mix(
+      in oklab,
+      var(--purple-deep),
+      var(--bg) 80%
+    );
+    --purple-deep-opaque-3: color-mix(
+      in oklab,
+      var(--purple-deep),
+      var(--bg) 65%
+    );
+    --purple-deep-opaque-4: color-mix(
+      in oklab,
+      var(--purple-deep),
+      var(--bg) 40%
+    );
     --purple-deep-opaque-5: var(--purple-deep);
-    --purple-deep-opaque-6: color-mix(in oklab, var(--purple-deep), var(--fg) 30%);
-    --purple-deep-opaque-7: color-mix(in oklab, var(--purple-deep), var(--fg) 50%);
-    --purple-deep-opaque-8: color-mix(in oklab, var(--purple-deep), var(--fg) 70%);
-    --purple-deep-opaque-9: color-mix(in oklab, var(--purple-deep), var(--fg) 90%);
+    --purple-deep-opaque-6: color-mix(
+      in oklab,
+      var(--purple-deep),
+      var(--fg) 30%
+    );
+    --purple-deep-opaque-7: color-mix(
+      in oklab,
+      var(--purple-deep),
+      var(--fg) 50%
+    );
+    --purple-deep-opaque-8: color-mix(
+      in oklab,
+      var(--purple-deep),
+      var(--fg) 70%
+    );
+    --purple-deep-opaque-9: color-mix(
+      in oklab,
+      var(--purple-deep),
+      var(--fg) 90%
+    );
 
     --indigo-opaque-1: color-mix(in oklab, var(--indigo), var(--bg) 90%);
     --indigo-opaque-2: color-mix(in oklab, var(--indigo), var(--bg) 80%);
@@ -978,15 +1074,47 @@
     --lime-opaque-8: color-mix(in oklab, var(--lime), var(--fg) 70%);
     --lime-opaque-9: color-mix(in oklab, var(--lime), var(--fg) 90%);
 
-    --highlighter-opaque-1: color-mix(in oklab, var(--highlighter), var(--bg) 90%);
-    --highlighter-opaque-2: color-mix(in oklab, var(--highlighter), var(--bg) 80%);
-    --highlighter-opaque-3: color-mix(in oklab, var(--highlighter), var(--bg) 65%);
-    --highlighter-opaque-4: color-mix(in oklab, var(--highlighter), var(--bg) 40%);
+    --highlighter-opaque-1: color-mix(
+      in oklab,
+      var(--highlighter),
+      var(--bg) 90%
+    );
+    --highlighter-opaque-2: color-mix(
+      in oklab,
+      var(--highlighter),
+      var(--bg) 80%
+    );
+    --highlighter-opaque-3: color-mix(
+      in oklab,
+      var(--highlighter),
+      var(--bg) 65%
+    );
+    --highlighter-opaque-4: color-mix(
+      in oklab,
+      var(--highlighter),
+      var(--bg) 40%
+    );
     --highlighter-opaque-5: var(--highlighter);
-    --highlighter-opaque-6: color-mix(in oklab, var(--highlighter), var(--fg) 30%);
-    --highlighter-opaque-7: color-mix(in oklab, var(--highlighter), var(--fg) 50%);
-    --highlighter-opaque-8: color-mix(in oklab, var(--highlighter), var(--fg) 70%);
-    --highlighter-opaque-9: color-mix(in oklab, var(--highlighter), var(--fg) 90%);
+    --highlighter-opaque-6: color-mix(
+      in oklab,
+      var(--highlighter),
+      var(--fg) 30%
+    );
+    --highlighter-opaque-7: color-mix(
+      in oklab,
+      var(--highlighter),
+      var(--fg) 50%
+    );
+    --highlighter-opaque-8: color-mix(
+      in oklab,
+      var(--highlighter),
+      var(--fg) 70%
+    );
+    --highlighter-opaque-9: color-mix(
+      in oklab,
+      var(--highlighter),
+      var(--fg) 90%
+    );
 
     --brown-opaque-1: color-mix(in oklab, var(--brown), var(--bg) 90%);
     --brown-opaque-2: color-mix(in oklab, var(--brown), var(--bg) 80%);
@@ -2673,9 +2801,15 @@
     }
 
     @media (forced-colors: active) {
-      &:hover { border-color: LinkText; }
-      &:active { border-color: ActiveText; }
-      &:focus-visible { outline: 2px solid LinkText; }
+      &:hover {
+        border-color: LinkText;
+      }
+      &:active {
+        border-color: ActiveText;
+      }
+      &:focus-visible {
+        outline: 2px solid LinkText;
+      }
     }
   }
 
@@ -2911,44 +3045,67 @@
   }
 
   .callout {
-    --callout-color: var(--blue-1);
-    --callout-border-color: var(--blue-5);
+    /* Hairline default · neutral surface, 1px border, semantic icon. */
+    --callout-accent: var(--blue);
     padding: var(--pad-l);
-    border-radius: var(--br-xl);
-    border: var(--callout-border-color) solid 2px;
-    color: var(--fg-8);
-    gap: var(--gap, 1rem);
+    border: var(--border-1);
+    border-radius: var(--br-m);
+    background: var(--surface-bg, var(--fg-05));
+    color: var(--fg);
+    display: flex;
+    align-items: center;
+    gap: var(--pad-m);
 
     > * {
       margin: 0;
     }
 
+    > svg:first-child {
+      flex: 0 0 auto;
+      color: var(--callout-accent);
+    }
+
+    &.stack {
+      align-items: flex-start;
+    }
+
     &.fill {
-      background: var(--callout-color);
+      --callout-tint: var(--blue-opaque-1);
+      --callout-accent: var(--blue-opaque-7);
+      border: 0;
+      background: var(--callout-tint);
     }
 
     &.warning {
-      --callout-color: var(--yellow-1);
-      --callout-border-color: var(--yellow-5);
+      --callout-accent: var(--warning);
+      &.fill {
+        --callout-tint: var(--yellow-opaque-1);
+        --callout-accent: var(--yellow-opaque-7);
+      }
     }
 
     &.error {
-      --callout-color: var(--red-1);
-      --callout-border-color: var(--red-5);
+      --callout-accent: var(--error);
+      &.fill {
+        --callout-tint: var(--red-opaque-1);
+        --callout-accent: var(--red-opaque-7);
+      }
     }
 
     &.ghost {
-      --callout-color: var(--gray-1);
-      --callout-border-color: var(--gray-5);
+      --callout-accent: var(--fg-7);
+      &.fill {
+        --callout-tint: var(--fg-05);
+        --callout-accent: var(--fg-7);
+      }
     }
 
     &.success {
-      --callout-color: var(--green-1);
-      --callout-border-color: var(--green-5);
-    }
-
-    &.hard {
-      border-inline-start: 10px solid var(--callout-border-color);
+      --callout-accent: var(--success);
+      &.fill {
+        --callout-tint: var(--green-opaque-1);
+        --callout-accent: var(--green-opaque-7);
+      }
     }
   }
 

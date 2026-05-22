@@ -95,11 +95,12 @@ Use `.muted` for neutral text color (better contrast on some backgrounds):
 
 ## Styling Details
 
-- Soft background (12% opacity of tag color)
+- Soft tinted background derived from `--tag-color` via OKLCH lightness/chroma adjustments (theme-aware in light and dark)
 - Text color auto-adjusts for light/dark themes
-- Subtle border (20% opacity of tag color)
+- Subtle border derived from `--tag-color`
 - Fluid typography at `--fl: -1` (smaller text)
 - Pill shape with `border-radius: var(--br-xxl)`
+- Interactive tags (`<a>`/`<button>`) lift `1px` on hover (`translate: 0 -1px`)
 
 ## Tags vs Chips
 

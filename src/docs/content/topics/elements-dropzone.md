@@ -82,15 +82,11 @@ dropzone.addEventListener("drop", (e) => {
 
 Get icons from [Phosphor Icons](https://phosphoricons.com/). The upload icon shown above is the "UploadSimple" icon.
 
-## CSS Variables
-
-- `--dropzone-padding` - Padding inside (default: `var(--pad-xxl)`)
-- `--dropzone-border-radius` - Border radius (default: `var(--br-m)`)
-
 ## Styling Details
 
+- Padding: `var(--pad-xxxl)`, radius: `var(--br-l)` (hardcoded; theme by editing the source or wrapping)
 - Dashed border (`2px dashed var(--fg-2)`)
 - Centered flex layout for icon and text
 - File input is hidden but covers entire area
 - Click anywhere to trigger file picker
-- `.dragover` state shows accent color border
+- `.dragover` state swaps border and icon colour to `var(--accent)`

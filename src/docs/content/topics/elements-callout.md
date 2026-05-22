@@ -11,8 +11,8 @@ classes:
   - .error
   - .success
   - .ghost
-  - .hard
   - .fill
+  - .callout.stack
 demos:
   - Callout
 tags:
@@ -30,11 +30,14 @@ tags:
 <div class="callout ghost">Ghost callout for subtle messages.</div>
 ```
 
-## With Title
+## With Icon
+
+The first direct `<svg>` child is pulled into the gutter and colored with
+`--callout-accent`:
 
 ```html
 <div class="callout warning">
-  <h4>Warning</h4>
+  <svg aria-hidden="true">…</svg>
   <p>This action cannot be undone.</p>
 </div>
 ```
@@ -48,19 +51,9 @@ tags:
 </div>
 ```
 
-## Hard Variant
-
-Add `.hard` for a thick left border accent:
-
-```html
-<div class="callout hard">Info with accent border.</div>
-<div class="callout warning hard">Warning with accent border.</div>
-<div class="callout error hard">Error with accent border.</div>
-```
-
 ## Fill Variant
 
-Add `.fill` for filled background:
+Add `.fill` for a soft tinted surface (no border):
 
 ```html
 <div class="callout fill">Filled info callout.</div>
@@ -69,20 +62,20 @@ Add `.fill` for filled background:
 
 ## Multiple Elements
 
-Use `.stack` for consistent spacing inside:
+Add `.stack` directly to the callout to align children to the start and stack them with consistent spacing:
 
 ```html
-<div class="callout">
-  <div class="stack">
-    <h4>Multiple Elements</h4>
-    <p>First paragraph of content.</p>
-    <p>Second paragraph of content.</p>
-    <button>Action</button>
-  </div>
+<div class="callout stack">
+  <h4>Multiple Elements</h4>
+  <p>First paragraph of content.</p>
+  <p>Second paragraph of content.</p>
+  <button>Action</button>
 </div>
 ```
 
+A nested `<div class="stack">` works too if you need finer control over which children stack.
+
 ## CSS Variables
 
-- `--callout-color` - Background color
-- `--callout-border-color` - Border color
+- `--callout-tint` - Background color (applies to `.fill` only)
+- `--callout-accent` - Icon color

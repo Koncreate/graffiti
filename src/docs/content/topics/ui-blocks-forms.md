@@ -82,18 +82,20 @@ Use `.form-option-row` on checkbox/radio labels to align controls and text with 
 
 ## Validation States
 
-Add `.error`, `.success`, or `.warning` to inputs:
+Add `.error`, `.success`, or `.warning` to inputs. These classes set the input's border color; `:user-invalid` and `[aria-invalid="true"]` produce the same error styling automatically.
 
 ```html
 <input type="email" class="error" />
-<small class="error">Please enter a valid email</small>
+<small>Please enter a valid email</small>
 
 <input type="text" class="success" />
-<small class="success">Username is available</small>
+<small>Username is available</small>
 
 <input type="password" class="warning" />
-<small class="warning">Password is weak</small>
+<small>Password is weak</small>
 ```
+
+A `<small>` placed directly after an input is auto-styled as a caption (block display, spacing). Style its color inline (`style="color: var(--red-6)"`) or use a `.callout.error` if you need a prominent validation message.
 
 ## Field Rows
 

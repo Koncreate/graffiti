@@ -13,7 +13,9 @@ classes:
   - .error
   - .ghost
   - .minimal
-  - .reset
+  - .dark
+  - .light
+  - .contrast
   - .mini
 demos:
   - Buttons
@@ -34,6 +36,16 @@ tags:
 <button class="minimal">Minimal</button>
 ```
 
+## Surface Variants
+
+`.dark`, `.light`, and `.contrast` keep a fixed surface regardless of theme. Use them on buttons that need to sit on a particular surface (e.g., a `.dark` hero) and stay legible.
+
+```html
+<button class="dark">Always dark</button>
+<button class="light">Always light</button>
+<button class="contrast">Inverts against current scheme</button>
+```
+
 ## Links as Buttons
 
 ```html
@@ -50,15 +62,13 @@ Smaller padding for compact buttons:
 <button class="primary mini">Small Primary</button>
 ```
 
-## Reset Button
+## Reset Utility
 
-Use `.reset` when you need a truly unstyled button and want to build custom chrome.
+`.reset` is a general-purpose utility (not a button variant) for stripping native chrome from any element. It removes background, border, radius, shadow, and padding while inheriting typography and color — useful when you want a `<button>` to behave like a bare interactive surface.
 
 ```html
 <button class="reset" type="button">Icon trigger</button>
 ```
-
-It removes background, border, radius, shadow, and padding while inheriting typography and color.
 
 ## Disabled State
 

@@ -1,5 +1,14 @@
 # @drop-in/graffiti
 
+## 4.29.0
+
+### Minor Changes
+
+- ### Breaking changes
+  - Redesign `.callout`. Default becomes a neutral hairline surface with a semantic icon in the gutter; `.fill` becomes a soft tint on the semantic alpha-1 fill. Removes the chrome-heavy 2px-colored-border treatment, drops `.hard` (left-stripe variant), and standardises on `--br-m` to match `.card` / `.surface`.
+  - Token rename: `--callout-color` → `--callout-tint` (applies to `.fill` only). `--callout-border-color` is removed (default uses `--border-1`). New: `--callout-accent` for the semantic icon color.
+  - `.callout.hard` is removed with no replacement.
+
 ## 4.28.0
 
 ### Minor Changes

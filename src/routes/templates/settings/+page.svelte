@@ -1,9 +1,7 @@
 <div class="layout-sidebar fill" style="--layout-gap: 0;">
 	<aside popover="auto" id="settings-sidebar" class="drawer stack surface" aria-label="Settings navigation panel" style="padding: var(--pad-l); border-inline-end: var(--border-1); --gap: var(--vs-m);">
 		<nav class="sidebar-nav" aria-label="Settings navigation">
-			<p class="sidebar-nav-heading">
-				<strong class="fs-s">Settings</strong>
-			</p>
+			<p class="sidebar-nav-heading">Personal</p>
 			<a href="/templates/settings" aria-current="page">Profile</a>
 			<a href="/templates/settings">Account</a>
 			<a href="/templates/settings">Notifications</a>
@@ -14,6 +12,7 @@
 				<a href="/templates/settings">Two-Factor</a>
 				<a href="/templates/settings">Sessions</a>
 			</details>
+			<p class="sidebar-nav-heading">Workspace</p>
 			<a href="/templates/settings">Billing</a>
 			<a href="/templates/settings">API Keys</a>
 		</nav>

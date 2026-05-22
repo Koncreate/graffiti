@@ -15,12 +15,12 @@ tags:
   - navigation
 ---
 
-Works with both image and initials avatars.
+Works with both image and initials avatars. Set a unique `--anchor` on each dropdown so the menu attaches to its avatar trigger.
 
 ## Example with Image
 
 ```html
-<div class="dropdown end">
+<div class="dropdown end" style="--anchor: --user-menu-jane">
   <button popovertarget="user-menu" class="avatar">
     <img src="/avatar.jpg" alt="Jane Doe" />
   </button>
@@ -37,7 +37,7 @@ Works with both image and initials avatars.
 ## Example with Initials
 
 ```html
-<div class="dropdown end">
+<div class="dropdown end" style="--anchor: --user-menu-jd">
   <button popovertarget="user-menu" class="avatar">JD</button>
   <div id="user-menu" popover class="dropdown-menu">
     <div class="dropdown-header">Jane Doe</div>
@@ -53,8 +53,13 @@ Works with both image and initials avatars.
 
 - `.dropdown.end` - Aligns menu to right edge of avatar
 - `.avatar` - Circular avatar styling on the button
+- `.avatar.bordered` - Adds a subtle border around the avatar
 - `.dropdown-menu` - Menu styling
 - `.dropdown-header` - User name display in menu
+
+## Anchor Setup
+
+`.dropdown` requires a `--anchor` inline style (dashed-ident, unique per instance) so the menu can position-anchor to its trigger. See the [Dropdown topic](#dropdown) for details.
 
 ## Avatar Sizes
 

@@ -11,6 +11,13 @@ classes:
   - .sidebar-nav.ghost
   - .sidebar-nav.minimal
   - .sidebar-nav.strong-active
+  - .sidebar-nav.primary
+  - .sidebar-nav.success
+  - .sidebar-nav.warning
+  - .sidebar-nav.error
+  - .sidebar-nav.dark
+  - .sidebar-nav.light
+  - .sidebar-nav.contrast
   - .sub
 tokens:
   - --sn-color
@@ -129,7 +136,7 @@ Compact mode keeps focus and hover behavior, while reducing row padding and icon
 
 ### Minimal
 
-`.minimal` drops the row chrome entirely — no border, no background, no shadow. Rows are text only; hierarchy comes from color. Inactive text sits at `--fg-8`; the active row brightens to full `--fg`.
+`.minimal` drops the row chrome entirely — no border, no background, no shadow. Hierarchy comes from text color: inactive rows are `--fg-6` (inherited from the base row rule), the active row sits at `--fg-8`, and hover lifts to full `--fg`.
 
 ```html
 <nav class="sidebar-nav minimal">
@@ -151,19 +158,47 @@ Compose `.strong-active` with `.minimal` or `.ghost` when the default active bri
 </nav>
 ```
 
-### Primary-colored active row
+### Color variants
 
-Set `--sn-color` on the nav to opt the active row's gradient + text into a theme color. Pairs cleanly with `var(--primary)` so the highlight re-skins with the rest of the theme.
+Add `.primary`, `.success`, `.warning`, or `.error` to re-skin the active row's gradient and text in a theme color. These are shorthands for `--sn-color: var(--primary)` etc.
 
 ```html
-<nav class="sidebar-nav" style="--sn-color: var(--primary);">
+<nav class="sidebar-nav primary">
   <a href="/dashboard" aria-current="page">Dashboard</a>
   <a href="/analytics">Analytics</a>
   <a href="/billing">Billing</a>
 </nav>
 ```
 
-`--sn-color` can also point at `var(--success)`, `var(--warning)`, `var(--error)`, or any color you've put in scope.
+You can also set `--sn-color` inline to any color in scope:
+
+```html
+<nav class="sidebar-nav" style="--sn-color: var(--purple);">
+  <a href="/dashboard" aria-current="page">Dashboard</a>
+</nav>
+```
+
+### Surface variants
+
+Use `.dark`, `.light`, or `.contrast` when the sidebar should sit on a fixed surface regardless of theme. `.dark` always renders on a near-black surface, `.light` on white, `.contrast` flips against the active color scheme.
+
+```html
+<nav class="sidebar-nav dark">
+  <a href="/inbox" aria-current="page">Inbox</a>
+  <a href="/settings">Settings</a>
+</nav>
+```
+
+### Nested tag density
+
+`.tag` placed inside a sidebar row gets tighter padding so badge-style accents (counts, keyboard hints) don't inflate the row height.
+
+```html
+<a href="/inbox">
+  Inbox
+  <span class="tag">12</span>
+</a>
+```
 
 ## App Shell Pattern (Dashboard / Settings)
 

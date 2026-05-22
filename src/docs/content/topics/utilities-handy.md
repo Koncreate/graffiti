@@ -99,6 +99,16 @@ Customize size:
 <div class="aspect-21-9">21:9</div>
 ```
 
+## Fluid Container
+
+`.fc` (alias: `.fluid-text-container`) turns the element into an inline-size container query root and switches fluid typography to container-query units (`cqi`) instead of viewport units. Use it on any region whose type should scale with the region's width — sidebars, cards, modals — not the viewport.
+
+```html
+<section class="fc">
+  <h2>Scales with this section's width, not the viewport</h2>
+</section>
+```
+
 ## Auto Color
 
 Automatically sets text color based on background:
@@ -122,18 +132,20 @@ With tinted text:
 
 ## Validation States
 
-Add to inputs or text:
+`.error`, `.success`, and `.warning` set border colours on form controls (and are scoped to a few other components like `.callout`, `.tag`, `.timeline li`, `.sidebar-nav`). They do not style generic text — a `<small>` placed after an input gets caption spacing but inherits the parent's color.
 
 ```html
 <input class="error" />
-<small class="error">Error message</small>
+<small>Please enter a valid email</small>
 
 <input class="success" />
-<small class="success">Success message</small>
+<small>Username is available</small>
 
 <input class="warning" />
-<small class="warning">Warning message</small>
+<small>Password is weak</small>
 ```
+
+For prominent inline status messages, use `<div class="callout error">…</div>` instead.
 
 ## Full Bleed
 

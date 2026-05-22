@@ -19,10 +19,22 @@ tags:
 
 No JavaScript required for open/close.
 
+## Anchor Setup (Required)
+
+Each dropdown needs a unique `--anchor` value set on `.dropdown`. The menu uses CSS anchor positioning to attach to its trigger, and `--anchor` is the dashed-ident that ties them together. Without it, the popover falls back to default centered placement.
+
+```html
+<div class="dropdown" style="--anchor: --my-menu">
+  <!-- trigger + menu -->
+</div>
+```
+
+The value must start with `--` and be unique per dropdown on the page.
+
 ## Basic Example
 
 ```html
-<div class="dropdown">
+<div class="dropdown" style="--anchor: --menu-options">
   <button popovertarget="menu-id">Options</button>
   <div id="menu-id" popover class="dropdown-menu">
     <a href="/profile">Profile</a>
@@ -35,6 +47,7 @@ No JavaScript required for open/close.
 
 ## How It Works
 
+- `--anchor` on `.dropdown` declares the anchor name; the menu reads it as `position-anchor`
 - `popovertarget` on the button points to the menu's `id`
 - `popover` attribute enables native popover behavior
 - `.dropdown-menu` provides styling and positioning
@@ -43,7 +56,7 @@ No JavaScript required for open/close.
 ## With Section Headers
 
 ```html
-<div class="dropdown">
+<div class="dropdown" style="--anchor: --menu-actions">
   <button popovertarget="actions-menu">Actions</button>
   <div id="actions-menu" popover class="dropdown-menu">
     <div class="dropdown-header">Account</div>
@@ -61,7 +74,7 @@ No JavaScript required for open/close.
 Use `.end` to align menu to the right edge of the trigger:
 
 ```html
-<div class="dropdown end">
+<div class="dropdown end" style="--anchor: --menu-end">
   <button popovertarget="menu">Options</button>
   <div id="menu" popover class="dropdown-menu">
     <!-- menu items -->

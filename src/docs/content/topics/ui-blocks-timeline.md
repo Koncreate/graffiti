@@ -144,6 +144,7 @@ SVG icons are automatically sized to 1.125rem (18px).
 .timeline {
   --timeline-marker-size: 2.5rem; /* Marker circle size */
   --timeline-marker-color: var(--fg); /* Icon/text color */
+  --timeline-marker-bg: …; /* Marker fill — each status variant overrides it */
   --timeline-line-width: 2px; /* Connecting line width */
   --timeline-line-color: var(--fg-1); /* Connecting line color */
   --timeline-gap: var(--pad-l); /* Gap between marker and content */

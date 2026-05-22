@@ -26,7 +26,10 @@ classes:
   - .fs-xl
   - .fs-xxl
   - .fs-xxxl
+  - .fluid
+  - .fluid-text-container
   - .fc
+  - --fl
   - --ls-h1
   - --ls-h2
   - --ls-h3
@@ -42,9 +45,10 @@ Graffiti type uses a fluid scale controlled by `--fl` and semantic heading class
 - Use native `h1`-`h6` for document structure.
 - Use `.h1`-`.h6` when non-heading elements need heading styling.
 - Use `.fs-*` classes for size-only adjustments without changing semantic elements.
-- Use `.fc` when typography should respond to container width.
+- Set `--fl` directly on any text element (`h1`-`h6`, `p`, `li`, `button`, `a`, `label`, `td`, `th`, `input`, `select`, `textarea`, `.fluid`, `.tag`) to step it on the fluid scale (`-1` through `6`).
+- Add `.fluid` (or its alias `.fluid-text-container` / `.fc`) when typography should respond to container width via `cqi` instead of viewport units.
 
-Line-height tokens (`--lh-xs` through `--lh-xl`) are available for tighter or looser rhythm control.
+Line-height tokens: `--lh-xs`, `--lh-s`, `--lh` (the base, equal to `1.5`), `--lh-l`, and `--lh-xl`. Note that the middle/base token is bare `--lh` — there is no `--lh-m`.
 
 ## Heading Letter Spacing
 

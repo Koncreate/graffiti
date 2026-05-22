@@ -57,5 +57,5 @@ No custom CSS needed.
 
 - Form inputs are styled automatically (no classes needed on inputs)
 - Labels automatically get proper spacing
-- Use `.error`, `.success`, `.warning` classes on inputs for validation states
-- Add `<small class="error">Message</small>` after inputs for validation messages
+- Use `.error`, `.success`, `.warning` classes on inputs for validation borders (or rely on `:user-invalid` / `[aria-invalid="true"]`)
+- A `<small>` placed directly after an input is auto-styled as a caption — colour it inline (`style="color: var(--red-6)"`) or use a `.callout.error` for prominent messages

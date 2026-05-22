@@ -14,7 +14,7 @@
 			<button class="primary" type="button">New Chat</button>
 			<input type="search" placeholder="Search chats..." />
 		</div>
-		<nav class="sidebar-nav compact">
+		<nav class="sidebar-nav compact" style="--sn-color: var(--primary);">
 			<a href="/templates/ai-chat" aria-current="page">
 				<span class="avatar s bordered" aria-hidden="true">A</span>
 				<div class="stack" style="--gap: var(--vs-xs);">

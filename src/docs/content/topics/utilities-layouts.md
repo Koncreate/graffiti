@@ -11,6 +11,8 @@ classes:
   - .layout-split
   - .layout-three-col
   - .layout-readable
+  - .layout-holy-grail
+  - .section
 demos:
   - LayoutCard
   - LayoutSidebar
@@ -36,7 +38,7 @@ tags:
 - `.layout-sidebar` - 250px sidebar (default)
 - `.layout-sidebar.narrow` - 150px sidebar
 - `.layout-sidebar.wide` - 350px sidebar
-- `.layout-sidebar.invert` - Sidebar on right
+- `.layout-sidebar.invert` - Sidebar on right (combine with `.narrow` or `.wide`)
 - `.layout-sidebar.fill` - Full app-shell frame (`--layout-gap: 0`, `height: 100dvh`)
 - `.layout-sidebar.fixed` - Sticky sidebar with scrolling main content
 
@@ -123,9 +125,9 @@ Max-width container for optimal reading:
 
 **Variants:**
 
-- `.layout-readable` - Start-aligned
-- `.layout-readable.center` - Centered
-- `.layout-readable.end` - End-aligned
+- `.layout-readable` - Centered by default (`margin: 0 auto`)
+- `.layout-readable.center` - Same as default; explicit affirmation
+- `.layout-readable.end` - End-aligned (`margin-inline-start: auto`)
 
 **Full bleed child:**
 
@@ -137,9 +139,23 @@ Max-width container for optimal reading:
 </div>
 ```
 
+## Section
+
+Use `.section` to apply consistent block padding around major page regions:
+
+```html
+<section class="section">
+  <h2>Featured</h2>
+  <!-- … -->
+</section>
+```
+
+Override the default with `--section-padding` (defaults to `var(--pad-xxxl)`).
+
 ## CSS Variables
 
 - `--gap` or `--layout-gap` - Gap between grid items
 - `--min-card-width` - Minimum card width for `.layout-card`
 - `--max-width` - Max width for `.layout-readable`
 - `--padding` - Inline padding for `.layout-readable`
+- `--section-padding` - Block padding for `.section`

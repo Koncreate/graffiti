@@ -7,6 +7,7 @@ summary: Input field with connected button.
 when_to_use: Input plus attached action button patterns.
 classes:
   - .input-group
+  - .input-group.stack-mobile
 demos:
   - InputGroup
   - Select
@@ -50,6 +51,17 @@ Use for copy-to-clipboard, search with button, URL sharing, or any input that ne
 <div class="input-group">
   <input type="text" value="some-value" />
   <button class="mini">Copy</button>
+</div>
+```
+
+## Stack on Mobile
+
+Add `.stack-mobile` to break the group into a vertical stack below `640px`. Each child reclaims a full border-radius so the input and button read as separate controls.
+
+```html
+<div class="input-group stack-mobile">
+  <input type="email" placeholder="you@example.com" />
+  <button class="primary">Subscribe</button>
 </div>
 ```
 

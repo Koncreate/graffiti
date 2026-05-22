@@ -19,7 +19,7 @@ tags:
   - chat
 ---
 
-`.bubble` uses a rounded fallback shape and upgrades to squircle corners in browsers that support `corner-shape`.
+`.bubble` is a rounded chat container with configurable padding, max-width, and child flow spacing.
 
 ## Basic Usage
 
@@ -91,5 +91,5 @@ Use these helpers to build complete chat threads:
 - `--bubble-max-inline` - Max bubble width
 - `--bubble-pad-block` - Block-axis padding
 - `--bubble-pad-inline` - Inline-axis padding
-- `--bubble-radius` - Fallback rounded corner radius
+- `--bubble-radius` - Corner radius
 - `--bubble-flow-space` - Spacing between child elements

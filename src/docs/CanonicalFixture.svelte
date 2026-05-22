@@ -40,9 +40,11 @@
 
   <!-- Callouts demonstrate status colors against the preset's bg -->
   <div class="callout">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
     <p>A neutral note about how the preset reads on a callout surface.</p>
   </div>
   <div class="callout success">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
     <p>Success callout — token <code>--success</code> on a tinted surface.</p>
   </div>
 

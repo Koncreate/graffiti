@@ -59,4 +59,4 @@ Get icons from [Phosphor Icons](https://phosphoricons.com/). The magnifying glas
 
 - Icon is absolutely positioned, vertically centered
 - Input has left padding to accommodate the icon
-- Icon color matches input text color
+- Icon is muted (`var(--fg-3)`) so the user's typed text reads as the primary content

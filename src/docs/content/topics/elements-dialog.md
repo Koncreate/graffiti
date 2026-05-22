@@ -37,7 +37,7 @@ No JavaScript required when using HTML invokers.
 
 ## Close Button
 
-The `.close` class creates a circular red button. When inside a `<dialog>`, it's automatically positioned in the top-right corner.
+The `.close` class creates a circular red button. When it is a direct child of a `<dialog>`, an extra rule pins it to the top-right corner (slightly overlapping the dialog's top edge). Used outside a `<dialog>`, it's just the circular button — position it yourself.
 
 ```html
 <button class="close">×</button>

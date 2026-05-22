@@ -65,7 +65,7 @@ Combine box styles with shadow variables:
 ## Styling Details
 
 - `.box` - Tint background, padding, border-radius, border
-- `.box.glow` - Inset glow shadow effect
+- `.box.glow` - Applies `var(--box)` — a soft outer drop shadow plus two inset highlights for a subtle dimensional sheen
 - `.box.semi-gloss` - Gradient background, premium feel
 - `.box.ghost` - Transparent, border outline only
 - `.box.invisible` - No visual styling, just structure

@@ -48,12 +48,14 @@ Add `.right`, `.top`, or `.bottom` to re-anchor the drawer to that edge. The sli
 
 ## Direction Reference
 
-| Class     | Anchors to | Slide direction | Sizing                       |
-| --------- | ---------- | --------------- | ---------------------------- |
-| _(none)_  | Left       | From left       | `--drawer-inline-size` wide  |
-| `.right`  | Right      | From right      | `--drawer-inline-size` wide  |
-| `.top`    | Top        | From top        | Full width, up to `85dvh`    |
-| `.bottom` | Bottom     | From bottom     | Full width, up to `85dvh`    |
+| Class     | Anchors to | Slide direction | Sizing                                          |
+| --------- | ---------- | --------------- | ----------------------------------------------- |
+| _(none)_  | Left       | From left       | `--drawer-inline-size` wide, capped at `85vw`   |
+| `.right`  | Right      | From right      | `--drawer-inline-size` wide, capped at `85vw`   |
+| `.top`    | Top        | From top        | Full width, up to `85dvh`                       |
+| `.bottom` | Bottom     | From bottom     | Full width, up to `85dvh`                       |
+
+Left/right drawers are hard-capped at `max-inline-size: 85vw` — pushing `--drawer-inline-size` past that clamps to the cap.
 
 ## CSS Custom Properties
 

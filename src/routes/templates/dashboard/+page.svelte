@@ -5,7 +5,7 @@
 			<strong class="fs-s">Acme Inc.</strong>
 		</div>
 
-		<nav class="sidebar-nav" aria-label="Dashboard navigation">
+		<nav class="sidebar-nav" style="--sn-color: var(--primary);" aria-label="Dashboard navigation">
 			<a href="/templates/dashboard" aria-current="page">Dashboard</a>
 			<a href="/templates/dashboard">Projects</a>
 			<a href="/templates/dashboard">Team</a>

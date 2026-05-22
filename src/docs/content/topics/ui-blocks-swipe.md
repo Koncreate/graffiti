@@ -46,8 +46,10 @@ Stays in "open" position after swiping:
 ```
 
 - First child = left action
-- Second child = main visible content
+- Second child = main visible content (sized to the swipe container's inline-size)
 - Third child = right action
+
+Action children should be `<button>` elements — the 200px action width is applied via `> button`. Non-button actions (`<a>`, `<div>`) will not get that width.
 
 ## Styling Details
 

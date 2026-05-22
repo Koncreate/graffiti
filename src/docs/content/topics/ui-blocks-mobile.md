@@ -8,6 +8,7 @@ when_to_use: App shell, bottom nav, bottom sheet, safe areas.
 classes:
   - .app-shell
   - .bottom-nav
+  - .bottom-nav.blur
   - .bottom-sheet
   - .safe-top
   - .safe-bottom
@@ -104,11 +105,17 @@ Fixed tab bar for mobile apps:
 
 Features:
 
-- Fixed at bottom of viewport
-- Respects `--safe-bottom` for home indicator
-- Active state via `aria-current="page"` or `.active` class
-- Icon + label pattern
+- Floating pill: `position: fixed`, inset from the bottom + sides, fully rounded (`var(--br-xxl)`) with `var(--shadow-3)`
+- Respects `--safe-bottom` for the home indicator
+- Active state via `aria-current="page"` or `.active` class (active color = `var(--primary)`)
+- 24px icons + `--fl: -1` label
 - Automatic light/dark theming
+
+Add `.blur` for a translucent glass effect (70% bg + 20px backdrop blur):
+
+```html
+<nav class="bottom-nav blur"><!-- … --></nav>
+```
 
 ## Bottom Sheet
 

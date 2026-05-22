@@ -7,7 +7,6 @@ summary: Navigation list with clickable rows for settings pages, menus, and navi
 when_to_use: Grouped list-style navigation rows.
 classes:
   - .list-nav
-  - .list-nav.bordered
 demos:
   - ListNav
 tags:
@@ -15,7 +14,7 @@ tags:
   - navigation
 ---
 
-Each item is a card with squircle shape and subtle shadow.
+Each item is a pill-shaped card with subtle shadow.
 
 ## Use Cases
 
@@ -57,29 +56,11 @@ Each item can contain:
 
 Each item automatically gets:
 
-- **Squircle shape** - Rounded corners with `corner-shape: squircle`
-- **Subtle shadow** - `var(--shadow-1)` for elevated card appearance
+- **Pill radius** - `var(--br-xxl)` rounded corners
+- **Subtle shadow** - `var(--shadow-2)` for elevated card appearance
 - **Background** - Uses `var(--bg)` for proper theming
 - **Gap** - `var(--pad-m)` spacing between items
-
-## Bordered Variant
-
-```html
-<nav class="list-nav bordered">
-  <a href="#dashboard">
-    <svg>...</svg>
-    Dashboard
-  </a>
-  <a href="#analytics">
-    <svg>...</svg>
-    Analytics
-  </a>
-  <a href="#reports">
-    <svg>...</svg>
-    Reports
-  </a>
-</nav>
-```
+- **Dark mode** - Items pick up a `var(--border-1)` border for definition
 
 ## With Button Elements
 
@@ -107,11 +88,11 @@ Each item automatically gets:
 
 ## States
 
-- **Default**: Card with squircle shape and subtle shadow
+- **Default**: Pill-shaped card with subtle shadow
 - **Hover**: Background highlight, icon brightens
-- **Focus**: 2px solid outline (inset)
+- **Focus**: Focus ring with inset offset
 - **Active**: Slightly darker background
-- **Disabled**: 50% opacity, no pointer events
+- **Disabled**: 65% opacity, no pointer events
 
 ## Differences from Sidebar Nav
 

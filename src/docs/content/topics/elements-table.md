@@ -7,6 +7,7 @@ summary: Responsive table wrapper with clean data table styling.
 when_to_use: Responsive table wrapper and default table styling.
 classes:
   - .table
+  - .table.zebra
 demos:
   - Table
 tags:
@@ -38,6 +39,18 @@ tags:
         <td>User</td>
       </tr>
     </tbody>
+  </table>
+</div>
+```
+
+## Zebra Striping
+
+Add `.zebra` to the wrapper for alternating row backgrounds (`var(--fg-05)` on even rows):
+
+```html
+<div class="table zebra">
+  <table>
+    <!-- … -->
   </table>
 </div>
 ```

@@ -125,25 +125,33 @@ For sidebars with content at top and bottom:
 </div>
 ```
 
+## Modifiers
+
+- `.cluster.center` — center the row horizontally instead of starting at the inline-start edge
+- `.split.even` — children take equal width (`flex: 1 1 auto`)
+- `.split.center` — vertically center children (overrides the default `align-items: start`)
+- `.split.vertical` — column flow, full height; useful for top+bottom split sidebars
+- `.split` automatically stacks at container widths under `500px`
+
 ## Default Properties
 
 **Stack:**
 
 - `display: flex`
 - `flex-direction: column`
-- `gap: 1rem`
+- `--gap: 1rem` (override via `style="--gap: …"`)
 - Resets child margins to 0
 
 **Cluster:**
 
 - `display: flex`
 - `flex-wrap: wrap`
-- `gap: 1rem`
 - `align-items: center`
+- `--gap: 0.5rem`
 
 **Split:**
 
 - `display: flex`
 - `justify-content: space-between`
 - `align-items: start`
-- `gap: 20px`
+- `gap: var(--gap, 1rem)`

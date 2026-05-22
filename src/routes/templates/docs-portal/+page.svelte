@@ -9,9 +9,12 @@
 			<input type="search" placeholder="Search docs" aria-label="Search documentation" />
 		</div>
 
-		<nav class="sidebar-nav" aria-label="Documentation navigation">
+		<nav class="sidebar-nav compact" style="--sn-color: var(--primary);" aria-label="Documentation navigation">
+			<p class="sidebar-nav-heading">Start</p>
 			<a href="/templates/docs-portal" aria-current="page">Getting Started</a>
 			<a href="/templates/docs-portal">Installation</a>
+
+			<p class="sidebar-nav-heading">Reference</p>
 			<a href="/templates/docs-portal">Layout Utilities</a>
 			<a href="/templates/docs-portal">Components</a>
 			<details open>
@@ -21,6 +24,8 @@
 				<a href="/templates/docs-portal">Forms</a>
 			</details>
 			<a href="/templates/docs-portal">Accessibility</a>
+
+			<p class="sidebar-nav-heading">Project</p>
 			<a href="/templates/docs-portal">Changelog</a>
 		</nav>
 

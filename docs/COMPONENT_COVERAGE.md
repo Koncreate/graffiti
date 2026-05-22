@@ -30,7 +30,7 @@ Cross-referenced against shadcn/ui (Radix-based, modern baseline), Radix Themes 
 | Feature card | ✅ | `.feature-card` for marketing/feature lists |
 | Stat card | ✅ | `.stat-card`. Trend-arrow + delta indicator is partial — no slot yet 🟡 |
 | Surface / panel | ✅ | `.surface`, `.box` |
-| Callout / alert | ✅ | `.callout` with `.warning`/`.error`/`.success`/`.ghost`, `.fill`, `.hard` |
+| Callout / alert | ✅ | `.callout` with `.warning`/`.error`/`.success`/`.ghost`, `.fill` |
 | Banner | 🟢 | ADR 0004, Dex `05c00pne` |
 | Empty state | 🟢 | ADR 0004, Dex `05c00pne` (named `.empty`) |
 | Hero section | ⚫ | Template composition (`.layout-readable` + headings + CTA) |

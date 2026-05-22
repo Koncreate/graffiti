@@ -37,7 +37,7 @@ tags:
 
 ## Key Classes Used
 
-- `.close` - Circular close button (positioned top-right automatically)
+- `.close` - Circular close button (auto-positions top-right only when a direct child of `<dialog>`)
 - `.stack` - Vertical layout for dialog content
 - `.cluster` - Horizontal layout for action buttons
 - `.h4` - Heading style without using an actual heading element

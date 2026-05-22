@@ -2,7 +2,7 @@
 
 Graffiti ships two new component classes for status messaging that the existing `.callout` cannot express:
 
-- `.banner` — a full-bleed horizontal strip (cookie consent, impersonation notice, site-wide announcement) with three logical slots: icon, text, actions. Color variants reuse the existing `--callout-color` / `--callout-border-color` tokens (`warning`, `error`, `success`, `ghost`). A `.banner.sticky` modifier handles top-of-viewport pinning.
+- `.banner` — a full-bleed horizontal strip (cookie consent, impersonation notice, site-wide announcement) with three logical slots: icon, text, actions. Color variants reuse the existing `--callout-tint` / `--callout-accent` tokens (`warning`, `error`, `success`, `ghost`). A `.banner.sticky` modifier handles top-of-viewport pinning.
 - `.empty` — a centered vertical-stack pattern for no-content states (empty lists, no search results, fresh dashboards). Slots in source order: icon/illustration, headline, body text, action(s). `max-inline-size` constraint (~48ch) keeps body text comfortable; padding is `--empty-pad` (default `--pad-xxxl`) so it can tighten inside cards.
 
 Both consume semantic tokens already in the system; neither introduces new color literals.
