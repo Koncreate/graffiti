@@ -1,0 +1,71 @@
+/**
+ * .theme-editorial — long-form serif, restrained
+ *
+ * Cream paper, warm ink, deep brick-red accent. Fraunces serif at a *modest*
+ * type ratio with generous line-height — editorial-restrained, not display-
+ * loud. Hairline borders, no shadows. Small drop-cap on prose openers
+ * (current-color, no decorative tint). The voice is "essay", not "magazine
+ * cover".
+ *
+ * References: The New Yorker article pages, Apple Newsroom, Pelican Books.
+ */
+
+:root.theme-editorial,
+.theme-editorial {
+  --font-sans: "Fraunces", Charter, Georgia, serif;
+  --font-ratio-min: 1.2;
+  --font-ratio-max: 1.25;
+  --lh: 1.65;
+  --lh-l: 1.85;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  --bg-light: #faf6ee;
+  --bg-dark: #1a1814;
+  --fg-light: #1a1814;
+  --fg-dark: #ede6d6;
+  --primary: #94352b;
+  --accent: var(--primary);
+
+  --br-xs: 1px;
+  --br-s: 2px;
+  --br-m: 3px;
+  --br-l: 4px;
+  --br-xl: 6px;
+  --br-xxl: 8px;
+
+  --shadow-1: none;
+  --shadow-2: none;
+  --shadow-3: 0 1px 2px rgb(26 24 20 / 0.06);
+  --shadow-4: 0 2px 4px rgb(26 24 20 / 0.08);
+  --shadow-5: 0 4px 8px rgb(26 24 20 / 0.1);
+  --shadow-6: 0 8px 16px rgb(26 24 20 / 0.12);
+}
+
+@layer themes {
+  .theme-editorial {
+    font-feature-settings: "kern", "liga", "onum", "pnum";
+  }
+
+  .theme-editorial :is(h1, h2, h3, h4, h5, h6) {
+    letter-spacing: normal;
+    font-feature-settings: "kern", "liga", "lnum";
+    font-weight: 600;
+  }
+
+  /* Small drop cap on prose openers — current-color, modest size. */
+  .theme-editorial .prose > p:first-of-type::first-letter {
+    font-size: 2.6em;
+    font-weight: 700;
+    float: inline-start;
+    line-height: 0.9;
+    margin-block-start: 0.08em;
+    margin-inline-end: 0.06em;
+  }
+
+  .theme-editorial a {
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+  }
+}

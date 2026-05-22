@@ -1,5 +1,489 @@
 # @drop-in/graffiti
 
+## 4.28.0
+
+### Minor Changes
+
+- **Docs site sidebar redesign + `.sidebar-nav` variations are now documented.**
+
+  The graffiti-ui.com docs site picks up a richer left navigation: grouped sections (Start / Foundations / Library / Customize), inline Lucide icons on every row, `.compact` density, and an opt-in `--sn-color: var(--primary)` highlighted active row. Mobile collapse behavior and routing are unchanged.
+
+  The `/ui-blocks#sidebar-nav` topic now showcases every `.sidebar-nav` variation in a single demo so the modifiers are discoverable from one place:
+  - default (filled active row, sectioned with `<details>` + `.sidebar-nav-heading`)
+  - `.compact` — denser rows, smaller icons
+  - `.ghost` — outlined row, no background gradient
+  - `.minimal` + `.strong-active` — text-only rows with full-brightness active
+  - `--sn-color: var(--primary)` — active row paints with a theme color
+
+  The previously-shown `.sidebar-nav.primary` and `.sidebar-nav.dark` examples were removed; neither modifier exists in the framework, so the demo had been rendering them as fall-through button/tag styling. The topic's `classes` frontmatter is updated to list all real modifiers.
+
+- **`.sidebar-nav` gains a `.strong-active` modifier and tightens nested `.tag` padding.**
+
+  Two small additions to the existing `.sidebar-nav` component, both additive — no existing markup changes meaning.
+
+  **`.strong-active` modifier.** When composed with `.minimal` or `.ghost`, the active row gets full `--fg` color instead of the framework's default `--fg-8` slight emphasis. Useful for sidebars where you want hierarchy via brightness and weight rather than a button-style filled active row.
+
+  ```html
+  <!-- before — active row reads as "slightly darker than inactive" -->
+  <nav class="sidebar-nav minimal">
+    <a aria-current="page">Active</a>
+    <a>Inactive</a>
+  </nav>
+
+  <!-- after — active row reads as "the brightest thing in the list" -->
+  <nav class="sidebar-nav minimal strong-active">
+    <a aria-current="page">Active</a>
+    <a>Inactive</a>
+  </nav>
+  ```
+
+  **Tighter `.tag` padding inside `.sidebar-nav`.** `.tag`'s default padding is designed for standalone pills in cards and headers; inside a sidebar row it inflates row height. A descendant override (`.sidebar-nav .tag`) applies tighter padding (`1px 8px`) so kbd-style hints, status chips, and counts sit comfortably alongside row text.
+
+  ```html
+  <a href="/elements">
+    Elements
+    <span class="tag">g 4</span>
+    <!-- now fits the row -->
+  </a>
+  ```
+
+  Inline `style="…"` overrides on a tag continue to win as they always do; consumers wanting to re-override the padding can target `.sidebar-nav .tag` with equal-or-higher specificity.
+
+## 4.27.0
+
+### Minor Changes
+
+- Add `.steps` as an alias for `.timeline`, and `.drawer.right`, `.drawer.top`, `.drawer.bottom` direction modifiers. Drawers can now be anchored to any edge — `.top`/`.bottom` slide vertically and cap at `85dvh`.
+
+## 4.26.0
+
+### Minor Changes
+
+- 285de2c: **Card redesign: padding on `.card` itself, `.card-body` removed.**
+
+  `.card` is now the padded surface — drop content directly inside without a `.card-body` wrapper. Direct `<header>`, `<footer>`, `<img>`, `<picture>`, and `<figure>` children bleed edge-to-edge through the card's padding via negative margins, so the divided-bar and edge-to-edge media patterns still work without extra markup. Children stack vertically with `gap: var(--gap)` (default `var(--vs-s)`), overridable inline.
+
+  The old `.card-body` selector is gone. Migration:
+
+  ```html
+  <!-- before -->
+  <article class="card">
+    <div class="card-body stack">
+      <p>…</p>
+    </div>
+  </article>
+
+  <!-- after -->
+  <article class="card">
+    <p>…</p>
+  </article>
+  ```
+
+  Header/footer/media variants are unchanged at the markup level — drop them directly as children of `.card`.
+
+  **`--gap` is now registered as a non-inheriting `@property`.**
+
+  Previously, setting `--gap` on a parent `.stack` would cascade into every nested `.card`, `.cluster`, or other component that read `var(--gap, …)`, producing surprising spacing. `--gap` is now registered with `inherits: false`, so each component falls back to its own designed default and only the element you set it on uses the override.
+
+  `.cluster` and `.card` set their own `--gap` defaults explicitly (`0.5rem` and `var(--vs-s)` respectively). Inline overrides via `style="--gap: …"` work the same as before, but no longer leak into descendants.
+
+  If you were relying on a parent's `--gap` cascading into a nested component, set `--gap` directly on that component instead.
+
+- Add `--border-3`, `--border-4`, `--border-5` border tokens and `--ls-h1`, `--ls-h2`, `--ls-h3` letter-spacing tokens to `:root`. Heading rules now consume `var(--ls-h*)` instead of hardcoded values, making it easy for presets and users to override heading letter-spacing without fighting specificity.
+
+## 4.25.1
+
+### Patch Changes
+
+- Aesthetic preset system iteration: rebuilt the demo fixture against canonical Graffiti patterns (the previous version used `<dialog open>` with override CSS, `.card` for a single non-record demo unit, and a made-up `.form-row` class), reworked five preset aesthetics with stronger references, and fixed a framework-level gap that was preventing preset `--fg`/`--font-sans` from reaching descendants.
+  - **Framework fix:** the `:where([class*="theme-"])` re-derivation block now re-applies `color`, `background`, `font-family`, and `line-height` from the local tokens. Without this, descendants inherit `body`'s already-resolved values and the preset's `--fg`/`--font-sans` overrides reach nothing — every preset was silently rendering in system sans + default ink despite tokens being correctly overridden.
+  - **Fixture rewrite:** `<dialog>` now uses the canonical `commandfor` / `command` API with `<button class="close">`. Card uses `<article class="card">` with proper `header` (h4 + tag) / `.card-body.stack` / `footer.cluster` structure. Forms use `.row` + `.input-group` + `.form-option-row` + `.form-actions` from canonical templates.
+  - **`theme-soft-consumer`:** dropped the pink-tinted box-shadow stack — soft elevation now uses neutral cool-dark layered shadows. Listed first in the preset catalog as the most defensible v1 design.
+  - **`theme-editorial`:** type ratio dropped from 1.25–1.333 to 1.2–1.25 (less wallpaper-loud). Drop cap reduced from 3.4em to 2.6em and stripped of the terracotta tint (now current-color). Brick red primary deepened.
+  - **`theme-paper`:** olive primary replaced with ink blue (`#1e3a8a`, Penguin Classics convention). Type ratio locked at 1.2.
+  - **`theme-brutalist`:** dropped highlighter yellow and Big Shoulders Display headlines entirely. Workhorse Inter at extreme weights for hierarchy; one saturated red accent (`#c8102e`, printer's-ink red) instead of an attempt at full monochrome (which broke `color-mix()` resolution in the button gradient and produced unreadable near-white primary buttons).
+  - **`theme-neon-arcade`:** concept reframed away from generic synthwave. New direction: classic vintage arcade marquee — black background in both color schemes, cream/wheat foreground, ruby + amber palette, hard offset shadows in primary/accent (extruded marquee letter effect). Dropped magenta + cyan, dropped text-shadow glow, dropped Big Shoulders. **Still needs further refinement; flagged as known-weak.**
+
+## 4.25.0
+
+### Minor Changes
+
+- Ship aesthetic preset system — five v1 presets that demonstrate Graffiti's container-scope theming. Each preset is token-dominant per ADR-0003 with focused selector rules for character treatments only. Apply via class on `:root`, `html`, or any container element; the existing theme-scope re-derivation (ADR-0006) handles re-shading inside the subtree.
+  - `theme-editorial` — magazine long-form: Fraunces serif, larger ratios, terracotta accent, ivory paper / deep ink, drop-cap opener on `.prose > p:first-of-type`.
+  - `theme-paper` — printable document feel: serif body, sepia warm dark, deep olive primary, zero radii, all shadows removed.
+  - `theme-brutalist` — raw high-contrast: pure black + white, highlighter-yellow primary, chunky 3–5px borders, hard offset (no-blur) Memphis shadows, uppercase Big Shoulders Display headings.
+  - `theme-neon-arcade` — synthwave glow: dark magenta-tinted surfaces in both color schemes, neon magenta primary + cyan accent, oklch-derived glow shadows replace the physical drop-shadow scale, Big Shoulders Display headlines with text-shadow glow.
+  - `theme-soft-consumer` — modern friendly SaaS: DM Sans, soft lavender-white / warm dark, indigo primary + pink accent, generous 4–24px radii, multi-layer soft drop shadows, slightly slowed `--d-base` / `--d-slow`.
+
+  New cascade layer: `@layer base, themes, components, utilities, layouts;` (per ADR-0003). The `themes` layer is declared in core so the order is stable whether the preset bundle is imported or not.
+
+  New `ThemeControls` font roster entries: Fraunces (variable serif) and Big Shoulders Display (variable display-condensed) — prereqs for editorial, paper, brutalist, and neon-arcade.
+
+  Distribution: import the full catalog with `@drop-in/graffiti/themes`, or tree-shake to a single preset via `@drop-in/graffiti/themes/<preset>`. Raw JS module variants exposed under `@drop-in/graffiti/themes/<preset>/raw` for build-tool integration.
+
+  Demo: `/themes` route renders the same six-surface CanonicalFixture (buttons, card, form, dialog, prose, tags) under each preset so visual deltas read against identical markup.
+
+  Small framework gap closed in passing: form elements (`input`, `textarea`, `button`, `select`) now `font-family: inherit` so preset `--font-sans` overrides flow through to controls (previously controls fell back to the browser's system UI font).
+
+## 4.24.15
+
+### Patch Changes
+
+- Add semantic motion-duration and z-index stacking-tier token scales at `:root`, and refactor every transition and `z-index` declaration in `drop-in.css` to consume them. New tokens: `--d-instant`/`--d-fast`/`--d-base`/`--d-slow`/`--d-emphatic` (0.1 / 0.15 / 0.2 / 0.3 / 0.4 s) and `--z-base`/`--z-raised`/`--z-overlay`/`--z-sticky`/`--z-modal`/`--z-toast` (0 / 1 / 10 / 100 / 200 / 300). The values codify the literals already scattered through the framework so consumers — and future motion presets — share one vocabulary. Hardcoded duration and z-index numbers in component overrides should switch to `var(--d-*)` and `var(--z-*)`. See ADR-0008.
+
+## 4.24.14
+
+### Patch Changes
+
+- Fix `.dark` button label color in dark mode. The previous tuning used `--button-text: light-dark(var(--white), var(--black))`, which flipped the label to black in dark mode and made the text unreadable on the dark surface. The `.dark` variant intentionally keeps a dark surface in both color schemes, so the label needs to stay white in both.
+
+## 4.24.13
+
+### Patch Changes
+
+- Logical-property pass on inline-flow sizing: swap `width` / `max-width` / `min-width` to `inline-size` / `max-inline-size` / `min-inline-size` and `scroll-padding-top` to `scroll-padding-block-start`. Vertical sizing (`height`, `min-height`, `max-height`) intentionally kept physical since vertical doesn't flip in RTL. Helps in-context translation tooling and RTL consumers without changing default LTR rendering.
+
+## 4.24.12
+
+### Patch Changes
+
+- Refactor print styles: move `color` to `body` only (uses `CanvasText` so forced-colors users print correctly), drop `!important` from shadow/image/no-print rules, swap `max-width` to logical `max-inline-size`. The `*` selector for background/shadow stripping is kept since it's the entire point of the print reset.
+
+## 4.24.11
+
+### Patch Changes
+
+- Form fields now style as invalid via `:user-invalid` in addition to `[aria-invalid="true"]` and `.error`. The platform pseudo-class only matches after the user interacts with the field, so required-empty fields no longer show error styling on page load. `:user-valid.success` gates green styling on user interaction too.
+
+## 4.24.10
+
+### Patch Changes
+
+- Replace `min-height: 100vh` with `100dvh` on `html`, `body`, and `body > .body-fill` so root-level layout stops jumping when mobile browser UI (address bar) appears or disappears.
+
+## 4.24.9
+
+### Patch Changes
+
+- Fix forced-colors token overrides: the `@media (forced-colors: active)` block inside `:root` had a nested `:root { ... }` rule that resolved to the descendant selector `:root :root` and never matched. Removed the nested selector so the overrides apply to `:root` directly.
+
+## 4.24.8
+
+### Patch Changes
+
+- Add Forced Colors Mode (Windows High Contrast) support. Semantic color tokens override to system keywords (`CanvasText`, `Canvas`, `LinkText`, `Mark`, `ButtonText`, etc.) in `@media (forced-colors: active)`, and `button` / `.card` get structural border fallbacks since `box-shadow` and gradient backgrounds are stripped in this mode.
+
+## 4.24.7
+
+### Patch Changes
+
+- Tune `.dark`, `.light`, `.contrast` button variants to use high color-mix percentages so the surface stays solid. The previous neutral-base mix percentages (18%/28%) washed out variants whose `--button-color` is a strong anchor (`#fff`, `var(--fg)`).
+
+## 4.24.6
+
+### Patch Changes
+
+- Tune `color-mix()` percentages for `.primary`, `.error`, `.warning`, `.success` button variants to preserve saturation. The previous 18%/28% / 35%/45% mixes were calibrated for a neutral gray base and washed out vivid variants in both color schemes. Variants now override the bg-top/bg-bottom/hover/active stops with high color-percentage mixes for a solid, saturated surface.
+
+## 4.24.5
+
+### Patch Changes
+
+- Refactor button color system to use `color-mix()` instead of `oklch(from ... l c h)` lightness manipulation. Avoids gamut clipping on saturated tokens like `--primary`. `.dark` / `.light` / `.contrast` variants now reassign `--button-color` semantically instead of hardcoding `oklch(...)` literals. Visual character (two-stop gradient, inset gloss, hover lift, active depress) preserved.
+
+## 4.24.4
+
+### Patch Changes
+
+- Flip cascade layer order to `base, components, utilities, layouts` so layout primitives win over utility classes applied to their children. Removes the two `display: none !important` workarounds in `.layout-sidebar` mobile rules that the previous order required. See `docs/adr/0002-cascade-layer-order.md`.
+
+## 4.24.3
+
+### Patch Changes
+
+- Replace global `* { animation-duration: 0.01ms }` reduced-motion override with the `@property --animation-reduced` opt-in pattern. Components can now declare a reduced-motion variant per-keyframe-name instead of having all looping animations snap to their end frame. See `docs/adr/0001-reduced-motion-animation-property.md`.
+
+## 4.24.2
+
+### Patch Changes
+
+- Reorganize `:root` tokens into two commented tiers — literal tokens (concrete colors, scales, durations) and semantic tokens (`--primary`, `--accent`, `--focus-ring`, `--border-*`, `--shadow-*`, `--fg`, `--bg`). No value changes; only declaration order and comment headers. Aligns with the 2-tier token model documented in `CONTEXT.md`.
+
+## 4.24.1
+
+### Patch Changes
+
+- Fix focus rings on buttons, tags, and dialog elements by defining the previously-undefined `--focus-ring`, `--focus-ring-offset`, and `--focus-ring-offset-inset` tokens in `:root`. Collapses duplicate base-layer `:focus-visible` rules to use the tokens.
+
+## 4.24.0
+
+### Minor Changes
+
+- Add `.table.zebra` variant that stripes even `tbody` rows with `var(--fg-05)`.
+
+## 4.23.4
+
+### Patch Changes
+
+- Update `.tag` to use `var(--br-xxl)` for border radius so it follows global `--br-*` radius settings instead of using a fixed pill radius value.
+
+## 4.23.3
+
+### Patch Changes
+
+- Fix sidebar navigation overflow in constrained vertical sidebars by making `.sidebar-nav` scrollable and preventing nav items from shrinking.
+
+## 4.23.2
+
+### Patch Changes
+
+- Fix `.tag` fluid typography by including `.tag` in the fluid selector so `--fl: -1` applies consistently inside table cells and other inherited text contexts.
+
+## 4.23.1
+
+### Patch Changes
+
+- Add reset button examples to the Buttons demo for both default and mini variant clusters.
+
+## 4.23.0
+
+### Minor Changes
+
+- Typography system overhaul for tighter, more professional type rendering:
+  - **Type scale**: Reduced `--font-ratio-max` from `1.33` (Perfect Fourth) to `1.25` (Major Third). Mobile scale unchanged. Desktop headings are now ~55px max instead of ~75px — strong editorial feel without poster-scale blowout.
+  - **Heading line-height**: All h1–h6 now use `var(--lh-s)` (1.2) instead of inheriting `1.5` from the fluid system. Eliminates the excessive leading on large headings.
+  - **Letter-spacing**: Added tighter tracking on display headings — h1: `-0.02em`, h2: `-0.015em`, h3: `-0.01em`. Compensates for optical looseness at large sizes.
+  - **Font-weight tokens**: Added `--fw-medium` (500), `--fw-semibold` (600), `--fw-bold` (700) custom properties. Migrated all hardcoded font-weight values to use tokens (buttons `560` and sidebar-nav-heading `620` intentionally kept as one-offs).
+  - **Hardcoded value cleanup**: Replaced all remaining hardcoded `line-height` values with token vars (`--lh-xs`, `--lh-s`, `--lh`).
+  - **Pull quote**: `.pull-quote` is now a real styled component (italic, muted color, left border, proper margins) instead of just a fluid-level alias for `.fs-m`.
+  - **Bottom nav**: `.bottom-nav span` switched from hardcoded `0.75rem` to fluid system (`--fl: -1`).
+
+## 4.22.0
+
+### Minor Changes
+
+- Add form field rows, form actions, and improved hr defaults. `.row` now serves as a form field wrapper inside forms/fieldsets. `.form-actions` provides end-aligned action rows with mobile stacking. Global `<hr>` is now styled by default with consistent spacing and border.
+
+## 4.21.1
+
+### Patch Changes
+
+- Refresh the `.tabs.pill` variant as a segmented control with a pure CSS sliding thumb and updated docs examples.
+
+## 4.21.0
+
+### Minor Changes
+
+- Add `.narrow.center` for centered constrained content and `.input-group.stack-mobile` for responsive stacked form actions on small screens.
+
+## 4.20.1
+
+### Patch Changes
+
+- Hardened app-shell and sidebar layout primitives so dashboard, settings, and chat templates can use class-first full-height shells with predictable scrolling and mobile fallbacks.
+
+## 4.20.0
+
+### Minor Changes
+
+- Added semantic status tag variants, a linked card variant, and a form option row helper to reduce inline styling and improve class-first template ergonomics.
+
+## 4.19.0
+
+### Minor Changes
+
+- Added a new `.bubble` chat message component with squircle corners, plus chat layout helpers for aligned threads and full-width composers. Updated docs, LLM docs, and the AI chat template to use the new primitives.
+
+## 4.18.0
+
+### Minor Changes
+
+- Add timeline component for activity feeds and step indicators
+  - Vertical layout (default) for activity feeds, changelogs, PR activity
+  - Horizontal layout with `.horizontal` modifier for steppers and progress
+  - Status variants: `.success`, `.warning`, `.error`, `.info` with colored glows
+  - State classes: `.active` for current step, `.completed` for done steps
+  - Icon-friendly 2.5rem markers with SVG sizing built-in
+  - Premium visual treatment with shadows, borders, and glow effects
+  - Full light/dark mode support
+
+## 4.17.0
+
+### Minor Changes
+
+- Added 10 curated, theme-aware gradient utility classes (sunset, ocean, aurora, midnight, dawn, forest, lavender, neon, slate, surface) plus a .gradient-text modifier for text gradients. Each gradient is a fully designed composition with its own gradient type, angle, and color stops that adapt to light/dark mode via light-dark() color stop variables.
+
+## 4.16.1
+
+### Patch Changes
+
+- Enhanced select and toggle styling: select now has dark-mode adaptive chevron, hover state with transitions, subtle box-shadow, pointer cursor, disabled styling, and fixed validation state specificity for .error/.success/.warning classes
+
+## 4.16.0
+
+### Minor Changes
+
+- c6f3837: Add card, pagination, mobile app patterns, and scroll utilities
+
+  **New components:**
+  - `.card` — Content container with header/footer borders, padded body sections (`.card-body`, `main`, `section`), and full-width media support
+  - `.pagination` — Layout-only pagination bar (flex row with centered page list and border-top); pairs with `.button.ghost` for controls
+  - `.app-shell` — Mobile-first app container using CSS grid (`auto 1fr auto`) with safe-area inset padding and sticky header/footer
+  - `.bottom-nav` — Fixed bottom tab bar with icon + label pattern, active state via `aria-current="page"`, safe-area aware
+  - `.bottom-sheet` — Fixed bottom drawer with rounded top corners, drag handle pseudo-element, and safe-area bottom padding
+
+  **New utilities:**
+  - `.safe-top` / `.safe-bottom` / `.safe-x` — Apply safe-area inset padding for mobile viewports
+  - `.hide-scrollbar` — Hide scrollbar cross-browser while preserving scroll
+  - `.momentum-scroll` — iOS momentum scrolling with overscroll containment
+
+  **Reworked:**
+  - `.pagination` uses `.button.ghost` instead of custom button styles — pagination is now layout-only, no longer re-declares button properties
+  - `.list-nav` focus state updated to use `--focus-ring` / `--focus-ring-offset-inset` tokens instead of hardcoded values
+
+## 4.15.3
+
+### Patch Changes
+
+- Retune `.tag` styling to match the rounded status-pill direction with softer light-mode pastels, clearer text contrast, and less gloss while preserving existing `--tag-color`, `.muted`, and interactive behaviors.
+
+## 4.15.2
+
+### Patch Changes
+
+- aba9d82: Fix CSS cascade layers - wrap base styles in @layer base so utilities can properly override element defaults (fixes .circle not working on buttons)
+
+## 4.15.1
+
+### Patch Changes
+
+- Update llms.txt documentation with new utilities and variables:
+  - Add .focus-ring, .transition-\*, .no-print utilities
+  - Add semantic color scales (--primary-_, --error-_, etc.)
+  - Add complete vertical spacing scale
+  - Add CSS @layer and accessibility info
+  - Remove obsolete --lh-m reference
+
+## 4.15.0
+
+### Minor Changes
+
+- Add CSS @layer for cascade organization: utilities, layouts, components
+
+  Layers are ordered from lowest to highest priority:
+  - utilities (lowest)
+  - layouts
+  - components (highest among layers)
+
+  Base styles and media queries are unlayered for maximum override capability.
+
+## 4.14.15
+
+### Patch Changes
+
+- Standardize CSS variable fallback patterns: fix .callout to use component pattern, add documentation for gap variable conventions
+
+## 4.14.14
+
+### Patch Changes
+
+- Add --vs-xxxl: 8rem to vertical spacing scale for very large spacing needs
+
+## 4.14.13
+
+### Patch Changes
+
+- Add semantic color scales: --primary-1 through -9, --error-1 through -9, --warning-1 through -9, --success-1 through -9
+
+## 4.14.12
+
+### Patch Changes
+
+- Add section markers: COMPONENTS, END COMPONENTS, ACCESSIBILITY & PRINT for better file navigation
+
+## 4.14.11
+
+### Patch Changes
+
+- Add print styles: clean typography, link URLs, page break control, and .no-print utility
+
+## 4.14.10
+
+### Patch Changes
+
+- Add transition utility classes: .transition, .transition-fast, .transition-slow, .transition-bounce, .transition-none
+
+## 4.14.9
+
+### Patch Changes
+
+- Add .focus-ring and .focus-ring-inset utility classes for consistent focus styling
+
+## 4.14.8
+
+### Patch Changes
+
+- Add prefers-reduced-motion support for accessibility - disables animations/transitions for users who prefer reduced motion
+
+## 4.14.7
+
+### Patch Changes
+
+- Add container query to .footer so grid stacks at narrow widths (uses existing container-type)
+
+## 4.14.6
+
+### Patch Changes
+
+- Remove redundant --lh-m variable (was just an alias for --lh, never used)
+
+## 4.14.5
+
+### Patch Changes
+
+- Add label element to fluid type system so --fl variable works on labels
+
+## 4.14.4
+
+### Patch Changes
+
+- Replace hardcoded gap: 20px with var(--gap, 1rem) in .flex, .split, and .header for token consistency
+
+## 4.14.3
+
+### Patch Changes
+
+- Add text-wrap: balance to headings for more visually pleasing line breaks
+
+## 4.14.2
+
+### Patch Changes
+
+- Fix duplicate comment: Purple scale → Purple deep scale
+
+## 4.14.1
+
+### Patch Changes
+
+- Fix typo in CSS comment: Typeography → Typography
+
+## 4.14.0
+
+### Minor Changes
+
+- Added Tabs component - pure CSS tabs using details/summary with CSS Grid and Subgrid. Features three variants: default (underline), boxed (card-style), and pill (rounded). No JavaScript required.
+
+## 4.13.0
+
+### Minor Changes
+
+- Add tooltip component using CSS anchor positioning
+  - Uses modern `anchor-scope` and `position-area` for clean positioning
+  - No JavaScript required - pure CSS with `:hover`/`:focus-within`
+  - Supports top (default), bottom, left, right positions
+  - Clean API: just wrap trigger + `.tooltip-content` in `.tooltip`
+  - Background inherits from theme (`--bg`), includes border and shadow
+
 ## 4.12.2
 
 ### Patch Changes

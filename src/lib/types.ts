@@ -13,4 +13,14 @@ export type FontSettings = {
   max_font_size: number;
   min_viewport: number;
   max_viewport: number;
+  font_family: string;
+};
+
+export type BorderRadiusSettings = {
+  br_xs: string;
+  br_s: string;
+  br_m: string;
+  br_l: string;
+  br_xl: string;
+  br_xxl: string;
 };

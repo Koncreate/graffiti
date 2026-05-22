@@ -1,100 +1,90 @@
-## Issue Tracking with bd (beads)
+# What this library is
 
-**IMPORTANT**: This project uses **bd (beads)** for ALL issue tracking. Do NOT use markdown TODOs, task lists, or other tracking methods.
+The standards-first, full-featured CSS library for the modern web.
+Utilities, elements, blocks, and templates. Highly configurable. Endlessly themeable. Zero JavaScript. Works with your favorite framework or straight-up HTML.
 
-### Why bd?
+## Key Concepts
 
-- Dependency-aware: Track blockers and relationships between issues
-- Git-friendly: Auto-syncs to JSONL for version control
-- Agent-optimized: JSON output, ready work detection, discovered-from links
+- Encapsulation of styles in single classes or directly on elements, this is not a utility first css library like tailwind
+- Composability - Classes can be used together to compose layouts, full designs and custom systems
+- Customization - The entire system is intended to be a base layer that can be completely transformed with a handful of CSS vars defined at the :root level or component level.
+- Hyper Modern Standards - Using the latest features in CSS and HTML to replace JavaScript functionality
+
+
+## Browser Testing
+
+When using chrome-devtools MCP or any browser automation, **always use the port defined in `vite.config.ts`** (currently `6124`). Do NOT assume default ports like `5173`.
+
+```
+http://localhost:6124
+```
+
+---
+
+## Git Safety
+
+**NEVER run `git revert` without explicit user permission.**
+
+This command rewrites history and can cause significant problems. If you think a revert is needed:
+
+1. **STOP** and explain why you think a revert is necessary
+2. **ASK** the user: "I believe we need to revert [commit]. May I proceed?"
+3. **WAIT** for explicit approval before running any revert command
+
+Other destructive git commands that also require explicit permission:
+
+- `git reset --hard`
+- `git push --force`
+- `git clean -fd`
+- `git checkout -- .` (discarding all changes)
+
+---
+
+## Issue Tracking with Dex
+
+**IMPORTANT**: This project uses **Dex** for ALL issue tracking. Do NOT use markdown TODOs, task lists, or other tracking methods.
+
+### Why Dex?
+
+- Repo-native tasks stored in `.dex/` and committed
+- No git hooks required
+- Simple CLI with rich context/results
 - Prevents duplicate tracking systems and confusion
 
 ### Quick Start
 
-**Check for ready work:**
+**List work:**
+
 ```bash
-bd ready --json
+npx -y @zeeg/dex list
+npx -y @zeeg/dex list --all
 ```
 
-**Create new issues:**
-```bash
-bd create "Issue title" -t bug|feature|task -p 0-4 --json
-bd create "Issue title" -p 1 --deps discovered-from:bd-123 --json
-bd create "Subtask" --parent <epic-id> --json  # Hierarchical subtask (gets ID like epic-id.1)
-```
+**Create new tasks:**
 
-**Claim and update:**
 ```bash
-bd update bd-42 --status in_progress --json
-bd update bd-42 --priority 1 --json
+npx -y @zeeg/dex create "Title" --description "Full context..."
+npx -y @zeeg/dex create "Subtask" --description "Details" --parent <task-id>
 ```
 
 **Complete work:**
+
 ```bash
-bd close bd-42 --reason "Completed" --json
+npx -y @zeeg/dex complete <task-id> --result "What changed + verification"
 ```
-
-### Issue Types
-
-- `bug` - Something broken
-- `feature` - New functionality
-- `task` - Work item (tests, docs, refactoring)
-- `epic` - Large feature with subtasks
-- `chore` - Maintenance (dependencies, tooling)
-
-### Priorities
-
-- `0` - Critical (security, data loss, broken builds)
-- `1` - High (major features, important bugs)
-- `2` - Medium (default, nice-to-have)
-- `3` - Low (polish, optimization)
-- `4` - Backlog (future ideas)
 
 ### Workflow for AI Agents
 
-1. **Check ready work**: `bd ready` shows unblocked issues
-2. **Claim your task**: `bd update <id> --status in_progress`
+1. **Check work**: `npx -y @zeeg/dex list`
+2. **Create tasks** with rich context when new work is discovered
 3. **Work on it**: Implement, test, document
-4. **Discover new work?** Create linked issue:
-   - `bd create "Found bug" -p 1 --deps discovered-from:<parent-id>`
-5. **Complete**: `bd close <id> --reason "Done"`
-6. **Commit together**: Always commit the `.beads/issues.jsonl` file together with the code changes so issue state stays in sync with code state
-
-### Auto-Sync
-
-bd automatically syncs with git:
-- Exports to `.beads/issues.jsonl` after changes (5s debounce)
-- Imports from JSONL when newer (e.g., after `git pull`)
-- No manual export/import needed!
-
-### GitHub Copilot Integration
-
-If using GitHub Copilot, also create `.github/copilot-instructions.md` for automatic instruction loading.
-Run `bd onboard` to get the content, or see step 2 of the onboard instructions.
-
-### MCP Server (Recommended)
-
-If using Claude or MCP-compatible clients, install the beads MCP server:
-
-```bash
-pip install beads-mcp
-```
-
-Add to MCP config (e.g., `~/.config/claude/config.json`):
-```json
-{
-  "beads": {
-    "command": "beads-mcp",
-    "args": []
-  }
-}
-```
-
-Then use `mcp__beads__*` functions instead of CLI commands.
+4. **Complete**: `npx -y @zeeg/dex complete <task-id> --result "..."`
+5. **Commit together**: Always commit the `.dex/` directory with code changes so task state stays in sync
 
 ### Managing AI-Generated Planning Documents
 
 AI assistants often create planning and design documents during development:
+
 - PLAN.md, IMPLEMENTATION.md, ARCHITECTURE.md
 - DESIGN.md, CODEBASE_SUMMARY.md, INTEGRATION_PLAN.md
 - TESTING_GUIDE.md, TECHNICAL_DESIGN.md, and similar files
@@ -102,18 +92,21 @@ AI assistants often create planning and design documents during development:
 **Best Practice: Use a dedicated directory for these ephemeral files**
 
 **Recommended approach:**
+
 - Create a `history/` directory in the project root
 - Store ALL AI-generated planning/design docs in `history/`
 - Keep the repository root clean and focused on permanent project files
 - Only access `history/` when explicitly asked to review past planning
 
 **Example .gitignore entry (optional):**
+
 ```
 # AI planning documents (ephemeral)
 history/
 ```
 
 **Benefits:**
+
 - ✅ Clean repository root
 - ✅ Clear separation between ephemeral and permanent documentation
 - ✅ Easy to exclude from version control if desired
@@ -122,17 +115,17 @@ history/
 
 ### CLI Help
 
-Run `bd <command> --help` to see all available flags for any command.
-For example: `bd create --help` shows `--parent`, `--deps`, `--assignee`, etc.
+Run `npx -y @zeeg/dex <command> --help` to see all available flags for any command.
+For example: `npx -y @zeeg/dex create --help` shows `--parent` and `--blocked-by`.
 
 ### Important Rules
 
-- ✅ Use bd for ALL task tracking
-- ✅ Always use `--json` flag for programmatic use
-- ✅ Link discovered work with `discovered-from` dependencies
-- ✅ Check `bd ready` before asking "what should I work on?"
+- ✅ Use Dex for ALL task tracking
+- ✅ Dex tasks live in `.dex/` and are committed
+- ✅ No git hooks required
+- ✅ Dex IDs are ephemeral; do NOT put them in commits/PRs
+- ✅ Use rich `--context` and `--result`
 - ✅ Store AI planning docs in `history/` directory
-- ✅ Run `bd <cmd> --help` to discover available flags
 - ❌ Do NOT create markdown TODO lists
 - ❌ Do NOT use external issue trackers
 - ❌ Do NOT duplicate tracking systems
@@ -140,3 +133,5 @@ For example: `bd create --help` shows `--parent`, `--deps`, `--assignee`, etc.
 
 For more details, see README.md and QUICKSTART.md.
 
+<!-- This section is maintained by the coding agent via lore (https://github.com/BYK/opencode-lore) -->
+<!-- End lore-managed section -->
