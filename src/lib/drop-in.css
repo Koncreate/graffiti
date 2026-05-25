@@ -4406,13 +4406,12 @@
     display: inline-block;
   }
 
-  .tooltip-content {
+  /* Shared visual styling for the tip surface — applies to both
+     the rich-content child (.tooltip .tip) and the attr-driven pseudo
+     (.tip[aria-label]::after). */
+  .tooltip .tip,
+  .tip[aria-label]::after {
     position: absolute;
-    position-anchor: --tooltip;
-    inset: unset;
-    position-area: block-start center;
-    margin-block-end: var(--vs-xs);
-
     padding: var(--pad-xs) var(--pad-s);
     inline-size: max-content;
     max-inline-size: 30ch;
@@ -4428,28 +4427,72 @@
     transition: opacity var(--d-fast) var(--ease-smooth);
   }
 
-  .tooltip:hover .tooltip-content,
-  .tooltip:focus-within .tooltip-content {
-    opacity: 1;
+  /* Rich pattern: child is a sibling of the trigger inside .tooltip,
+     so it needs anchor positioning to attach to the wrapper. */
+  .tooltip .tip {
+    inset: unset;
+    position-anchor: --tooltip;
+    position-area: block-start center;
+    margin-block-end: var(--vs-xs);
   }
 
-  /* Position variants */
-  .tooltip.bottom .tooltip-content {
+  .tooltip.bottom .tip {
     position-area: block-end center;
     margin-block-end: 0;
     margin-block-start: var(--vs-xs);
   }
 
-  .tooltip.left .tooltip-content {
+  .tooltip.left .tip {
     position-area: inline-start center;
     margin-block-end: 0;
     margin-inline-end: var(--vs-xs);
   }
 
-  .tooltip.right .tooltip-content {
+  .tooltip.right .tip {
     position-area: inline-end center;
     margin-block-end: 0;
     margin-inline-start: var(--vs-xs);
+  }
+
+  /* Standalone pattern: the pseudo is a descendant of the trigger,
+     so plain relative/absolute positioning works in every engine —
+     no anchor-positioning support required. */
+  .tip[aria-label] {
+    position: relative;
+  }
+
+  .tip[aria-label]::after {
+    content: attr(aria-label);
+    inset-block-end: calc(100% + var(--vs-xs));
+    inset-inline-start: 50%;
+    translate: -50% 0;
+  }
+
+  .tip[aria-label].bottom::after {
+    inset-block-end: unset;
+    inset-block-start: calc(100% + var(--vs-xs));
+  }
+
+  .tip[aria-label].left::after {
+    inset-block-end: unset;
+    inset-inline-start: unset;
+    inset-block-start: 50%;
+    inset-inline-end: calc(100% + var(--vs-xs));
+    translate: 0 -50%;
+  }
+
+  .tip[aria-label].right::after {
+    inset-block-end: unset;
+    inset-inline-start: calc(100% + var(--vs-xs));
+    inset-block-start: 50%;
+    translate: 0 -50%;
+  }
+
+  .tooltip:hover .tip,
+  .tooltip:focus-within .tip,
+  .tip[aria-label]:hover::after,
+  .tip[aria-label]:focus-visible::after {
+    opacity: 1;
   }
 
   /* Avatar */
@@ -5631,6 +5674,392 @@
   .momentum-scroll {
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
+  }
+
+  /* =========================================================================
+   * Chat patterns (v4.30)
+   *
+   * Seven additive patterns named for shape rather than AI-chat domain:
+   *   .icon-rail .layout-rail .bubble.thinking/.streaming .log-card
+   *   .composer .workbench-panel .chat-thread.flowing
+   *
+   * Compose with the existing primitives:
+   *   .layout-sidebar  .stack  .cluster  .card  .callout  .chip
+   *   .bubble  .chat-thread  .chat-message  .chat-composer
+   *
+   * Tokens used: --bg, --fg, --fg-05, --fg-1, --fg-2, --fg-4, --fg-5,
+   *   --fg-6, --primary, --green, --pad-*, --vs-*, --br-*, --d-*,
+   *   --border-1, --shadow-1, --shadow-2. No new tokens added.
+   * ========================================================================= */
+
+  /* -----------------------------------------------------------------------
+   * .icon-rail — narrow vertical column of icon buttons
+   *
+   * General-purpose nav rail. Sits left of a .layout-sidebar (composed
+   * via .layout-rail below). Drop in agent switchers, tool palettes,
+   * workspace shells. Optional .status dot affordance per row.
+   * --------------------------------------------------------------------- */
+  .icon-rail {
+    --rail-size: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--vs-xs);
+    inline-size: var(--rail-size);
+    padding-block: var(--pad-m);
+    background: var(--fg-05);
+    border-inline-end: var(--border-1);
+    min-block-size: 0;
+  }
+
+  .icon-rail > .brand {
+    inline-size: 2.25rem;
+    block-size: 2.25rem;
+    display: grid;
+    place-items: center;
+    border-radius: var(--br-m);
+    background: var(--primary);
+    color: var(--bg);
+    margin-block-end: var(--vs-s);
+  }
+
+  .icon-rail > a,
+  .icon-rail > button {
+    position: relative;
+    inline-size: 2.5rem;
+    block-size: 2.5rem;
+    display: grid;
+    place-items: center;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--fg-5);
+    border-radius: var(--br-m);
+    cursor: pointer;
+    transition:
+      background var(--d-fast),
+      color var(--d-fast),
+      border-color var(--d-fast);
+    padding: 0;
+  }
+
+  .icon-rail > a:hover,
+  .icon-rail > button:hover {
+    background: var(--fg-1);
+    color: var(--fg);
+  }
+
+  .icon-rail > a[aria-current="page"],
+  .icon-rail > button[aria-pressed="true"] {
+    background: var(--bg);
+    color: var(--primary);
+    border-color: var(--fg-2);
+    box-shadow: var(--shadow-1);
+  }
+
+  .icon-rail > a > .status,
+  .icon-rail > button > .status {
+    position: absolute;
+    inset-block-end: 4px;
+    inset-inline-end: 4px;
+    inline-size: 8px;
+    block-size: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 0 2px var(--bg);
+  }
+
+  .icon-rail > .spacer {
+    flex: 1;
+  }
+
+  /* -----------------------------------------------------------------------
+   * .layout-rail — rail + content shell, with optional 4th workbench pane
+   *
+   * Extends the .layout-sidebar idea: prepend an .icon-rail, follow with
+   * a sub-sidebar (.chat-list or similar), then main content. Container
+   * query–driven mobile collapse (no media query coupling) — at <768px
+   * inline-size the rail / list / workbench hide; reveal them via a
+   * <button class="drawer-toggle"> + <[popover].drawer> pair.
+   * --------------------------------------------------------------------- */
+  .layout-rail {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    block-size: 100%;
+    min-block-size: 0;
+    container-type: inline-size;
+    container-name: rail-shell;
+  }
+
+  .layout-rail > * {
+    min-block-size: 0;
+    overflow: hidden;
+  }
+
+  .layout-rail > .chat-list {
+    inline-size: 18rem;
+    border-inline-end: var(--border-1);
+    background: var(--fg-05);
+    display: flex;
+    flex-direction: column;
+    min-block-size: 0;
+  }
+
+  .layout-rail > .chat-list > header {
+    padding: var(--pad-m);
+    border-block-end: var(--border-1);
+  }
+
+  .layout-rail > .chat-list > .scroll {
+    overflow-y: auto;
+    padding: var(--pad-s);
+  }
+
+  .layout-rail.with-workbench {
+    grid-template-columns: auto auto minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  /* Drawer-toggle hides at desktop — rail / list are already visible.
+     Source-order is significant: this rule MUST come before the
+     @container block below so the container query wins at mobile. */
+  .layout-rail .drawer-toggle {
+    display: none;
+  }
+
+  @container rail-shell (max-width: 767px) {
+    .layout-rail,
+    .layout-rail.with-workbench {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+      block-size: 100%;
+    }
+    .layout-rail > .icon-rail,
+    .layout-rail > .chat-list,
+    .layout-rail > .workbench-panel {
+      display: none;
+    }
+    .layout-rail .drawer-toggle {
+      display: inline-flex;
+    }
+    .composer > .toolbar {
+      flex-wrap: wrap;
+    }
+  }
+
+  /* -----------------------------------------------------------------------
+   * .bubble.thinking / .streaming — message anatomy extensions
+   *
+   * Compose with the existing .bubble; both are pure CSS, no JS.
+   * --------------------------------------------------------------------- */
+  .bubble.thinking {
+    background: transparent;
+    border: 1px dashed var(--fg-2);
+    color: var(--fg-5);
+    font-style: italic;
+  }
+
+  .bubble.streaming::after {
+    content: "▍";
+    display: inline-block;
+    margin-inline-start: 2px;
+    color: var(--primary);
+    animation: bubble-streaming-cursor 1s steps(2) infinite;
+  }
+
+  @keyframes bubble-streaming-cursor {
+    0%, 49%   { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+
+  /* -----------------------------------------------------------------------
+   * .log-card — compact card with mono label, status slot, optional <pre>
+   *
+   * General-purpose transcript line for AI tool calls, deploy logs,
+   * build steps, activity feeds. Reads as a single row that may expand.
+   * --------------------------------------------------------------------- */
+  .log-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--vs-xs);
+    padding: var(--pad-s) var(--pad-m);
+    border: var(--border-1);
+    border-radius: var(--br-m);
+    background: var(--bg);
+    font-size: var(--fs--1, 0.875rem);
+  }
+
+  .log-card > header {
+    display: flex;
+    align-items: center;
+    gap: var(--vs-xs);
+    color: var(--fg-6);
+  }
+
+  .log-card > header > .label {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.8125rem;
+  }
+
+  .log-card > header > .status {
+    margin-inline-start: auto;
+    color: var(--fg-4);
+    font-size: 0.75rem;
+  }
+
+  .log-card > pre {
+    margin: 0;
+    font-size: 0.8125rem;
+    color: var(--fg-6);
+    overflow: hidden;
+    white-space: pre-wrap;
+  }
+
+  /* -----------------------------------------------------------------------
+   * .composer — multi-line input + inline toolbar
+   *
+   * Supersedes .chat-composer when you need model / tool / attach
+   * controls next to the text input. Also useful for comment + post
+   * surfaces — anywhere a textarea has adjacent affordances.
+   * --------------------------------------------------------------------- */
+  .composer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--vs-xs);
+    padding: var(--pad-s);
+    border: var(--border-1);
+    border-radius: var(--br-l);
+    background: var(--bg);
+    box-shadow: var(--shadow-2);
+    transition:
+      border-color var(--d-fast),
+      box-shadow var(--d-fast);
+  }
+
+  .composer:focus-within {
+    border-color: var(--primary);
+    box-shadow:
+      0 0 0 4px var(--fg-05),
+      var(--shadow-2);
+  }
+
+  .composer > textarea,
+  .composer > input[type="text"] {
+    border: 0;
+    padding: var(--pad-xs) var(--pad-s);
+    resize: none;
+    background: transparent;
+    font: inherit;
+    color: inherit;
+    min-block-size: 2.5rem;
+  }
+
+  .composer > textarea:focus,
+  .composer > input:focus {
+    outline: 0;
+  }
+
+  .composer > .toolbar {
+    display: flex;
+    align-items: center;
+    gap: var(--vs-xs);
+    padding-inline: var(--pad-xs);
+  }
+
+  .composer > .toolbar > .spacer {
+    flex: 1;
+  }
+
+  /* -----------------------------------------------------------------------
+   * .workbench-panel — right-aligned content pane with tabbed body
+   *
+   * Pairs with .layout-rail.with-workbench. Artifact viewer, properties
+   * inspector, code preview — IDE-shaped surfaces.
+   * --------------------------------------------------------------------- */
+  .workbench-panel {
+    display: flex;
+    flex-direction: column;
+    min-block-size: 0;
+    background: var(--bg);
+    border-inline-start: var(--border-1);
+  }
+
+  .workbench-panel > header {
+    display: flex;
+    align-items: center;
+    gap: var(--vs-s);
+    padding: var(--pad-s) var(--pad-m);
+    border-block-end: var(--border-1);
+  }
+
+  .workbench-panel > header > .tabs {
+    display: flex;
+    gap: 2px;
+    margin-inline-start: auto;
+    padding: 2px;
+    background: var(--fg-05);
+    border-radius: var(--br-m);
+  }
+
+  .workbench-panel > header > .tabs > button {
+    padding: var(--pad-xs) var(--pad-s);
+    border: 0;
+    background: transparent;
+    border-radius: var(--br-s);
+    font: inherit;
+    font-size: 0.8125rem;
+    color: var(--fg-5);
+    cursor: pointer;
+  }
+
+  .workbench-panel > header > .tabs > button[aria-pressed="true"] {
+    background: var(--bg);
+    color: var(--fg);
+    box-shadow: var(--shadow-1);
+  }
+
+  .workbench-panel > .body {
+    flex: 1;
+    overflow: auto;
+    padding: var(--pad-l);
+  }
+
+  /* -----------------------------------------------------------------------
+   * .chat-thread.flowing — bubble-less continuous-reading variant
+   *
+   * Turns become rows in a single reading column. For long-form /
+   * editorial agents where the conversation reads as one document.
+   * --------------------------------------------------------------------- */
+  .chat-thread.flowing {
+    max-inline-size: 68ch;
+    margin-inline: auto;
+    padding-block: var(--vs-xl);
+  }
+
+  .chat-thread.flowing > .turn {
+    display: grid;
+    grid-template-columns: 8ch 1fr;
+    gap: var(--pad-m);
+    padding-block: var(--vs-m);
+    border-block-end: var(--border-1);
+  }
+
+  .chat-thread.flowing > .turn:last-child {
+    border-block-end: 0;
+  }
+
+  .chat-thread.flowing > .turn > .who {
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--fg-5);
+    padding-block-start: 0.25rem;
+  }
+
+  .chat-thread.flowing > .turn > .body {
+    min-inline-size: 0;
+  }
+
+  .chat-thread.flowing > .turn > .body > * + * {
+    margin-block-start: var(--vs-s);
   }
 
   /* END COMPONENTS */

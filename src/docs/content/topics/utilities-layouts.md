@@ -8,6 +8,8 @@ when_to_use: Responsive page and panel layouts for app and content structure.
 classes:
   - .layout-card
   - .layout-sidebar
+  - .layout-rail
+  - .layout-rail.with-workbench
   - .layout-split
   - .layout-three-col
   - .layout-readable
@@ -41,6 +43,27 @@ tags:
 - `.layout-sidebar.invert` - Sidebar on right (combine with `.narrow` or `.wide`)
 - `.layout-sidebar.fill` - Full app-shell frame (`--layout-gap: 0`, `height: 100dvh`)
 - `.layout-sidebar.fixed` - Sticky sidebar with scrolling main content
+
+## Rail Shell (Icon Rail + Sub-Sidebar + Main)
+
+```html
+<div class="layout-rail">
+  <aside class="icon-rail">…</aside>
+  <aside class="chat-list">…</aside>
+  <section class="app-shell">…</section>
+</div>
+```
+
+Use `.layout-rail` when you need an icon rail in front of a wider sub-sidebar
+(agent switcher / conversation list / file tree) before the main reading
+column. Add `.with-workbench` for a 4th [`.workbench-panel`](/ui-blocks#workbench-panel)
+on the trailing edge.
+
+Mobile collapse is **container-query** driven (not media-query). At `<768px`
+container width the rail / list / workbench hide; reveal them via a
+`.drawer-toggle` button + `[popover].drawer` pair. The shell responds to its
+own width, so it works in artboards, embeds, and iframes — not just full
+viewports.
 
 ## Canonical: Dashboard / Settings Shell
 

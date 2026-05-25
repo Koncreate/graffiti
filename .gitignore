@@ -9,3 +9,5 @@ CLAUDE.md
 .svelte-kit
 playwright-report/
 test-results/
+
+.screenshots

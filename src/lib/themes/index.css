@@ -4,16 +4,19 @@
  * Import this single entrypoint to ship the full preset catalog, or import a
  * specific preset by path for tree-shaking:
  *
- *   import "@drop-in/graffiti/themes";              // all five
- *   import "@drop-in/graffiti/themes/editorial";    // just one
+ *   import "@drop-in/graffiti/themes";              // all presets
+ *   import "@drop-in/graffiti/themes/studio";       // just one
  *
  * Apply via class on :root, html, or any container element:
  *
  *   <html class="theme-editorial">  ...  </html>
- *   <section class="theme-brutalist">  ...  </section>
+ *   <section class="theme-studio">  ...  </section>
  */
 @import "./soft-consumer.css";
 @import "./editorial.css";
 @import "./paper.css";
 @import "./system.css";
 @import "./neon-arcade.css";
+@import "./studio.css";
+@import "./signal.css";
+@import "./lumen.css";

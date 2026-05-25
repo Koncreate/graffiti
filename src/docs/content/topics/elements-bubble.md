@@ -7,7 +7,10 @@ summary: Chat-friendly message container with configurable colors, width, and sp
 when_to_use: Chat message presentation and conversation snippets.
 classes:
   - .bubble
+  - .bubble.thinking
+  - .bubble.streaming
   - .chat-thread
+  - .chat-thread.flowing
   - .chat-row
   - .chat-row.self
   - .chat-message
@@ -82,6 +85,45 @@ Use these helpers to build complete chat threads:
     <button class="primary" type="button">Send</button>
   </div>
 </footer>
+```
+
+## In-Flight Variants
+
+Two state modifiers for assistant turns:
+
+```html
+<article class="bubble thinking">Thinking about how to phrase the answer…</article>
+
+<article class="bubble streaming">
+  Charting cohort retention by month, indexed to the Jul launch
+</article>
+```
+
+- `.bubble.thinking` — dashed border, italic, muted color. For reasoning / system thought.
+- `.bubble.streaming` — appends a blinking caret cursor. Pure CSS (`@keyframes`).
+
+## Flowing Thread (Bubble-less)
+
+For long-form / editorial agents the conversation can read as one document
+rather than a stack of bubbles. Each turn becomes a row in a single
+readable column:
+
+```html
+<section class="chat-thread flowing">
+  <div class="turn">
+    <p class="who">You</p>
+    <div class="body">
+      <p>Summarize the changelog since Q3.</p>
+    </div>
+  </div>
+  <div class="turn">
+    <p class="who">Atlas</p>
+    <div class="body">
+      <p>Two themes line up: paywall timing and onboarding cuts.</p>
+      <p>The Aug 02 change is the larger contributor (≈4.1 pp).</p>
+    </div>
+  </div>
+</section>
 ```
 
 ## CSS Variables

@@ -1,0 +1,190 @@
+/**
+ * .theme-signal — async messaging / inbox energy
+ *
+ * Cool white surface, alert-red primary, presence-blue accent. The voice
+ * is "Front", "Linear inbox", "Superhuman", "Loops" — software that wants
+ * you to clear the queue. Tight density, crisp shadows, action-red on
+ * primary surfaces.
+ *
+ * Beyond color/type, this theme reshapes messaging surfaces so a stock
+ * chat template feels more like an inbox: bubbles flatten into card-rows
+ * (less rounded, less padded), the thread tightens, presence + unread
+ * become first-class utilities. Apply theme-signal and a chat surface
+ * picks up inbox energy without touching markup.
+ *
+ * Tested on the E · Inbox variation of the AI chat template.
+ *
+ * Stress-tests: red primary against cool white (legibility), dense list
+ * rows with unread badges, presence dots on avatars, bubble-as-card-row.
+ */
+
+:root.theme-signal,
+.theme-signal {
+  --font-sans: "Inter", -apple-system, "Segoe UI", system-ui, sans-serif;
+  --font-ratio-min: 1.18;
+  --font-ratio-max: 1.22;
+  --lh: 1.5;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+
+  /* Palette — cool white + alert red + presence blue */
+  --bg-light: #fcfcfd;
+  --bg-dark: #101012;
+  --fg-light: #101012;
+  --fg-dark: #ececef;
+  --primary: oklch(0.55 0.20 25);   /* alert red */
+  --accent: oklch(0.62 0.16 230);   /* presence blue */
+  --error: var(--primary);
+  --warning: oklch(0.78 0.16 80);
+  --success: oklch(0.62 0.16 155);
+
+  /* Modest, software-honest radii */
+  --br-xs: 3px;
+  --br-s: 6px;
+  --br-m: 10px;
+  --br-l: 12px;
+  --br-xl: 16px;
+  --br-xxl: 999px;
+
+  /* Crisp shadows — short and confident */
+  --shadow-1: 0 1px 0 rgb(16 16 18 / 0.04), 0 1px 2px rgb(16 16 18 / 0.05);
+  --shadow-2: 0 1px 0 rgb(16 16 18 / 0.04), 0 2px 4px rgb(16 16 18 / 0.06);
+  --shadow-3: 0 1px 0 rgb(16 16 18 / 0.04), 0 4px 8px rgb(16 16 18 / 0.08);
+  --shadow-4: 0 2px 0 rgb(16 16 18 / 0.04), 0 8px 16px rgb(16 16 18 / 0.10);
+  --shadow-5: 0 2px 0 rgb(16 16 18 / 0.05), 0 12px 24px rgb(16 16 18 / 0.12);
+  --shadow-6: 0 3px 0 rgb(16 16 18 / 0.06), 0 20px 40px rgb(16 16 18 / 0.14);
+
+  --d-instant: 0.08s;
+  --d-fast: 0.12s;
+  --d-base: 0.18s;
+}
+
+@layer themes {
+  .theme-signal :is(h1, h2, h3) {
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  /* Tabular nums on metric / counter rows */
+  .theme-signal .mono,
+  .theme-signal .stat,
+  .theme-signal time {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Primary buttons — flat action red */
+  .theme-signal button.primary,
+  .theme-signal .button.primary {
+    background: var(--primary);
+    color: #fff;
+    border: 0;
+    font-weight: 600;
+    box-shadow: var(--shadow-1);
+  }
+  .theme-signal button.primary:hover,
+  .theme-signal .button.primary:hover {
+    background: color-mix(in oklab, var(--primary) 88%, black);
+  }
+
+  /* Chips — tight pill style, red selected */
+  .theme-signal .chip {
+    font-size: 0.8125rem;
+    padding: 2px 10px;
+  }
+  .theme-signal .chip[aria-pressed="true"],
+  .theme-signal .chip.selected {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+  }
+
+  /* Unread-count badge — the inbox's signature */
+  .theme-signal .badge {
+    display: inline-grid;
+    place-items: center;
+    min-inline-size: 1.25rem;
+    block-size: 1.25rem;
+    padding: 0 7px;
+    border-radius: 999px;
+    background: var(--primary);
+    color: #fff;
+    border: 0;
+    font-weight: 600;
+    font-size: 0.7rem;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Presence dot — pairs with .avatar */
+  .theme-signal .presence {
+    inline-size: 9px;
+    block-size: 9px;
+    border-radius: 999px;
+    background: var(--success);
+    box-shadow: 0 0 0 2px var(--bg);
+    display: inline-block;
+  }
+  .theme-signal .presence.away { background: var(--warning); }
+  .theme-signal .presence.dnd  { background: var(--primary); }
+  .theme-signal .presence.off  { background: color-mix(in oklab, var(--fg) 30%, transparent); }
+
+  /* Bubble → card-row. Less rounded, less padded, hairline border.
+     This is the key visual move that makes a thread feel like an inbox. */
+  .theme-signal .bubble {
+    --bubble-radius: var(--br-s);
+    border-radius: var(--bubble-radius);
+    padding: var(--pad-s) var(--pad-m);
+    box-shadow: none;
+  }
+  .theme-signal .chat-row.self .bubble {
+    --bubble-bg: color-mix(in oklab, var(--primary) 8%, var(--bg));
+    --bubble-border: color-mix(in oklab, var(--primary) 22%, transparent);
+  }
+
+  /* Thread tightens up */
+  .theme-signal .chat-thread {
+    --chat-thread-gap: var(--vs-xs);
+    --chat-thread-padding: var(--pad-m);
+  }
+
+  /* Sidebar-nav rows densify */
+  .theme-signal .sidebar-nav.compact > a {
+    padding-block: var(--pad-xs);
+  }
+
+  /* Callouts — flatter, hairline */
+  .theme-signal .callout {
+    box-shadow: none;
+    border-radius: var(--br-m);
+  }
+
+  /* Composer — short flat shadow, crisp focus ring */
+  .theme-signal .composer {
+    box-shadow: var(--shadow-1);
+    border-radius: var(--br-m);
+  }
+  .theme-signal .composer:focus-within {
+    border-color: var(--primary);
+    box-shadow:
+      0 0 0 3px color-mix(in oklab, var(--primary) 18%, transparent),
+      var(--shadow-1);
+  }
+
+  /* Brand-mark in the icon rail — red rounded square */
+  .theme-signal .icon-rail > .brand {
+    background: var(--primary);
+    color: #fff;
+    border-radius: var(--br-m);
+  }
+
+  .theme-signal ::selection {
+    background: color-mix(in oklab, var(--primary) 25%, transparent);
+    color: var(--fg);
+  }
+
+  /* Crisp focus ring — short transition, brand color */
+  .theme-signal :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+}

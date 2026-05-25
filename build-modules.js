@@ -30,6 +30,9 @@ const THEME_NAMES = [
   "system",
   "neon-arcade",
   "soft-consumer",
+  "studio",
+  "signal",
+  "lumen",
 ];
 
 // Ensure dist/ exists

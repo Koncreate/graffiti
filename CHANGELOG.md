@@ -1,5 +1,67 @@
 # @drop-in/graffiti
 
+## 4.30.0
+
+### Minor Changes
+
+- **Chat-pattern additions + three new themes + AI chat template refresh.**
+
+  ### New components (added to `drop-in.css`)
+
+  Seven additive patterns, all token-driven, none renaming existing classes. Named for shape rather than AI-chat domain — they earn their place next to `.card`, `.cluster`, `.bubble`, `.chip`, `.callout`.
+  - **`.icon-rail`** — narrow vertical column of icon buttons with active state and optional `.status` dot. General-purpose nav rail; sits left of a `.layout-sidebar`.
+  - **`.layout-rail`** — 3-col app shell (`rail · sidebar · main`). Extends the `.layout-sidebar` pattern. Add `.with-workbench` for a 4th pane. Uses a `@container` query (not `@media`) for mobile collapse, so it responds to its own width.
+  - **`.bubble.thinking`** — dashed-italic message variant for reasoning / system thought.
+  - **`.bubble.streaming`** — blinking caret cursor for in-progress generation. Pure-CSS `@keyframes`.
+  - **`.log-card`** — compact card with mono label header, status slot, optional `<pre>` body. Used by AI tool calls, deploy logs, build steps, activity feeds.
+  - **`.composer`** — multi-line input + inline toolbar. Supersedes `.chat-composer` when you need model / tool / attach controls next to text. Useful for chat, comments, email, post surfaces.
+  - **`.workbench-panel`** — right-aligned pane with tabbed body (Preview · Code · Spec). Pairs with `.layout-rail.with-workbench`. Artifact viewers, properties inspectors, code previews.
+  - **`.chat-thread.flowing`** — bubble-less continuous-reading variant. Turns become rows in a single reading column. For long-form / editorial agents.
+
+  ### Mobile
+
+  `.layout-rail` collapses via a container query at `<768px`: rail / chat-list / workbench-panel all hide, and a `.drawer-toggle` in the header opens a `[popover].drawer` (existing Graffiti pattern) carrying agents + conversations + account. No bottom tab bar.
+
+  ### New themes (`themes/*.css`)
+  - **`theme-studio`** — warm off-white parchment + electric violet + lime accent. Inter body, moderate radii, soft layered shadows. Pushes beyond color: chips with brand-tinted hover, composer with violet focus glow, user bubbles soft-violet tint, featured cards with violet halo. Voice: Linear, Vercel, v0, Figma, Framer.
+  - **`theme-signal`** — cool white + alert-red primary + presence-blue accent. Tight modular scale, crisp shadows. Pushes beyond color: bubbles flatten to card-rows (less rounded, hairline border), thread densifies, `.presence` dot utility, `.badge` unread styling, action-red primary buttons. Voice: Front, Linear inbox, Superhuman, Loops.
+  - **`theme-lumen`** — off-black + amber primary + warm-white accent. Dark-first; the most opinionated theme. Pushes beyond color: composer becomes a generous pill with amber focus glow, primary buttons are amber pills with hover-glow, bubbles drop borders for tinted backgrounds, `.icon-rail > .brand` wears the amber halo, cards lose hairlines for shadow elevation, `.brand-glow` utility available. Voice: ChatGPT, Claude, Arc browser.
+
+  All three follow the existing theme contract: set `--bg-light`/`--bg-dark`/`--fg-light`/`--fg-dark`/`--primary` plus the radii/shadow/duration scales; `@layer themes` for any component-shape overrides. Registered in `themes/index.css` so `import "@drop-in/graffiti/themes"` ships all eight presets.
+
+  ### Templates
+  - **`templates/ai-chat`** rebuilt on the new shell. Studio direction — full message anatomy in one screen (user / tool calls / assistant answer with `.callout` citations / streaming next turn / `.cluster + .chip` follow-ups / `.composer` with toolbar). Persona: Atlas, research analyst.
+  - **`templates/ai-chat/inbox`** ⚐ NEW. Async / multi-participant direction — grouped feed of message-rows (not bubbles), presence dots, unread badges, right participants rail. Persona: Loop, async team agent. Wears `theme-signal`.
+  - **`templates/ai-chat/stage`** ⚐ NEW. Hero empty-state direction — centered composer with four suggestion cards above and a continue-conversation pickup below. Persona: Lumen, generalist. Wears `theme-lumen`.
+
+  Templates index gains three cards (one per direction) replacing the single AI-chat tile.
+
+  ### Migration notes
+  - No breaking changes. All additions are additive; no existing class is renamed or removed.
+  - The current `.chat-composer` keeps working; `.composer` is its richer sibling for surfaces that need a toolbar.
+  - The default `theme-studio` violet matches the design-tool feel many `ai-chat` consumers want; if you preferred the v4.29 green primary, override `--primary: var(--green)` on the page root.
+
+- **Tooltip API refresh — `.tip` shorthand + standalone `aria-label` pattern.**
+
+  ### Breaking
+  - **Renamed `.tooltip-content` → `.tip`.** The rich-content pattern (parent `.tooltip` wrapper + child tip body) now uses `.tip` as the child class. Update any markup that uses `.tooltip-content`.
+
+  ### New: standalone `.tip[aria-label]`
+
+  Apply `.tip` to any focusable element that carries an `aria-label`. The pseudo-element reads `attr(aria-label)` for its content, so the screen-reader name and the visible tooltip text are a single source.
+
+  ```html
+  <button class="tip" aria-label="Save to draft">
+    <svg>…</svg>
+  </button>
+  ```
+
+  Position modifiers (`.bottom`, `.left`, `.right`) work on the same element. Plain text only — for tooltips containing links or formatted markup, keep using the `.tooltip` wrapper + child `.tip` pattern.
+
+  ### Accessibility note
+
+  Don't combine `.tip` with visible text content (`<button class="tip" aria-label="Save to draft">Save</button>`) — `aria-label` overrides the visible "Save" label for screen readers, which fails WCAG 2.5.3 (Label in Name). For buttons that already have visible text, use the rich `.tooltip` + child `.tip` pattern with `aria-describedby` pointing at the tip's `id`.
+
 ## 4.29.0
 
 ### Minor Changes

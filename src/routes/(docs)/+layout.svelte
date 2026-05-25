@@ -21,6 +21,9 @@
   import "$lib/themes/paper.css";
   import "$lib/themes/system.css";
   import "$lib/themes/neon-arcade.css";
+  import "$lib/themes/studio.css";
+  import "$lib/themes/signal.css";
+  import "$lib/themes/lumen.css";
 
   const { children } = $props();
 

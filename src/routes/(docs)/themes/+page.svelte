@@ -1,13 +1,16 @@
 <script>
   import CanonicalFixture from "$docs/CanonicalFixture.svelte";
 
-  // Import all 5 preset CSS files. Page itself does NOT apply any preset
+  // Import all preset CSS files. Page itself does NOT apply any preset
   // class to <html> — the wrapping below carries each scope.
   import "$lib/themes/soft-consumer.css";
   import "$lib/themes/editorial.css";
   import "$lib/themes/paper.css";
   import "$lib/themes/system.css";
   import "$lib/themes/neon-arcade.css";
+  import "$lib/themes/studio.css";
+  import "$lib/themes/signal.css";
+  import "$lib/themes/lumen.css";
 
   const presets = [
     { name: "soft-consumer", label: ".theme-soft-consumer" },
@@ -15,6 +18,9 @@
     { name: "paper", label: ".theme-paper" },
     { name: "system", label: ".theme-system" },
     { name: "neon-arcade", label: ".theme-neon-arcade" },
+    { name: "studio", label: ".theme-studio" },
+    { name: "signal", label: ".theme-signal" },
+    { name: "lumen", label: ".theme-lumen" },
   ];
 </script>
 

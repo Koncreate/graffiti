@@ -4,12 +4,15 @@
 
 	// Preset CSS files for the Aesthetic selector. Selector rules only match
 	// when the corresponding `.theme-*` class is on <html>, so importing all
-	// five here is a no-op until the user picks one in ThemeControls.
+	// here is a no-op until the user picks one in ThemeControls.
 	import "$lib/themes/soft-consumer.css";
 	import "$lib/themes/editorial.css";
 	import "$lib/themes/paper.css";
 	import "$lib/themes/system.css";
 	import "$lib/themes/neon-arcade.css";
+	import "$lib/themes/studio.css";
+	import "$lib/themes/signal.css";
+	import "$lib/themes/lumen.css";
 
 	let { children } = $props();
 

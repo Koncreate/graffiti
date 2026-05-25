@@ -100,7 +100,7 @@ Cross-referenced against shadcn/ui (Radix-based, modern baseline), Radix Themes 
 
 | Pattern | Status | Notes |
 |---|---|---|
-| Tooltip | ✅ | `.tooltip` + `.tooltip-content` via popover + anchor positioning |
+| Tooltip | ✅ | `.tip` (`attr(aria-label)` via `::after`) for icon-button labels; `.tooltip` wrapper + child `.tip` for rich content |
 | Hover card (interactive tooltip) | 🔴 | Similar shape to tooltip but persists on hover, can contain links. Pure CSS feasible |
 | Toast | ⚫ | Decks `.di-toast-slice` |
 | Modal / dialog | ✅ | Native `<dialog>` styled in `@layer components`; plus Decks `.di-dialog` |
@@ -125,7 +125,11 @@ Cross-referenced against shadcn/ui (Radix-based, modern baseline), Radix Themes 
 | Tree view | 🟡 | Nested `<details>` works structurally; no `.tree` class for indentation rhythm |
 | Accordion | ✅ | Native `<details>`/`<summary>` styled; Decks `.di-accordion` |
 | Carousel | ✅ | `.carousel`, `.reel`, `.swipe` |
-| Chat thread | ✅ | `.chat-thread`, `.chat-row`, `.chat-message`, `.chat-composer`, `.bubble` |
+| Chat thread | ✅ | `.chat-thread`, `.chat-row`, `.chat-message`, `.chat-composer`, `.bubble`; `.bubble.thinking` / `.bubble.streaming` for in-flight states; `.chat-thread.flowing` for editorial reading |
+| Composer (multi-line + toolbar) | ✅ | `.composer` — supersedes `.chat-composer` when model/tool/attach controls are needed alongside the input |
+| Tool-call / log line | ✅ | `.log-card` — compact card with mono label, status slot, optional `<pre>` body |
+| Icon rail (vertical nav strip) | ✅ | `.icon-rail` — narrow column of icon buttons with active state and `.status` dot |
+| Workbench / inspector panel | ✅ | `.workbench-panel` — right-aligned tabbed pane for artifacts, properties, code preview |
 | Comment thread (nested replies) | 🟡 | Chat suite is single-thread; nested-reply pattern is composition |
 | Activity feed | ✅ | Compose with `.timeline` |
 | Code block (`<pre><code>`) | 🟢 | Dex `40o648j9` (planned `@layer base` styling; no syntax highlighting) |
@@ -184,6 +188,7 @@ Cross-referenced against shadcn/ui (Radix-based, modern baseline), Radix Themes 
 | Stack | ✅ | `.stack` |
 | Cluster | ✅ | `.cluster` |
 | Reel / horizontal scroll | ✅ | `.reel`, `.swipe` |
+| Rail shell (icon-rail + sub-sidebar + main, optional workbench) | ✅ | `.layout-rail`, `.layout-rail.with-workbench` — container-query collapse at `<768px` |
 
 ---
 

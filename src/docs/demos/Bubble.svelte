@@ -33,5 +33,17 @@
         </p>
       </article>
     </div>
+
+    <div class="chat-row">
+      <article class="chat-message bubble thinking">
+        Thinking about how to phrase the answer…
+      </article>
+    </div>
+
+    <div class="chat-row">
+      <article class="chat-message bubble streaming">
+        Charting cohort retention by month, indexed to the Jul launch
+      </article>
+    </div>
   </div>
 </div>

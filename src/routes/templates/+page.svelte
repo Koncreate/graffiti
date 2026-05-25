@@ -123,25 +123,65 @@
 			<a href="/templates/docs-portal" class="button primary self-start">View Template →</a>
 		</article>
 
-		<!-- AI Chat -->
+		<!-- AI Chat — Studio (default) -->
 		<article class="card" style="--gap: var(--vs-m);">
 			<div class="stack" style="--gap: var(--vs-s);">
 				<div class="cluster" style="--gap: var(--vs-xs);">
-					<span class="tag muted info">Application</span>
+					<span class="tag muted info">AI Chat</span>
 				</div>
-				<h2 class="h3">AI Chat</h2>
+				<h2 class="h3">AI Chat · Studio</h2>
 				<p class="text-muted">
-					A dark-themed AI chat interface with a collapsible conversation sidebar, agent identity header, threaded message bubbles with role alignment, and a docked composer with input group.
+					The baseline. Three-column rail · list · main shell with full message anatomy: tool calls, citations as numbered callouts, streaming generation, suggested follow-ups, and a multi-line composer with toolbar. Default canvas.
 				</p>
 			</div>
 			<div class="cluster" style="--gap: var(--vs-xs);">
-				<span class="chip">Sidebar Drawer</span>
-				<span class="chip">Chat Thread</span>
-				<span class="chip">Message Bubbles</span>
+				<span class="chip">Icon Rail</span>
+				<span class="chip">Tool Calls</span>
+				<span class="chip">Citations</span>
+				<span class="chip">Streaming</span>
 				<span class="chip">Composer</span>
-				<span class="chip">Dark Theme</span>
 			</div>
 			<a href="/templates/ai-chat" class="button primary self-start">View Template →</a>
+		</article>
+
+		<!-- AI Chat — Inbox -->
+		<article class="card" style="--gap: var(--vs-m);">
+			<div class="stack" style="--gap: var(--vs-s);">
+				<div class="cluster" style="--gap: var(--vs-xs);">
+					<span class="tag muted error">AI Chat</span>
+				</div>
+				<h2 class="h3">AI Chat · Inbox</h2>
+				<p class="text-muted">
+					Async, multi-participant. Grouped feed of message-rows with day dividers, presence dots, unread badges, attachments, and a right rail of participants + pinned items. Ships with <code>theme-signal</code>.
+				</p>
+			</div>
+			<div class="cluster" style="--gap: var(--vs-xs);">
+				<span class="chip">Grouped Feed</span>
+				<span class="chip">Presence</span>
+				<span class="chip">Unread Badges</span>
+				<span class="chip">theme-signal</span>
+			</div>
+			<a href="/templates/ai-chat/inbox" class="button primary self-start">View Template →</a>
+		</article>
+
+		<!-- AI Chat — Stage -->
+		<article class="card" style="--gap: var(--vs-m);">
+			<div class="stack" style="--gap: var(--vs-s);">
+				<div class="cluster" style="--gap: var(--vs-xs);">
+					<span class="tag muted warning">AI Chat</span>
+				</div>
+				<h2 class="h3">AI Chat · Stage</h2>
+				<p class="text-muted">
+					Hero empty-state. Centered composer with four suggestion cards above and a "continue last conversation" pickup below. Dark-first cinematic surface. Ships with <code>theme-lumen</code> (off-black + amber).
+				</p>
+			</div>
+			<div class="cluster" style="--gap: var(--vs-xs);">
+				<span class="chip">Hero Composer</span>
+				<span class="chip">Empty State</span>
+				<span class="chip">Suggestion Cards</span>
+				<span class="chip">theme-lumen</span>
+			</div>
+			<a href="/templates/ai-chat/stage" class="button primary self-start">View Template →</a>
 		</article>
 	</div>
 </section>
