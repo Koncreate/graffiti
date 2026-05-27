@@ -1,0 +1,2589 @@
+{
+  "sourceFile": "src/lib/drop-in.css",
+  "patterns": [
+    {
+      "name": "close",
+      "role": "A round, red close button for dialogs/drawers/dismissible panels; designed to be the most explicit \"go away\" affordance",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 2222,
+        "declarationLine": 2230
+      },
+      "example": "<button class=\"close\" aria-label=\"Close\">\n    <svg aria-hidden=\"true\">...</svg>\n  </button>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "readable",
+      "role": "Constrain content to a comfortable reading width (~900px) without imposing a hard column; place on long-form text wrappers",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 2292,
+        "declarationLine": 2297
+      },
+      "example": "<article class=\"readable\"><p>…long-form copy…</p></article>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "narrow",
+      "role": "Tighter content width (~50ch) for forms, dialogs, and single-column UI; configurable via `--narrow-width`",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 2302,
+        "declarationLine": 2308
+      },
+      "example": "<form class=\"narrow center\">…</form>",
+      "modifiers": [
+        "center"
+      ],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "flex",
+      "role": "Flex row primitive with gap honoring `--gap`; reach for it when a one-line cluster of items wraps naturally",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 2317,
+        "declarationLine": 2322
+      },
+      "example": "<div class=\"flex\"><button>One</button><button>Two</button></div>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "grid",
+      "role": "CSS grid container with `--gap`; with `.auto`, lays out a responsive auto-fit grid using `--grid-min`",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 2327,
+        "declarationLine": 2333
+      },
+      "example": "<div class=\"grid auto\" style=\"--grid-min: 200px\"><div>…</div><div>…</div></div>",
+      "modifiers": [
+        "auto"
+      ],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "split",
+      "role": "Two-pane horizontal split with items pushed to the ends; container query collapses to vertical at <500px so it adapts to its parent, not the viewport",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 2345,
+        "declarationLine": 2351
+      },
+      "example": "<div class=\"split\"><h2>Section title</h2><a href=\"/more\">See all</a></div>",
+      "modifiers": [
+        "even",
+        "vertical",
+        "center"
+      ],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "visually-hidden",
+      "role": "Hide content from sighted users but keep it available to screen readers and copy/paste; pair with form labels and icon-only buttons",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 2375,
+        "declarationLine": 2380
+      },
+      "example": "<button>Save <span class=\"visually-hidden\">project</span></button>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "no-list",
+      "role": "Strip default `<ul>`/`<ol>` styling (bullets, spacing) without changing semantics",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 2391,
+        "declarationLine": 2396
+      },
+      "example": "<ul class=\"no-list\"><li>Item</li><li>Item</li></ul>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "row",
+      "role": "Vertical rhythm between content blocks by default; inside `<form>`/`<fieldset>`, repurposes as a label+input stack (see ADR-0003)",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 2406,
+        "declarationLine": 2417
+      },
+      "example": "<form>\n    <div class=\"row\">\n      <label for=\"name\">Name</label>\n      <input id=\"name\" type=\"text\">\n    </div>\n  </form>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "form-actions",
+      "role": "Trailing button bar for a form; container-query stacks buttons full-width when the bar gets narrow, so labels don't truncate on small screens",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 2440,
+        "declarationLine": 2449
+      },
+      "example": "<div class=\"form-actions\">\n    <button type=\"button\" class=\"minimal\">Cancel</button>\n    <button type=\"submit\">Save</button>\n  </div>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "no-margin",
+      "role": "Zero out an element's block margin; useful when a heading or paragraph needs to sit flush against its container",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 2476,
+        "declarationLine": 2481
+      },
+      "example": "<h2 class=\"no-margin\">Tight heading</h2>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "self-start",
+      "role": "Push a flex/grid child to the cross-axis start; common on form `<label>` next to multi-line controls",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 2485,
+        "declarationLine": 2490
+      },
+      "example": "<div class=\"split\"><label class=\"self-start\">Notes</label><textarea></textarea></div>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "full",
+      "role": "Force an element to its container's full inline size; useful for buttons inside narrow forms",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 2494,
+        "declarationLine": 2499
+      },
+      "example": "<button class=\"full\">Continue</button>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "reset",
+      "role": "Reset native button/anchor chrome (background, border, padding, color) so a `<button>` or `<a>` can act as a plain interactive surface without restyling everything by hand",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 2503,
+        "declarationLine": 2508
+      },
+      "example": "<button class=\"reset\"><svg aria-hidden=\"true\">…</svg></button>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "circle",
+      "role": "Square element clipped to a circle; configurable via `--size`. Default 40px works for avatars, icon buttons, and dot indicators",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 2538,
+        "declarationLine": 2543
+      },
+      "example": "<button class=\"circle\" style=\"--size: 32px\"><svg aria-hidden=\"true\">…</svg></button>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "layout-card",
+      "role": "Auto-fill responsive card grid; columns fit themselves based on `--layout-min-card-width` (default 290px), no breakpoints needed",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 2746,
+        "declarationLine": 2756
+      },
+      "example": "<div class=\"layout-card\">\n    <article class=\"card\">…</article>\n    <article class=\"card\">…</article>\n    <article class=\"card\">…</article>\n  </div>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "layout-sidebar",
+      "role": "Two-column shell: fixed-width sidebar + flexible main. Sidebar is always the first DOM child for SR order; `.invert` flips visual placement. Collapses to one column under 768px (via container query or media query). Composes with `.drawer` so the sidebar becomes a popover on mobile.",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 2766,
+        "declarationLine": 2777
+      },
+      "example": "<div class=\"layout-sidebar\">\n    <nav>…</nav>\n    <main>…</main>\n  </div>",
+      "modifiers": [
+        "narrow",
+        "wide",
+        "invert",
+        "fill",
+        "fixed",
+        "layout-readable"
+      ],
+      "preferOver": null,
+      "related": [
+        "layout-three-col",
+        "layout-split"
+      ]
+    },
+    {
+      "name": "layout-split",
+      "role": "Two equal columns side by side; stacks under 768px. `.no-stack` keeps it side-by-side at small widths",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 2943,
+        "declarationLine": 2954
+      },
+      "example": "<div class=\"layout-split\">\n    <section>Left</section>\n    <section>Right</section>\n  </div>",
+      "modifiers": [
+        "no-stack"
+      ],
+      "preferOver": null,
+      "related": [
+        "layout-sidebar",
+        "split"
+      ]
+    },
+    {
+      "name": "layout-three-col",
+      "role": "Three equal columns; collapses to two columns under 1024px and one column under 768px",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 2972,
+        "declarationLine": 2983
+      },
+      "example": "<div class=\"layout-three-col\">\n    <section>One</section>\n    <section>Two</section>\n    <section>Three</section>\n  </div>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "layout-split",
+        "layout-sidebar"
+      ]
+    },
+    {
+      "name": "layout-readable",
+      "role": "Outer page container that caps width to `--layout-max-width` (default 1200px) and pads the inline edges; the routine wrapper for every page's main content",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 3003,
+        "declarationLine": 3014
+      },
+      "example": "<main class=\"layout-readable\">\n    <h1>Page title</h1>\n    <section>…</section>\n  </main>",
+      "modifiers": [
+        "center",
+        "end"
+      ],
+      "preferOver": null,
+      "related": [
+        "readable",
+        "layout-card",
+        "layout-sidebar"
+      ]
+    },
+    {
+      "name": "layout-holy-grail",
+      "role": "Three-zone horizontal rail layout (auto | 1fr | auto); use for icon-rail + main + side-rail combinations. Collapses to one column under 768px. See ADR-0010 for the rails repurposing.",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 3029,
+        "declarationLine": 3040
+      },
+      "example": "<div class=\"layout-holy-grail\">\n    <nav class=\"icon-rail\">…</nav>\n    <main>…</main>\n    <aside>…</aside>\n  </div>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "layout-rail",
+        "layout-sidebar"
+      ]
+    },
+    {
+      "name": "section",
+      "role": "Block-padded section divider; reach for it to separate hero, features, and footer regions of a page",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 3059,
+        "declarationLine": 3064
+      },
+      "example": "<section class=\"section\"><h2>Features</h2>…</section>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "stack",
+      "role": "Vertical flexbox with `--gap` between children; resets default block margins on children so spacing is one consistent knob",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 3069,
+        "declarationLine": 3079
+      },
+      "example": "<div class=\"stack\">\n    <h2>Title</h2>\n    <p>Lead paragraph</p>\n    <p>Body copy</p>\n  </div>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "cluster",
+      "role": "Wrapping horizontal row with small gap (0.5rem default); used for chip rows, tag collections, button groups that should reflow gracefully",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 3092,
+        "declarationLine": 3103
+      },
+      "example": "<div class=\"cluster\">\n    <span class=\"tag\">design</span>\n    <span class=\"tag\">research</span>\n    <span class=\"tag\">prototype</span>\n  </div>",
+      "modifiers": [
+        "center"
+      ],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "carousel",
+      "role": "Horizontal scroll-snapping row; each direct child snaps to start. Use for media strips, recommended-item rails, anything that benefits from native trackpad/swipe scrolling",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 3115,
+        "declarationLine": 3126
+      },
+      "example": "<div class=\"carousel\">\n    <article class=\"card\">…</article>\n    <article class=\"card\">…</article>\n    <article class=\"card\">…</article>\n  </div>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "reel",
+        "swipe"
+      ]
+    },
+    {
+      "name": "reel",
+      "role": "Vertical scroll-snapping column capped at `--reel-height` (default 80vh); use for full-section feeds where each item should snap into view",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 3140,
+        "declarationLine": 3150
+      },
+      "example": "<div class=\"reel\">\n    <section>Slide 1</section>\n    <section>Slide 2</section>\n  </div>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "carousel",
+        "swipe"
+      ]
+    },
+    {
+      "name": "swipe",
+      "role": "Three-pane scroll-snap (left button | content | right button) for swipe-revealable controls; common pattern for inbox row actions and onboarding steps",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 3165,
+        "declarationLine": 3176
+      },
+      "example": "<div class=\"swipe\">\n    <button>Archive</button>\n    <article>…content…</article>\n    <button>Delete</button>\n  </div>",
+      "modifiers": [
+        "stop"
+      ],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "box",
+      "role": "Low-emphasis container for grouping related content; the most neutral surface in the system",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 3239,
+        "declarationLine": 3249
+      },
+      "example": "<div class=\"box\">\n    <p>Settings saved automatically.</p>\n  </div>",
+      "modifiers": [
+        "ghost",
+        "invisible",
+        "glow",
+        "semi-gloss"
+      ],
+      "preferOver": "custom: bare <div> with manual padding and border",
+      "related": []
+    },
+    {
+      "name": "card",
+      "role": "Primary content surface for grouping related media + text; direct `<header>`/`<footer>`/`<img>`/`<picture>`/`<figure>` children bleed edge-to-edge automatically. Use `.linked` when the whole card is a single hyperlink and `.featured` to highlight the active one.",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 3277,
+        "declarationLine": 3289
+      },
+      "example": "<article class=\"card\">\n    <header><h3>Project alpha</h3></header>\n    <p>Status copy goes here.</p>\n    <footer><a href=\"/projects/alpha\">Open →</a></footer>\n  </article>",
+      "modifiers": [
+        "linked",
+        "featured"
+      ],
+      "preferOver": null,
+      "related": [
+        "stat-card",
+        "feature-card",
+        "callout",
+        "box"
+      ]
+    },
+    {
+      "name": "stat-card",
+      "role": "A card that surfaces a single metric: `<small>` label + `<strong>` value. Use for dashboards, KPI strips, and summary panels — pick this over a generic `.card` whenever the payload is one number.",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 3408,
+        "declarationLine": 3418
+      },
+      "example": "<article class=\"stat-card\">\n    <small>Active users</small>\n    <strong>1,284</strong>\n  </article>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "card",
+        "feature-card"
+      ]
+    },
+    {
+      "name": "feature-card",
+      "role": "A larger, hover-lifting card for marketing feature grids; pairs with `.layout-card` to make a row of features",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 3445,
+        "declarationLine": 3455
+      },
+      "example": "<article class=\"feature-card\">\n    <h3>Realtime sync</h3>\n    <p>Changes propagate without polling.</p>\n  </article>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "card",
+        "stat-card"
+      ]
+    },
+    {
+      "name": "toc",
+      "role": "In-page table-of-contents nav; styles a nested `<ol>` into a vertical rail with current-item highlight via `aria-current=\"true\"`",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 3501,
+        "declarationLine": 3513
+      },
+      "example": "<nav class=\"toc\" aria-label=\"On this page\">\n    <h2>Contents</h2>\n    <ol>\n      <li><a href=\"#intro\">Intro</a></li>\n      <li><a href=\"#usage\" aria-current=\"true\">Usage</a></li>\n    </ol>\n  </nav>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "newsletter",
+      "role": "Tinted `--primary` block for newsletter signup CTAs and similar full-bleed callouts; designed to sit inside an article flow",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 3569,
+        "declarationLine": 3578
+      },
+      "example": "<aside class=\"newsletter\">\n    <h3>Get the weekly digest</h3>\n    <form>…</form>\n  </aside>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "header",
+      "role": "Page header bar: logo + nav + actions on a horizontal flex row; styles inline-list `<nav>` automatically. `.sticky` pins it to the top with `--z-overlay`, `.border` adds a subtle hairline.",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 3587,
+        "declarationLine": 3599
+      },
+      "example": "<header class=\"header sticky border\">\n    <a href=\"/\" class=\"logo\">…</a>\n    <nav><ul><li><a href=\"/x\">X</a></li></ul></nav>\n    <button>Sign in</button>\n  </header>",
+      "modifiers": [
+        "border",
+        "sticky",
+        "readable"
+      ],
+      "preferOver": null,
+      "related": [
+        "footer",
+        "app-shell"
+      ]
+    },
+    {
+      "name": "callout",
+      "role": "Inline emphasis block for notes, warnings, errors, and confirmations; an icon as the first child gets the semantic accent color automatically. `.fill` swaps from hairline to filled tint.",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 3640,
+        "declarationLine": 3651
+      },
+      "example": "<aside class=\"callout warning fill\">\n    <svg aria-hidden=\"true\">…</svg>\n    <p>Heads-up: this action can't be undone.</p>\n  </aside>",
+      "modifiers": [
+        "stack",
+        "fill",
+        "warning",
+        "error",
+        "ghost",
+        "success"
+      ],
+      "preferOver": null,
+      "related": [
+        "card"
+      ]
+    },
+    {
+      "name": "pull-quote",
+      "role": "Inline-start-bordered italic quote block for editorial articles; use on `<blockquote>` for semantics",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 3718,
+        "declarationLine": 3726
+      },
+      "example": "<blockquote class=\"pull-quote\">\n    \"If you can't measure it, you can't improve it.\"\n  </blockquote>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "table",
+      "role": "Wrapper that gives a `<table>` rounded borders and horizontal overflow scrolling without forcing the data layout",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 3737,
+        "declarationLine": 3745
+      },
+      "example": "<div class=\"table\">\n    <table>…</table>\n  </div>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "form-option-row",
+      "role": "Inline checkbox/radio + label row; cursor pointer on the whole row so the affordance reads as one click target",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 3853,
+        "declarationLine": 3861
+      },
+      "example": "<label class=\"form-option-row\">\n    <input type=\"checkbox\"> Remember me\n  </label>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "search",
+      "role": "Wrap an `<input>` + leading SVG icon so the icon overlays the input's inline-start padding; native search-input affordance without inventing a new control",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 3872,
+        "declarationLine": 3881
+      },
+      "example": "<label class=\"search\">\n    <svg aria-hidden=\"true\">…</svg>\n    <input type=\"search\" placeholder=\"Search\">\n  </label>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "dropzone",
+      "role": "File-upload drop target with dashed border + icon + label; the `<input type=\"file\">` is overlaid full-bleed so the whole area is clickable. Toggle `.dragover` from JS during drag events.",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 3901,
+        "declarationLine": 3912
+      },
+      "example": "<label class=\"dropzone\">\n    <svg aria-hidden=\"true\">…</svg>\n    <span>Drop files or click to upload</span>\n    <input type=\"file\">\n  </label>",
+      "modifiers": [
+        "dragover"
+      ],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "auto-color",
+      "role": "Auto-choose black or white text against any `--bg-color`, including transparent ones, by computing effective lightness against the active theme; `.chroma` lets the background tint bleed through the text",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 4027,
+        "declarationLine": 4033
+      },
+      "example": "<div class=\"auto-color\" style=\"--bg-color: var(--teal-5)\">Always legible</div>",
+      "modifiers": [
+        "chroma"
+      ],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "surface",
+      "role": "Subtle off-`--bg` background for section alternation; overridable via `--surface-bg` for theme accents",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 4100,
+        "declarationLine": 4106
+      },
+      "example": "<section class=\"surface section\">…</section>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "box",
+        "callout"
+      ]
+    },
+    {
+      "name": "breadcrumbs",
+      "role": "Wrap a `<nav><ul>` of links into a breadcrumb trail; `--separator` controls the divider character; mark the current page with `aria-current=\"page\"`",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 4421,
+        "declarationLine": 4434
+      },
+      "example": "<nav class=\"breadcrumbs\" aria-label=\"Breadcrumb\">\n    <ul>\n      <li><a href=\"/\">Home</a></li>\n      <li><a href=\"/projects\">Projects</a></li>\n      <li aria-current=\"page\">Alpha</li>\n    </ul>\n  </nav>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "pagination"
+      ]
+    },
+    {
+      "name": "pagination",
+      "role": "Page-number nav bar: trailing border, gap, and `aria-current=\"page\"` styling on the active link",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 4478,
+        "declarationLine": 4493
+      },
+      "example": "<nav class=\"pagination\" aria-label=\"Page\">\n    <a href=\"/p/1\">Prev</a>\n    <ul>\n      <li><a href=\"/p/1\">1</a></li>\n      <li><a href=\"/p/2\" aria-current=\"page\">2</a></li>\n      <li><a href=\"/p/3\">3</a></li>\n    </ul>\n    <a href=\"/p/3\">Next</a>\n  </nav>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "breadcrumbs"
+      ]
+    },
+    {
+      "name": "sidebar-nav",
+      "role": "Themed vertical nav for sidebars: pressable rows, active highlight via `[aria-current=\"page\"]`, headings via `.sidebar-nav-heading`. Compose with `.minimal` or `.ghost` for variants; `.compact` tightens icon/padding for dense rails.",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 4528,
+        "declarationLine": 4541
+      },
+      "example": "<nav class=\"sidebar-nav\" aria-label=\"Sections\">\n    <a href=\"/inbox\" aria-current=\"page\">Inbox</a>\n    <a href=\"/sent\">Sent</a>\n    <h3 class=\"sidebar-nav-heading\">Folders</h3>\n    <a href=\"/archive\">Archive</a>\n  </nav>",
+      "modifiers": [
+        "minimal",
+        "ghost",
+        "compact"
+      ],
+      "preferOver": null,
+      "related": [
+        "layout-sidebar",
+        "list-nav"
+      ]
+    },
+    {
+      "name": "footer",
+      "role": "Page footer; container-query collapses nested `.grid` columns under 600px. Underline-on-hover handled automatically for inner links",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 4976,
+        "declarationLine": 4988
+      },
+      "example": "<footer class=\"footer\">\n    <div class=\"grid\">\n      <nav><h4>Product</h4><a href=\"/x\">…</a></nav>\n      <nav><h4>Company</h4><a href=\"/y\">…</a></nav>\n    </div>\n  </footer>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "header"
+      ]
+    },
+    {
+      "name": "dropdown",
+      "role": "Anchor-positioned dropdown trigger; sibling `.dropdown-menu[popover]` uses CSS `position-anchor` to attach. `.end` aligns the menu to the inline-end edge.",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 5014,
+        "declarationLine": 5029
+      },
+      "example": "<div class=\"dropdown\">\n    <button popovertarget=\"m\">Open</button>\n    <div id=\"m\" class=\"dropdown-menu\" popover>\n      <a href=\"/x\">Action</a>\n      <hr>\n      <button>Sign out</button>\n    </div>\n  </div>",
+      "modifiers": [
+        "end"
+      ],
+      "preferOver": null,
+      "related": [
+        "dropdown-header"
+      ]
+    },
+    {
+      "name": "dropdown-header",
+      "role": "Small uppercase section heading inside a `.dropdown-menu` to group related items",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 5129,
+        "declarationLine": 5139
+      },
+      "example": "<div class=\"dropdown-menu\" popover>\n    <p class=\"dropdown-header\">Workspace</p>\n    <a href=\"/x\">Switch</a>\n  </div>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "dropdown"
+      ]
+    },
+    {
+      "name": "tooltip",
+      "role": "Anchor wrapper for a hover/focus tip. Two usage forms: (1) rich pattern — wrap a trigger and a sibling `.tip` element; (2) standalone — set `aria-label` on a trigger inside `.tooltip` and the pseudo-element renders the text. Tip surface styling is shared between both forms.",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 5147,
+        "declarationLine": 5156
+      },
+      "example": "<span class=\"tooltip\">\n    <button>?</button>\n    <span class=\"tip\">Detailed help text</span>\n  </span>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "avatar",
+      "role": "Circular user image or initials. Wrap an `<img>` to crop it to a circle, or use a `<button>` for clickable avatars. Size via `--avatar-size` or the size modifiers.",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 5253,
+        "declarationLine": 5264
+      },
+      "example": "<span class=\"avatar\">\n    <img src=\"/me.jpg\" alt=\"\">\n  </span>\n  <button class=\"avatar l bordered\">JD</button>",
+      "modifiers": [
+        "bordered",
+        "xs",
+        "s",
+        "l",
+        "xl"
+      ],
+      "preferOver": null,
+      "related": [
+        "circle"
+      ]
+    },
+    {
+      "name": "input-group",
+      "role": "Visually connect an `<input>` to a trailing `<button>` (search submit, copy-to-clipboard, etc.) without a gap between them. `.stack-mobile` reverts to a stacked layout under 640px.",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 5431,
+        "declarationLine": 5442
+      },
+      "example": "<div class=\"input-group\">\n    <input type=\"email\" placeholder=\"you@example.com\">\n    <button type=\"submit\">Subscribe</button>\n  </div>",
+      "modifiers": [
+        "stack-mobile"
+      ],
+      "preferOver": null,
+      "related": [
+        "search"
+      ]
+    },
+    {
+      "name": "chat-thread",
+      "role": "Outer scroll container for a chat conversation; wraps a sequence of `.chat-row` items with consistent gap",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 5497,
+        "declarationLine": 5507
+      },
+      "example": "<div class=\"chat-thread\">\n    <div class=\"chat-row\">…</div>\n    <div class=\"chat-row self\">…</div>\n  </div>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "chat-row",
+        "chat-message",
+        "chat-composer"
+      ]
+    },
+    {
+      "name": "chat-row",
+      "role": "A single row in a chat thread; `.self` flips the row's justification to inline-end so the user's own messages align right",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 5514,
+        "declarationLine": 5524
+      },
+      "example": "<div class=\"chat-row self\">\n    <div class=\"chat-message\"><div class=\"bubble\">Hello!</div></div>\n  </div>",
+      "modifiers": [
+        "self"
+      ],
+      "preferOver": null,
+      "related": [
+        "chat-thread",
+        "chat-message"
+      ]
+    },
+    {
+      "name": "chat-message",
+      "role": "Width-capped column inside a `.chat-row`; constrains line length to `--chat-message-max-inline` (72ch default)",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 5537,
+        "declarationLine": 5548
+      },
+      "example": "<div class=\"chat-row\">\n    <div class=\"chat-message\">\n      <div class=\"bubble\">Long message text…</div>\n    </div>\n  </div>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "chat-row",
+        "bubble"
+      ]
+    },
+    {
+      "name": "chat-composer",
+      "role": "Bottom-aligned composer bar: input field on the left, send button on the right; designed to dock at the foot of a `.chat-thread`",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 5553,
+        "declarationLine": 5565
+      },
+      "example": "<form class=\"chat-composer\">\n    <div class=\"input-group\">\n      <input placeholder=\"Message\">\n      <button>Send</button>\n    </div>\n  </form>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "chat-thread",
+        "input-group",
+        "composer"
+      ]
+    },
+    {
+      "name": "bubble",
+      "role": "Speech-bubble surface (rounded, padded, capped at `--bubble-max-inline`); used by chat messages and any short callout that wants a \"spoken\" feel",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 5576,
+        "declarationLine": 5582
+      },
+      "example": "<div class=\"bubble\"><p>Quick note</p></div>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "chat-message",
+        "callout"
+      ]
+    },
+    {
+      "name": "chip",
+      "role": "Pressable, pill-shaped filter chip; toggle selected state via `aria-pressed=\"true\"` or `.selected`. Use a `<button>` for keyboard/SR ergonomics",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 5769,
+        "declarationLine": 5778
+      },
+      "example": "<button class=\"chip\" aria-pressed=\"true\">Design</button>\n  <button class=\"chip\">Engineering</button>",
+      "modifiers": [
+        "selected",
+        "mini"
+      ],
+      "preferOver": null,
+      "related": [
+        "tag"
+      ]
+    },
+    {
+      "name": "tag",
+      "role": "Pill-shaped status badge for metadata; tinted with `--tag-color` (default `--primary`). Compose with `.muted` for a low-key version, swap `--tag-color` for semantic tints (success, warning, error)",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 5858,
+        "declarationLine": 5867
+      },
+      "example": "<span class=\"tag\" style=\"--tag-color: var(--success)\">Active</span>\n  <a class=\"tag\" href=\"/tag/design\">design</a>",
+      "modifiers": [
+        "muted",
+        "success",
+        "warning",
+        "error",
+        "info"
+      ],
+      "preferOver": null,
+      "related": [
+        "chip"
+      ]
+    },
+    {
+      "name": "list-nav",
+      "role": "Vertical stack of card-like nav rows; each row is a button/link with an optional leading icon and trailing description. Use for settings panes, action menus, and primary mobile nav",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 6018,
+        "declarationLine": 6035
+      },
+      "example": "<nav class=\"list-nav\">\n    <a href=\"/profile\">\n      <svg aria-hidden=\"true\">…</svg>\n      Profile\n      <small>Edit your account info</small>\n    </a>\n    <a href=\"/billing\">\n      <svg aria-hidden=\"true\">…</svg>\n      Billing\n    </a>\n  </nav>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "sidebar-nav",
+        "tabs"
+      ]
+    },
+    {
+      "name": "tabs",
+      "role": "Pure-CSS tabs using `<details>` + grid subgrid for keyboard-driven exclusive selection (no JS). Set `--tab-count` to match the number of tabs. `.boxed` swaps to card-style tabs that connect to the panel below.",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 6116,
+        "declarationLine": 6128
+      },
+      "example": "<div class=\"tabs\" style=\"--tab-count: 3\">\n    <details name=\"t\" open style=\"--n: 1\"><summary>Overview</summary><p>Panel A</p></details>\n    <details name=\"t\" style=\"--n: 2\"><summary>Details</summary><p>Panel B</p></details>\n    <details name=\"t\" style=\"--n: 3\"><summary>Activity</summary><p>Panel C</p></details>\n  </div>",
+      "modifiers": [
+        "boxed"
+      ],
+      "preferOver": null,
+      "related": [
+        "list-nav"
+      ]
+    },
+    {
+      "name": "app-shell",
+      "role": "Top-level mobile-first container: sticky `<header>` + scrolling `<main>` + sticky `<footer>`, with safe-area insets baked in. Reach for it as the page-level wrapper for app-like UIs (not marketing pages).",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 6400,
+        "declarationLine": 6412
+      },
+      "example": "<div class=\"app-shell\">\n    <header>…</header>\n    <main>…content…</main>\n    <footer class=\"bottom-nav\">…</footer>\n  </div>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "bottom-nav",
+        "bottom-sheet",
+        "safe-area"
+      ]
+    },
+    {
+      "name": "bottom-nav",
+      "role": "Floating bottom tab bar for mobile apps; pinned with safe-area inset, rounded pill shape. Mark the current section with `aria-current=\"page\"` or `.active` for the highlighted state",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 6449,
+        "declarationLine": 6460
+      },
+      "example": "<nav class=\"bottom-nav\" aria-label=\"Sections\">\n    <a href=\"/\" aria-current=\"page\"><svg aria-hidden=\"true\">…</svg><span>Home</span></a>\n    <a href=\"/inbox\"><svg aria-hidden=\"true\">…</svg><span>Inbox</span></a>\n  </nav>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "app-shell",
+        "list-nav"
+      ]
+    },
+    {
+      "name": "bottom-sheet",
+      "role": "Mobile-style bottom-anchored sheet panel; pseudo-element renders the grip handle, safe-area inset baked into the bottom padding. For full popover/transition behavior compose with `.drawer` (decks)",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 6518,
+        "declarationLine": 6528
+      },
+      "example": "<div class=\"bottom-sheet\">\n    <h3>Share</h3>\n    <div class=\"cluster\">…</div>\n  </div>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "app-shell"
+      ]
+    },
+    {
+      "name": "hide-scrollbar",
+      "role": "Hide native scrollbars while keeping overflow scrolling functional; use sparingly — only when the scroll affordance is communicated some other way (snap, fade edges, gesture hints)",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 6574,
+        "declarationLine": 6579
+      },
+      "example": "<div class=\"carousel hide-scrollbar\">…</div>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "momentum-scroll",
+      "role": "Enable iOS momentum scrolling + contained overscroll on a scrollable container; pair with `overflow-y: auto`",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 6588,
+        "declarationLine": 6593
+      },
+      "example": "<div class=\"reel momentum-scroll\">…</div>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "icon-rail",
+      "role": "Narrow vertical column of icon buttons; general-purpose nav rail for agent switchers, tool palettes, workspace shells. Mark the current tool with `aria-current=\"page\"` or `aria-pressed=\"true\"`. Optional `.status` dot per button.",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 6621,
+        "declarationLine": 6634
+      },
+      "example": "<nav class=\"icon-rail\" aria-label=\"Tools\">\n    <a href=\"/\" class=\"brand\"><svg aria-hidden=\"true\">…</svg></a>\n    <button aria-pressed=\"true\"><svg aria-hidden=\"true\">…</svg></button>\n    <button><svg aria-hidden=\"true\">…</svg><span class=\"status\"></span></button>\n    <div class=\"spacer\"></div>\n    <button><svg aria-hidden=\"true\">…</svg></button>\n  </nav>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "layout-rail",
+        "sidebar-nav",
+        "bottom-nav"
+      ]
+    },
+    {
+      "name": "layout-rail",
+      "role": "Three-column shell (rail + sub-sidebar + main), optional 4th workbench pane. Container-query-driven mobile collapse at <768px; reveal hidden columns via `.drawer-toggle` + `[popover].drawer` pair (see ADR-0010).",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 6716,
+        "declarationLine": 6727
+      },
+      "example": "<div class=\"layout-rail\">\n    <nav class=\"icon-rail\">…</nav>\n    <nav class=\"chat-list\">…</nav>\n    <main>…</main>\n  </div>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "icon-rail",
+        "layout-sidebar",
+        "layout-holy-grail"
+      ]
+    },
+    {
+      "name": "log-card",
+      "role": "Compact transcript row with monospace label, optional status slot, and an optional `<pre>` body; use for AI tool calls, deploy logs, build steps, activity feeds",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 6822,
+        "declarationLine": 6835
+      },
+      "example": "<article class=\"log-card\">\n    <header>\n      <span class=\"label\">tool: bash</span>\n      <span class=\"status\">2.3s</span>\n    </header>\n    <pre>$ pnpm test</pre>\n  </article>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "card",
+        "callout",
+        "bubble"
+      ]
+    },
+    {
+      "name": "composer",
+      "role": "Multi-line text input + inline toolbar; supersedes `.chat-composer` when you need model/tool/attach controls. Also fits comment + post surfaces — anywhere a textarea has adjacent affordances",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 6879,
+        "declarationLine": 6893
+      },
+      "example": "<form class=\"composer\">\n    <textarea placeholder=\"Ask anything\"></textarea>\n    <div class=\"toolbar\">\n      <button type=\"button\">Attach</button>\n      <div class=\"spacer\"></div>\n      <button type=\"submit\">Send</button>\n    </div>\n  </form>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "chat-composer",
+        "input-group"
+      ]
+    },
+    {
+      "name": "workbench-panel",
+      "role": "Right-aligned IDE-style pane: header bar with inline tabs + scrollable body. Pairs with `.layout-rail.with-workbench` for artifact viewers, properties inspectors, code previews",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 6947,
+        "declarationLine": 6963
+      },
+      "example": "<aside class=\"workbench-panel\">\n    <header>\n      <h3>Artifact</h3>\n      <div class=\"tabs\">\n        <button aria-pressed=\"true\">Preview</button>\n        <button>Source</button>\n      </div>\n    </header>\n    <div class=\"body\">…</div>\n  </aside>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "layout-rail",
+        "tabs"
+      ]
+    },
+    {
+      "name": "no-print",
+      "role": "Hide an element when the page is printed; only takes effect inside `@media print`. Use on nav, ads, and other screen-only chrome",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 7131,
+        "declarationLine": 7136
+      },
+      "example": "<nav class=\"no-print\">…</nav>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": []
+    }
+  ],
+  "patternGroups": [
+    {
+      "name": "font-size",
+      "role": "Fluid type-size utilities; each class sets `--fl` to a level on the modular scale (-1 = caption, 0 = body, 6 = display)",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 1755
+      },
+      "members": [
+        "fs-xs",
+        "fs-base",
+        "fs-s",
+        "fs-m",
+        "fs-l",
+        "fs-xl",
+        "fs-xxl",
+        "fs-xxxl"
+      ],
+      "example": "<p class=\"fs-l\">A heading-sized paragraph</p>",
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "text-alignment",
+      "role": "Logical text-alignment helpers; `text-end` flips with writing direction so RTL content lines up correctly",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 2525
+      },
+      "members": [
+        "text-center",
+        "text-end"
+      ],
+      "example": "<p class=\"text-center\">Centered copy</p>",
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "aspect-ratios",
+      "role": "Lock an element to a fixed aspect ratio; use on media containers so images and embeds don't reflow as they load",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 2551
+      },
+      "members": [
+        "aspect-square",
+        "aspect-video",
+        "aspect-4-3",
+        "aspect-21-9",
+        "aspect-custom"
+      ],
+      "example": "<div class=\"aspect-video\">\n    <img src=\"/poster.jpg\" alt=\"\">\n  </div>",
+      "preferOver": null,
+      "related": [
+        "card"
+      ]
+    },
+    {
+      "name": "transitions",
+      "role": "Pre-composed `transition: all <duration> <easing>` utilities built from `--d-*` + `--ease-*`; one-class affordance for elements that animate on hover/active/state",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 2593
+      },
+      "members": [
+        "transition",
+        "transition-fast",
+        "transition-slow",
+        "transition-bounce",
+        "transition-none"
+      ],
+      "example": "<a href=\"/x\" class=\"transition\">Hover me</a>",
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "gradients",
+      "role": "Curated, theme-aware gradient utilities — each stop swaps via `light-dark()` so the gradient stays legible across modes. `gradient-text` clips text to a gradient via `background-clip`",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 2623
+      },
+      "members": [
+        "gradient-sunset",
+        "gradient-ocean",
+        "gradient-aurora",
+        "gradient-midnight",
+        "gradient-dawn",
+        "gradient-forest",
+        "gradient-lavender",
+        "gradient-neon",
+        "gradient-slate",
+        "gradient-surface",
+        "gradient-text"
+      ],
+      "example": "<section class=\"gradient-aurora\">\n    <h1 class=\"gradient-text gradient-aurora\">Northern lights</h1>\n  </section>",
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "muted-text",
+      "role": "De-emphasized text colors; `text-muted` for secondary copy, `text-faint` for tertiary/placeholder",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 4086
+      },
+      "members": [
+        "text-muted",
+        "text-faint"
+      ],
+      "example": "<p class=\"text-muted\">Updated 5 minutes ago.</p>",
+      "preferOver": null,
+      "related": []
+    },
+    {
+      "name": "safe-area",
+      "role": "Pad an element by the device's safe-area inset; reach for these on fixed/sticky bars that need to clear the notch / home indicator",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 6556
+      },
+      "members": [
+        "safe-top",
+        "safe-bottom",
+        "safe-x"
+      ],
+      "example": "<header class=\"safe-top\">…</header>",
+      "preferOver": null,
+      "related": []
+    }
+  ],
+  "tokens": [
+    {
+      "name": "--font-sans",
+      "role": "Default sans-serif font stack used by body copy and UI; overridden at :root to retheme typography",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 42,
+        "declarationLine": 47
+      },
+      "category": "typography"
+    },
+    {
+      "name": "--box",
+      "role": "Composite shadow for the `.box` pattern; soft inset highlight + tiny drop, designed to read as paper rather than elevated surface",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 1131,
+        "declarationLine": 1136
+      },
+      "category": "shadow"
+    },
+    {
+      "name": "--l",
+      "role": "Auto-contrast lightness helper used by `auto-color` to flip text between dark and light against `currentColor`; do not set directly",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 1165,
+        "declarationLine": 1171
+      },
+      "category": "color"
+    }
+  ],
+  "tokenGroups": [
+    {
+      "name": "fluid-viewport-bounds",
+      "role": "Inclusive viewport range (in raw px) that bounds fluid type and spacing calculations",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 51
+      },
+      "category": "layout",
+      "matches": "--min-vw, --max-vw",
+      "scale": null,
+      "members": [
+        "--min-vw",
+        "--max-vw"
+      ]
+    },
+    {
+      "name": "fluid-type-config",
+      "role": "Anchor values for the fluid type scale; `--fl` levels interpolate between these min/max ratios across the viewport range",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 61
+      },
+      "category": "typography",
+      "matches": "--font-size-min, --font-size-max, --font-ratio-min, --font-ratio-max, --font-width-min, --font-width-max",
+      "scale": null,
+      "members": [
+        "--font-size-min",
+        "--font-size-max",
+        "--font-ratio-min",
+        "--font-ratio-max",
+        "--font-width-min",
+        "--font-width-max"
+      ]
+    },
+    {
+      "name": "vertical-spacing",
+      "role": "Vertical rhythm scale; use for `gap` on stacks and for `margin-block` between content blocks",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 75
+      },
+      "category": "spacing",
+      "matches": "--vs-*",
+      "scale": "xs, s, base, m, l, xl, xxl, xxxl",
+      "members": [
+        "--vs-xs",
+        "--vs-s",
+        "--vs-base",
+        "--vs-m",
+        "--vs-l",
+        "--vs-xl",
+        "--vs-xxl",
+        "--vs-xxxl"
+      ]
+    },
+    {
+      "name": "padding",
+      "role": "Inset spacing scale; use for component `padding` and inside-edge gaps",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 92
+      },
+      "category": "spacing",
+      "matches": "--pad-*",
+      "scale": "xs, s, m, l, xl, xxl, xxxl",
+      "members": [
+        "--pad-xs",
+        "--pad-s",
+        "--pad-m",
+        "--pad-l",
+        "--pad-xl",
+        "--pad-xxl",
+        "--pad-xxxl"
+      ]
+    },
+    {
+      "name": "border-radius",
+      "role": "Border radius scale; pick by component size, not personal preference",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 108
+      },
+      "category": "radius",
+      "matches": "--br-*",
+      "scale": "xs, s, m, l, xl, xxl",
+      "members": [
+        "--br-xs",
+        "--br-s",
+        "--br-m",
+        "--br-l",
+        "--br-xl",
+        "--br-xxl"
+      ]
+    },
+    {
+      "name": "line-height",
+      "role": "Line-height scale; `--lh` is body default, smaller for dense UI, larger for long-form reading",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 123
+      },
+      "category": "typography",
+      "matches": "--lh, --lh-*",
+      "scale": "xs, s, (base = `--lh`), l, xl",
+      "members": [
+        "--lh-xs",
+        "--lh-s",
+        "--lh",
+        "--lh-l",
+        "--lh-xl"
+      ]
+    },
+    {
+      "name": "font-weight",
+      "role": "Type weight tokens; align with the variable-font axis points the project ships",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 137
+      },
+      "category": "typography",
+      "matches": "--fw-*",
+      "scale": "medium, semibold, bold",
+      "members": [
+        "--fw-medium",
+        "--fw-semibold",
+        "--fw-bold"
+      ]
+    },
+    {
+      "name": "heading-letter-spacing",
+      "role": "Negative tracking for large headings (H1–H3) so big type doesn't visually drift apart",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 149
+      },
+      "category": "typography",
+      "matches": "--ls-h*",
+      "scale": null,
+      "members": [
+        "--ls-h1",
+        "--ls-h2",
+        "--ls-h3"
+      ]
+    },
+    {
+      "name": "base-colors",
+      "role": "Canonical hue anchors in OKLCH; every per-color scale (`--<color>-1..9`, `--<color>-opaque-*`) derives from these",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 161
+      },
+      "category": "color",
+      "matches": "--yellow, --amber, --orange, --red, --pink, --purple, --indigo, --blue, --teal, --green, --lime, --highlighter, --brown",
+      "scale": null,
+      "members": [
+        "--yellow",
+        "--amber",
+        "--orange",
+        "--red",
+        "--pink",
+        "--purple",
+        "--indigo",
+        "--blue",
+        "--teal",
+        "--green",
+        "--lime",
+        "--highlighter",
+        "--brown"
+      ]
+    },
+    {
+      "name": "color-yellow",
+      "role": "Yellow scale (alpha-derived steps 1–9) plus opaque variants pre-mixed against `--bg`/`--fg`; pick a scale step by needed contrast, not by mood",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 182
+      },
+      "category": "color",
+      "matches": "--yellow-*",
+      "scale": null,
+      "members": [
+        "--yellow-1",
+        "--yellow-2",
+        "--yellow-3",
+        "--yellow-4",
+        "--yellow-5",
+        "--yellow-6",
+        "--yellow-7",
+        "--yellow-8",
+        "--yellow-9",
+        "--yellow-opaque-1",
+        "--yellow-opaque-2",
+        "--yellow-opaque-3",
+        "--yellow-opaque-4",
+        "--yellow-opaque-5",
+        "--yellow-opaque-6",
+        "--yellow-opaque-7",
+        "--yellow-opaque-8",
+        "--yellow-opaque-9"
+      ]
+    },
+    {
+      "name": "color-amber",
+      "role": "Amber scale (alpha steps 1–9) plus opaque variants pre-mixed against `--bg`/`--fg`",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 212
+      },
+      "category": "color",
+      "matches": "--amber-*",
+      "scale": null,
+      "members": [
+        "--amber-1",
+        "--amber-2",
+        "--amber-3",
+        "--amber-4",
+        "--amber-5",
+        "--amber-6",
+        "--amber-7",
+        "--amber-8",
+        "--amber-9",
+        "--amber-opaque-1",
+        "--amber-opaque-2",
+        "--amber-opaque-3",
+        "--amber-opaque-4",
+        "--amber-opaque-5",
+        "--amber-opaque-6",
+        "--amber-opaque-7",
+        "--amber-opaque-8",
+        "--amber-opaque-9"
+      ]
+    },
+    {
+      "name": "color-orange",
+      "role": "Orange scale (alpha steps 1–9) plus opaque variants pre-mixed against `--bg`/`--fg`",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 242
+      },
+      "category": "color",
+      "matches": "--orange-*",
+      "scale": null,
+      "members": [
+        "--orange-1",
+        "--orange-2",
+        "--orange-3",
+        "--orange-4",
+        "--orange-5",
+        "--orange-6",
+        "--orange-7",
+        "--orange-8",
+        "--orange-9",
+        "--orange-opaque-1",
+        "--orange-opaque-2",
+        "--orange-opaque-3",
+        "--orange-opaque-4",
+        "--orange-opaque-5",
+        "--orange-opaque-6",
+        "--orange-opaque-7",
+        "--orange-opaque-8",
+        "--orange-opaque-9"
+      ]
+    },
+    {
+      "name": "color-red",
+      "role": "Red scale (alpha steps 1–9) plus opaque variants; used for `--error` and destructive surfaces",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 272
+      },
+      "category": "color",
+      "matches": "--red-*",
+      "scale": null,
+      "members": [
+        "--red-1",
+        "--red-2",
+        "--red-3",
+        "--red-4",
+        "--red-5",
+        "--red-6",
+        "--red-7",
+        "--red-8",
+        "--red-9",
+        "--red-opaque-1",
+        "--red-opaque-2",
+        "--red-opaque-3",
+        "--red-opaque-4",
+        "--red-opaque-5",
+        "--red-opaque-6",
+        "--red-opaque-7",
+        "--red-opaque-8",
+        "--red-opaque-9"
+      ]
+    },
+    {
+      "name": "color-pink",
+      "role": "Pink scale (alpha steps 1–9) plus opaque variants pre-mixed against `--bg`/`--fg`",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 302
+      },
+      "category": "color",
+      "matches": "--pink-*",
+      "scale": null,
+      "members": [
+        "--pink-1",
+        "--pink-2",
+        "--pink-3",
+        "--pink-4",
+        "--pink-5",
+        "--pink-6",
+        "--pink-7",
+        "--pink-8",
+        "--pink-9",
+        "--pink-opaque-1",
+        "--pink-opaque-2",
+        "--pink-opaque-3",
+        "--pink-opaque-4",
+        "--pink-opaque-5",
+        "--pink-opaque-6",
+        "--pink-opaque-7",
+        "--pink-opaque-8",
+        "--pink-opaque-9"
+      ]
+    },
+    {
+      "name": "color-purple",
+      "role": "Purple scale (alpha steps 1–9) plus opaque variants; distinct from `--purple-deep-*`",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 332
+      },
+      "category": "color",
+      "matches": "--purple-1, --purple-2, --purple-3, --purple-4, --purple-5, --purple-6, --purple-7, --purple-8, --purple-9, --purple-opaque-*",
+      "scale": null,
+      "members": [
+        "--purple-1",
+        "--purple-2",
+        "--purple-3",
+        "--purple-4",
+        "--purple-5",
+        "--purple-6",
+        "--purple-7",
+        "--purple-8",
+        "--purple-9",
+        "--purple-opaque-1",
+        "--purple-opaque-2",
+        "--purple-opaque-3",
+        "--purple-opaque-4",
+        "--purple-opaque-5",
+        "--purple-opaque-6",
+        "--purple-opaque-7",
+        "--purple-opaque-8",
+        "--purple-opaque-9"
+      ]
+    },
+    {
+      "name": "color-purple-deep",
+      "role": "Deeper purple than `--purple` for high-contrast UI; includes base hue plus alpha + opaque scales",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 362
+      },
+      "category": "color",
+      "matches": "--purple-deep, --purple-deep-*",
+      "scale": null,
+      "members": [
+        "--purple-deep",
+        "--purple-deep-1",
+        "--purple-deep-2",
+        "--purple-deep-3",
+        "--purple-deep-4",
+        "--purple-deep-5",
+        "--purple-deep-6",
+        "--purple-deep-7",
+        "--purple-deep-8",
+        "--purple-deep-9",
+        "--purple-deep-opaque-1",
+        "--purple-deep-opaque-2",
+        "--purple-deep-opaque-3",
+        "--purple-deep-opaque-4",
+        "--purple-deep-opaque-5",
+        "--purple-deep-opaque-6",
+        "--purple-deep-opaque-7",
+        "--purple-deep-opaque-8",
+        "--purple-deep-opaque-9"
+      ]
+    },
+    {
+      "name": "color-indigo",
+      "role": "Indigo scale (alpha steps 1–9) plus opaque variants pre-mixed against `--bg`/`--fg`",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 425
+      },
+      "category": "color",
+      "matches": "--indigo-*",
+      "scale": null,
+      "members": [
+        "--indigo-1",
+        "--indigo-2",
+        "--indigo-3",
+        "--indigo-4",
+        "--indigo-5",
+        "--indigo-6",
+        "--indigo-7",
+        "--indigo-8",
+        "--indigo-9",
+        "--indigo-opaque-1",
+        "--indigo-opaque-2",
+        "--indigo-opaque-3",
+        "--indigo-opaque-4",
+        "--indigo-opaque-5",
+        "--indigo-opaque-6",
+        "--indigo-opaque-7",
+        "--indigo-opaque-8",
+        "--indigo-opaque-9"
+      ]
+    },
+    {
+      "name": "color-green",
+      "role": "Green scale (alpha steps 1–9) plus opaque variants; used for `--success` and confirmation surfaces",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 455
+      },
+      "category": "color",
+      "matches": "--green-*",
+      "scale": null,
+      "members": [
+        "--green-1",
+        "--green-2",
+        "--green-3",
+        "--green-4",
+        "--green-5",
+        "--green-6",
+        "--green-7",
+        "--green-8",
+        "--green-9",
+        "--green-opaque-1",
+        "--green-opaque-2",
+        "--green-opaque-3",
+        "--green-opaque-4",
+        "--green-opaque-5",
+        "--green-opaque-6",
+        "--green-opaque-7",
+        "--green-opaque-8",
+        "--green-opaque-9"
+      ]
+    },
+    {
+      "name": "color-lime",
+      "role": "Lime scale (alpha steps 1–9) plus opaque variants pre-mixed against `--bg`/`--fg`",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 485
+      },
+      "category": "color",
+      "matches": "--lime-*",
+      "scale": null,
+      "members": [
+        "--lime-1",
+        "--lime-2",
+        "--lime-3",
+        "--lime-4",
+        "--lime-5",
+        "--lime-6",
+        "--lime-7",
+        "--lime-8",
+        "--lime-9",
+        "--lime-opaque-1",
+        "--lime-opaque-2",
+        "--lime-opaque-3",
+        "--lime-opaque-4",
+        "--lime-opaque-5",
+        "--lime-opaque-6",
+        "--lime-opaque-7",
+        "--lime-opaque-8",
+        "--lime-opaque-9"
+      ]
+    },
+    {
+      "name": "color-highlighter",
+      "role": "Highlighter scale (alpha steps 1–9) plus opaque variants; loud yellow-green for emphasis and selection",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 515
+      },
+      "category": "color",
+      "matches": "--highlighter-*",
+      "scale": null,
+      "members": [
+        "--highlighter-1",
+        "--highlighter-2",
+        "--highlighter-3",
+        "--highlighter-4",
+        "--highlighter-5",
+        "--highlighter-6",
+        "--highlighter-7",
+        "--highlighter-8",
+        "--highlighter-9",
+        "--highlighter-opaque-1",
+        "--highlighter-opaque-2",
+        "--highlighter-opaque-3",
+        "--highlighter-opaque-4",
+        "--highlighter-opaque-5",
+        "--highlighter-opaque-6",
+        "--highlighter-opaque-7",
+        "--highlighter-opaque-8",
+        "--highlighter-opaque-9"
+      ]
+    },
+    {
+      "name": "color-brown",
+      "role": "Brown scale (alpha steps 1–9) plus opaque variants pre-mixed against `--bg`/`--fg`",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 577
+      },
+      "category": "color",
+      "matches": "--brown-*",
+      "scale": null,
+      "members": [
+        "--brown-1",
+        "--brown-2",
+        "--brown-3",
+        "--brown-4",
+        "--brown-5",
+        "--brown-6",
+        "--brown-7",
+        "--brown-8",
+        "--brown-9",
+        "--brown-opaque-1",
+        "--brown-opaque-2",
+        "--brown-opaque-3",
+        "--brown-opaque-4",
+        "--brown-opaque-5",
+        "--brown-opaque-6",
+        "--brown-opaque-7",
+        "--brown-opaque-8",
+        "--brown-opaque-9"
+      ]
+    },
+    {
+      "name": "color-teal",
+      "role": "Teal scale (alpha steps 1–9) plus opaque variants pre-mixed against `--bg`/`--fg`",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 607
+      },
+      "category": "color",
+      "matches": "--teal-*",
+      "scale": null,
+      "members": [
+        "--teal-1",
+        "--teal-2",
+        "--teal-3",
+        "--teal-4",
+        "--teal-5",
+        "--teal-6",
+        "--teal-7",
+        "--teal-8",
+        "--teal-9",
+        "--teal-opaque-1",
+        "--teal-opaque-2",
+        "--teal-opaque-3",
+        "--teal-opaque-4",
+        "--teal-opaque-5",
+        "--teal-opaque-6",
+        "--teal-opaque-7",
+        "--teal-opaque-8",
+        "--teal-opaque-9"
+      ]
+    },
+    {
+      "name": "color-blue",
+      "role": "Blue scale (alpha steps 1–9) plus opaque variants; default source for `--primary`",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 637
+      },
+      "category": "color",
+      "matches": "--blue-*",
+      "scale": null,
+      "members": [
+        "--blue-1",
+        "--blue-2",
+        "--blue-3",
+        "--blue-4",
+        "--blue-5",
+        "--blue-6",
+        "--blue-7",
+        "--blue-8",
+        "--blue-9",
+        "--blue-opaque-1",
+        "--blue-opaque-2",
+        "--blue-opaque-3",
+        "--blue-opaque-4",
+        "--blue-opaque-5",
+        "--blue-opaque-6",
+        "--blue-opaque-7",
+        "--blue-opaque-8",
+        "--blue-opaque-9"
+      ]
+    },
+    {
+      "name": "color-gray",
+      "role": "Neutral gray scale plus the `--gray` and `--slate` hue anchors; backbone for UI chrome and disabled states",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 667
+      },
+      "category": "color",
+      "matches": "--gray, --slate, --gray-*",
+      "scale": null,
+      "members": [
+        "--gray",
+        "--slate",
+        "--gray-1",
+        "--gray-2",
+        "--gray-3",
+        "--gray-4",
+        "--gray-5",
+        "--gray-6",
+        "--gray-7",
+        "--gray-8",
+        "--gray-9",
+        "--gray-opaque-1",
+        "--gray-opaque-2",
+        "--gray-opaque-3",
+        "--gray-opaque-4",
+        "--gray-opaque-5",
+        "--gray-opaque-6",
+        "--gray-opaque-7",
+        "--gray-opaque-8",
+        "--gray-opaque-9"
+      ]
+    },
+    {
+      "name": "color-slate",
+      "role": "Slate scale (alpha steps 1–9) plus opaque variants; cooler neutral alternative to `--gray-*`",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 699
+      },
+      "category": "color",
+      "matches": "--slate-*",
+      "scale": null,
+      "members": [
+        "--slate-1",
+        "--slate-2",
+        "--slate-3",
+        "--slate-4",
+        "--slate-5",
+        "--slate-6",
+        "--slate-7",
+        "--slate-8",
+        "--slate-9",
+        "--slate-opaque-1",
+        "--slate-opaque-2",
+        "--slate-opaque-3",
+        "--slate-opaque-4",
+        "--slate-opaque-5",
+        "--slate-opaque-6",
+        "--slate-opaque-7",
+        "--slate-opaque-8",
+        "--slate-opaque-9"
+      ]
+    },
+    {
+      "name": "color-white",
+      "role": "Pure white anchor plus alpha + opaque scales; static across light/dark theme (does NOT swap)",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 729
+      },
+      "category": "color",
+      "matches": "--white, --white-*",
+      "scale": null,
+      "members": [
+        "--white",
+        "--white-05",
+        "--white-1",
+        "--white-2",
+        "--white-3",
+        "--white-4",
+        "--white-5",
+        "--white-6",
+        "--white-7",
+        "--white-8",
+        "--white-9",
+        "--white-opaque-1",
+        "--white-opaque-2",
+        "--white-opaque-3",
+        "--white-opaque-4",
+        "--white-opaque-5",
+        "--white-opaque-6",
+        "--white-opaque-7",
+        "--white-opaque-8",
+        "--white-opaque-9"
+      ]
+    },
+    {
+      "name": "color-black",
+      "role": "Pure black anchor plus alpha + opaque scales; static across light/dark theme (does NOT swap)",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 761
+      },
+      "category": "color",
+      "matches": "--black, --black-*",
+      "scale": null,
+      "members": [
+        "--black",
+        "--black-05",
+        "--black-1",
+        "--black-2",
+        "--black-3",
+        "--black-4",
+        "--black-5",
+        "--black-6",
+        "--black-7",
+        "--black-8",
+        "--black-9",
+        "--black-opaque-1",
+        "--black-opaque-2",
+        "--black-opaque-3",
+        "--black-opaque-4",
+        "--black-opaque-5",
+        "--black-opaque-6",
+        "--black-opaque-7",
+        "--black-opaque-8",
+        "--black-opaque-9"
+      ]
+    },
+    {
+      "name": "fg-bg-literals",
+      "role": "Literal light/dark text and surface anchors used by `light-dark()` to compute `--fg` and `--bg`",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 793
+      },
+      "category": "color",
+      "matches": "--fg-light, --fg-dark, --bg-light, --bg-dark",
+      "scale": null,
+      "members": [
+        "--fg-light",
+        "--fg-dark",
+        "--bg-light",
+        "--bg-dark"
+      ]
+    },
+    {
+      "name": "easing",
+      "role": "Easing curves expressed with `linear()` for natural motion; choose smooth for UI, bounce for affordances, emphasized for hero transitions",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 805
+      },
+      "category": "motion",
+      "matches": "--ease-*",
+      "scale": null,
+      "members": [
+        "--ease-smooth",
+        "--ease-bounce",
+        "--ease-emphasized"
+      ]
+    },
+    {
+      "name": "duration",
+      "role": "Semantic motion duration scale; reach for these instead of raw seconds so motion feels consistent across components. See docs/adr/0008.",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 861
+      },
+      "category": "motion",
+      "matches": "--d-*",
+      "scale": "instant, fast, base, slow, emphatic",
+      "members": [
+        "--d-instant",
+        "--d-fast",
+        "--d-base",
+        "--d-slow",
+        "--d-emphatic"
+      ]
+    },
+    {
+      "name": "z-index",
+      "role": "Stacking-context vocabulary; pick by purpose (overlay, sticky, modal, toast), not by raw number. See docs/adr/0008.",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 875
+      },
+      "category": "z-index",
+      "matches": "--z-*",
+      "scale": "base, raised, overlay, sticky, modal, toast",
+      "members": [
+        "--z-base",
+        "--z-raised",
+        "--z-overlay",
+        "--z-sticky",
+        "--z-modal",
+        "--z-toast"
+      ]
+    },
+    {
+      "name": "color-fg",
+      "role": "Foreground (text + icon) semantic color; resolves to light or dark via `light-dark()`. Use `--fg-N` for muted/secondary text and borders, `--fg-opaque-N` when transparency would composite poorly.",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 896
+      },
+      "category": "color",
+      "matches": "--fg, --fg-05, --fg-1, --fg-2, --fg-3, --fg-4, --fg-5, --fg-6, --fg-7, --fg-8, --fg-9, --fg-opaque-*",
+      "scale": null,
+      "members": [
+        "--fg",
+        "--fg-05",
+        "--fg-1",
+        "--fg-2",
+        "--fg-3",
+        "--fg-4",
+        "--fg-5",
+        "--fg-6",
+        "--fg-7",
+        "--fg-8",
+        "--fg-9",
+        "--fg-opaque-1",
+        "--fg-opaque-2",
+        "--fg-opaque-3",
+        "--fg-opaque-4",
+        "--fg-opaque-5",
+        "--fg-opaque-6",
+        "--fg-opaque-7",
+        "--fg-opaque-8",
+        "--fg-opaque-9"
+      ]
+    },
+    {
+      "name": "color-bg",
+      "role": "Background (surface) semantic color; resolves to light or dark via `light-dark()`. Use `--bg-N` for layered surface depth, `--bg-opaque-N` when stacking against transparency-sensitive content.",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 929
+      },
+      "category": "color",
+      "matches": "--bg, --bg-05, --bg-1, --bg-2, --bg-3, --bg-4, --bg-5, --bg-6, --bg-7, --bg-8, --bg-9, --bg-opaque-*",
+      "scale": null,
+      "members": [
+        "--bg",
+        "--bg-05",
+        "--bg-1",
+        "--bg-2",
+        "--bg-3",
+        "--bg-4",
+        "--bg-5",
+        "--bg-6",
+        "--bg-7",
+        "--bg-8",
+        "--bg-9",
+        "--bg-opaque-1",
+        "--bg-opaque-2",
+        "--bg-opaque-3",
+        "--bg-opaque-4",
+        "--bg-opaque-5",
+        "--bg-opaque-6",
+        "--bg-opaque-7",
+        "--bg-opaque-8",
+        "--bg-opaque-9"
+      ]
+    },
+    {
+      "name": "status-colors",
+      "role": "Semantic role colors that derive scales (`--primary-*`, `--error-*`, etc.); rethemes follow when you reassign these",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 963
+      },
+      "category": "color",
+      "matches": "--primary, --accent, --error, --warning, --success",
+      "scale": null,
+      "members": [
+        "--primary",
+        "--accent",
+        "--error",
+        "--warning",
+        "--success"
+      ]
+    },
+    {
+      "name": "color-primary",
+      "role": "Alpha (1–9) and opaque scales derived from `--primary`; reach for these on accent surfaces and CTAs",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 976
+      },
+      "category": "color",
+      "matches": "--primary-*",
+      "scale": null,
+      "members": [
+        "--primary-1",
+        "--primary-2",
+        "--primary-3",
+        "--primary-4",
+        "--primary-5",
+        "--primary-6",
+        "--primary-7",
+        "--primary-8",
+        "--primary-9",
+        "--primary-opaque-1",
+        "--primary-opaque-2",
+        "--primary-opaque-3",
+        "--primary-opaque-4",
+        "--primary-opaque-5",
+        "--primary-opaque-6",
+        "--primary-opaque-7",
+        "--primary-opaque-8",
+        "--primary-opaque-9"
+      ]
+    },
+    {
+      "name": "color-error",
+      "role": "Alpha (1–9) and opaque scales derived from `--error`; use for destructive actions and validation surfaces",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 1008
+      },
+      "category": "color",
+      "matches": "--error-*",
+      "scale": null,
+      "members": [
+        "--error-1",
+        "--error-2",
+        "--error-3",
+        "--error-4",
+        "--error-5",
+        "--error-6",
+        "--error-7",
+        "--error-8",
+        "--error-9",
+        "--error-opaque-1",
+        "--error-opaque-2",
+        "--error-opaque-3",
+        "--error-opaque-4",
+        "--error-opaque-5",
+        "--error-opaque-6",
+        "--error-opaque-7",
+        "--error-opaque-8",
+        "--error-opaque-9"
+      ]
+    },
+    {
+      "name": "color-warning",
+      "role": "Alpha (1–9) and opaque scales derived from `--warning`; use for caution states that aren't destructive",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 1040
+      },
+      "category": "color",
+      "matches": "--warning-*",
+      "scale": null,
+      "members": [
+        "--warning-1",
+        "--warning-2",
+        "--warning-3",
+        "--warning-4",
+        "--warning-5",
+        "--warning-6",
+        "--warning-7",
+        "--warning-8",
+        "--warning-9",
+        "--warning-opaque-1",
+        "--warning-opaque-2",
+        "--warning-opaque-3",
+        "--warning-opaque-4",
+        "--warning-opaque-5",
+        "--warning-opaque-6",
+        "--warning-opaque-7",
+        "--warning-opaque-8",
+        "--warning-opaque-9"
+      ]
+    },
+    {
+      "name": "color-success",
+      "role": "Alpha (1–9) and opaque scales derived from `--success`; use for confirmation and positive feedback surfaces",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 1072
+      },
+      "category": "color",
+      "matches": "--success-*",
+      "scale": null,
+      "members": [
+        "--success-1",
+        "--success-2",
+        "--success-3",
+        "--success-4",
+        "--success-5",
+        "--success-6",
+        "--success-7",
+        "--success-8",
+        "--success-9",
+        "--success-opaque-1",
+        "--success-opaque-2",
+        "--success-opaque-3",
+        "--success-opaque-4",
+        "--success-opaque-5",
+        "--success-opaque-6",
+        "--success-opaque-7",
+        "--success-opaque-8",
+        "--success-opaque-9"
+      ]
+    },
+    {
+      "name": "shadows",
+      "role": "Elevation shadow ramp; pick by stacking order (`1` = subtle inline, `6` = drawn-up overlay), each step uses `light-dark()` so the shadow stays visible in dark mode",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 1105
+      },
+      "category": "shadow",
+      "matches": "--shadow-*",
+      "scale": null,
+      "members": [
+        "--shadow-1",
+        "--shadow-2",
+        "--shadow-3",
+        "--shadow-4",
+        "--shadow-5",
+        "--shadow-6"
+      ]
+    },
+    {
+      "name": "borders",
+      "role": "Pre-composed `border` shorthand tokens (style + width + `--fg`-derived color); set `border: var(--border-2)` instead of stacking width and color manually",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 1141
+      },
+      "category": "border",
+      "matches": "--border-*",
+      "scale": null,
+      "members": [
+        "--border-05",
+        "--border-1",
+        "--border-2",
+        "--border-3",
+        "--border-4",
+        "--border-5"
+      ]
+    },
+    {
+      "name": "focus-ring",
+      "role": "Outline + offset values for `:focus-visible`; consumed by every interactive surface so the focus indicator stays consistent (use `--focus-ring-offset-inset` when the element clips its outline)",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 1155
+      },
+      "category": "border",
+      "matches": "--focus-ring, --focus-ring-offset, --focus-ring-offset-inset",
+      "scale": null,
+      "members": [
+        "--focus-ring",
+        "--focus-ring-offset",
+        "--focus-ring-offset-inset"
+      ]
+    }
+  ]
+}

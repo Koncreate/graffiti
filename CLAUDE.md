@@ -82,6 +82,12 @@ Component styles for `@drop-in/decks` are separated into `decks.css` (prefixed w
 }
 ```
 
+## Authoring drop-in.css
+
+Every primary class definition (rules with selector exactly `.classname` inside a `@layer` block) and every token at `:root` inside `@layer base` in `src/lib/drop-in.css` requires a structured annotation comment. Use `@pattern` / `@pattern-group` for classes and `@token` / `@token-group` for tokens.
+
+`npm run lint:graffiti` enforces the annotations and emits `registry.json` (the machine-readable catalogue consumed by lookup tools and downstream lint). The lint also runs pre-commit. See [docs/ANNOTATION-SPEC.md](docs/ANNOTATION-SPEC.md) for the full format and validation rules.
+
 ## Development Workflow
 
 1. Edit `drop-in.css` for framework changes or `decks.css` for component changes

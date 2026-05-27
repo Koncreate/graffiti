@@ -54,6 +54,8 @@
     "check:agent-docs": "node scripts/check-agent-docs.mjs",
     "report:agent-docs": "node scripts/report-agent-docs-coverage.mjs",
     "generate:agent-docs": "node scripts/generate-agent-docs.mjs",
+    "lint:graffiti": "node scripts/graffiti-lint.mjs",
+    "lint:graffiti:check": "node scripts/graffiti-lint.mjs --check",
     "package": "node scripts/derive-mirror.mjs && svelte-kit sync && svelte-package && node build-modules.js"
   },
   "type": "module",
@@ -72,6 +74,7 @@
     "@sveltejs/package": "^2.5.2",
     "@sveltejs/vite-plugin-svelte": "^6.2.1",
     "@types/node": "^22",
+    "css-tree": "^3.2.1",
     "eslint": "^9.38.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-svelte": "^3.12.4",

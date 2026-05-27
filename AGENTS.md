@@ -11,6 +11,10 @@ Utilities, elements, blocks, and templates. Highly configurable. Endlessly theme
 - Hyper Modern Standards - Using the latest features in CSS and HTML to replace JavaScript functionality
 
 
+## Authoring `src/lib/drop-in.css`
+
+Every primary class definition and every token at `:root` inside `@layer base` requires a structured annotation comment (`@pattern`, `@pattern-group`, `@token`, or `@token-group`). `npm run lint:graffiti` enforces this and emits `registry.json`. Full rules and examples in [docs/ANNOTATION-SPEC.md](docs/ANNOTATION-SPEC.md).
+
 ## Browser Testing
 
 When using chrome-devtools MCP or any browser automation, **always use the port defined in `vite.config.ts`** (currently `6124`). Do NOT assume default ports like `5173`.

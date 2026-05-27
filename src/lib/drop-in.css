@@ -39,14 +39,31 @@
      * ===================================================================== */
 
     /* Typography primitives */
+    /**
+     * @token --font-sans
+     * @category typography
+     * @role Default sans-serif font stack used by body copy and UI; overridden at :root to retheme typography
+     */
     --font-sans:
       -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica,
       Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 
+    /**
+     * @token-group fluid-viewport-bounds
+     * @matches --min-vw, --max-vw
+     * @category layout
+     * @role Inclusive viewport range (in raw px) that bounds fluid type and spacing calculations
+     */
     --min-vw: 360;
     --max-vw: 800;
 
     /* Fluid Type */
+    /**
+     * @token-group fluid-type-config
+     * @matches --font-size-min, --font-size-max, --font-ratio-min, --font-ratio-max, --font-width-min, --font-width-max
+     * @category typography
+     * @role Anchor values for the fluid type scale; `--fl` levels interpolate between these min/max ratios across the viewport range
+     */
     --font-size-min: 16;
     --font-size-max: 18;
     --font-ratio-min: 1.2;
@@ -55,6 +72,13 @@
     --font-width-max: 1500;
 
     /* Vertical Spacing */
+    /**
+     * @token-group vertical-spacing
+     * @matches --vs-*
+     * @category spacing
+     * @role Vertical rhythm scale; use for `gap` on stacks and for `margin-block` between content blocks
+     * @scale xs, s, base, m, l, xl, xxl, xxxl
+     */
     --vs-xs: 0.25rem;
     --vs-s: 0.5rem;
     --vs-base: 1rem;
@@ -65,6 +89,13 @@
     --vs-xxxl: 8rem;
 
     /* Padding */
+    /**
+     * @token-group padding
+     * @matches --pad-*
+     * @category spacing
+     * @role Inset spacing scale; use for component `padding` and inside-edge gaps
+     * @scale xs, s, m, l, xl, xxl, xxxl
+     */
     --pad-xs: 0.25rem;
     --pad-s: 0.5rem;
     --pad-m: 0.75rem;
@@ -74,6 +105,13 @@
     --pad-xxxl: 4rem;
 
     /* Border Radius */
+    /**
+     * @token-group border-radius
+     * @matches --br-*
+     * @category radius
+     * @role Border radius scale; pick by component size, not personal preference
+     * @scale xs, s, m, l, xl, xxl
+     */
     --br-xs: 2px;
     --br-s: 4px;
     --br-m: 8px;
@@ -82,6 +120,13 @@
     --br-xxl: 32px;
 
     /* Line Height */
+    /**
+     * @token-group line-height
+     * @matches --lh, --lh-*
+     * @category typography
+     * @role Line-height scale; `--lh` is body default, smaller for dense UI, larger for long-form reading
+     * @scale xs, s, (base = `--lh`), l, xl
+     */
     --lh-xs: 1;
     --lh-s: 1.2;
     --lh: 1.5;
@@ -89,17 +134,36 @@
     --lh-xl: 2;
 
     /* Font Weight */
+    /**
+     * @token-group font-weight
+     * @matches --fw-*
+     * @category typography
+     * @role Type weight tokens; align with the variable-font axis points the project ships
+     * @scale medium, semibold, bold
+     */
     --fw-medium: 500;
     --fw-semibold: 600;
     --fw-bold: 700;
 
     /* Heading Letter Spacing */
+    /**
+     * @token-group heading-letter-spacing
+     * @matches --ls-h*
+     * @category typography
+     * @role Negative tracking for large headings (H1–H3) so big type doesn't visually drift apart
+     */
     --ls-h1: -0.02em;
     --ls-h2: -0.015em;
     --ls-h3: -0.01em;
 
     /* Color System - OKLCH with 1-9 scales */
     /* Base colors (scale 5) */
+    /**
+     * @token-group base-colors
+     * @matches --yellow, --amber, --orange, --red, --pink, --purple, --indigo, --blue, --teal, --green, --lime, --highlighter, --brown
+     * @category color
+     * @role Canonical hue anchors in OKLCH; every per-color scale (`--<color>-1..9`, `--<color>-opaque-*`) derives from these
+     */
     --yellow: oklch(0.88 0.15 95);
     --amber: oklch(0.78 0.16 80);
     --orange: oklch(0.75 0.18 65);
@@ -115,6 +179,12 @@
     --brown: oklch(0.55 0.12 60);
 
     /* Yellow scale */
+    /**
+     * @token-group color-yellow
+     * @matches --yellow-*
+     * @category color
+     * @role Yellow scale (alpha-derived steps 1–9) plus opaque variants pre-mixed against `--bg`/`--fg`; pick a scale step by needed contrast, not by mood
+     */
     --yellow-1: oklch(from var(--yellow) l c h / 0.1);
     --yellow-2: oklch(from var(--yellow) l c h / 0.2);
     --yellow-3: oklch(from var(--yellow) l c h / 0.3);
@@ -139,6 +209,12 @@
     /* /derive:source */
 
     /* Amber scale */
+    /**
+     * @token-group color-amber
+     * @matches --amber-*
+     * @category color
+     * @role Amber scale (alpha steps 1–9) plus opaque variants pre-mixed against `--bg`/`--fg`
+     */
     --amber-1: oklch(from var(--amber) l c h / 0.1);
     --amber-2: oklch(from var(--amber) l c h / 0.2);
     --amber-3: oklch(from var(--amber) l c h / 0.3);
@@ -163,6 +239,12 @@
     /* /derive:source */
 
     /* Orange scale */
+    /**
+     * @token-group color-orange
+     * @matches --orange-*
+     * @category color
+     * @role Orange scale (alpha steps 1–9) plus opaque variants pre-mixed against `--bg`/`--fg`
+     */
     --orange-1: oklch(from var(--orange) l c h / 0.1);
     --orange-2: oklch(from var(--orange) l c h / 0.2);
     --orange-3: oklch(from var(--orange) l c h / 0.3);
@@ -187,6 +269,12 @@
     /* /derive:source */
 
     /* Red scale */
+    /**
+     * @token-group color-red
+     * @matches --red-*
+     * @category color
+     * @role Red scale (alpha steps 1–9) plus opaque variants; used for `--error` and destructive surfaces
+     */
     --red-1: oklch(from var(--red) l c h / 0.1);
     --red-2: oklch(from var(--red) l c h / 0.2);
     --red-3: oklch(from var(--red) l c h / 0.3);
@@ -211,6 +299,12 @@
     /* /derive:source */
 
     /* Pink scale */
+    /**
+     * @token-group color-pink
+     * @matches --pink-*
+     * @category color
+     * @role Pink scale (alpha steps 1–9) plus opaque variants pre-mixed against `--bg`/`--fg`
+     */
     --pink-1: oklch(from var(--pink) l c h / 0.1);
     --pink-2: oklch(from var(--pink) l c h / 0.2);
     --pink-3: oklch(from var(--pink) l c h / 0.3);
@@ -235,6 +329,12 @@
     /* /derive:source */
 
     /* Purple scale */
+    /**
+     * @token-group color-purple
+     * @matches --purple-1, --purple-2, --purple-3, --purple-4, --purple-5, --purple-6, --purple-7, --purple-8, --purple-9, --purple-opaque-*
+     * @category color
+     * @role Purple scale (alpha steps 1–9) plus opaque variants; distinct from `--purple-deep-*`
+     */
     --purple-1: oklch(from var(--purple) l c h / 0.1);
     --purple-2: oklch(from var(--purple) l c h / 0.2);
     --purple-3: oklch(from var(--purple) l c h / 0.3);
@@ -259,6 +359,12 @@
     /* /derive:source */
 
     /* Purple deep scale */
+    /**
+     * @token-group color-purple-deep
+     * @matches --purple-deep, --purple-deep-*
+     * @category color
+     * @role Deeper purple than `--purple` for high-contrast UI; includes base hue plus alpha + opaque scales
+     */
     --purple-deep: #1b1525;
     --purple-deep-1: oklch(from var(--purple-deep) l c h / 0.1);
     --purple-deep-2: oklch(from var(--purple-deep) l c h / 0.2);
@@ -316,6 +422,12 @@
     /* /derive:source */
 
     /* Indigo scale */
+    /**
+     * @token-group color-indigo
+     * @matches --indigo-*
+     * @category color
+     * @role Indigo scale (alpha steps 1–9) plus opaque variants pre-mixed against `--bg`/`--fg`
+     */
     --indigo-1: oklch(from var(--indigo) l c h / 0.1);
     --indigo-2: oklch(from var(--indigo) l c h / 0.2);
     --indigo-3: oklch(from var(--indigo) l c h / 0.3);
@@ -340,6 +452,12 @@
     /* /derive:source */
 
     /* Green scale */
+    /**
+     * @token-group color-green
+     * @matches --green-*
+     * @category color
+     * @role Green scale (alpha steps 1–9) plus opaque variants; used for `--success` and confirmation surfaces
+     */
     --green-1: oklch(from var(--green) l c h / 0.1);
     --green-2: oklch(from var(--green) l c h / 0.2);
     --green-3: oklch(from var(--green) l c h / 0.3);
@@ -364,6 +482,12 @@
     /* /derive:source */
 
     /* Lime scale */
+    /**
+     * @token-group color-lime
+     * @matches --lime-*
+     * @category color
+     * @role Lime scale (alpha steps 1–9) plus opaque variants pre-mixed against `--bg`/`--fg`
+     */
     --lime-1: oklch(from var(--lime) l c h / 0.1);
     --lime-2: oklch(from var(--lime) l c h / 0.2);
     --lime-3: oklch(from var(--lime) l c h / 0.3);
@@ -388,6 +512,12 @@
     /* /derive:source */
 
     /* Highlighter scale */
+    /**
+     * @token-group color-highlighter
+     * @matches --highlighter-*
+     * @category color
+     * @role Highlighter scale (alpha steps 1–9) plus opaque variants; loud yellow-green for emphasis and selection
+     */
     --highlighter-1: oklch(from var(--highlighter) l c h / 0.1);
     --highlighter-2: oklch(from var(--highlighter) l c h / 0.2);
     --highlighter-3: oklch(from var(--highlighter) l c h / 0.3);
@@ -444,6 +574,12 @@
     /* /derive:source */
 
     /* Brown scale */
+    /**
+     * @token-group color-brown
+     * @matches --brown-*
+     * @category color
+     * @role Brown scale (alpha steps 1–9) plus opaque variants pre-mixed against `--bg`/`--fg`
+     */
     --brown-1: oklch(from var(--brown) l c h / 0.1);
     --brown-2: oklch(from var(--brown) l c h / 0.2);
     --brown-3: oklch(from var(--brown) l c h / 0.3);
@@ -468,6 +604,12 @@
     /* /derive:source */
 
     /* Teal scale */
+    /**
+     * @token-group color-teal
+     * @matches --teal-*
+     * @category color
+     * @role Teal scale (alpha steps 1–9) plus opaque variants pre-mixed against `--bg`/`--fg`
+     */
     --teal-1: oklch(from var(--teal) l c h / 0.1);
     --teal-2: oklch(from var(--teal) l c h / 0.2);
     --teal-3: oklch(from var(--teal) l c h / 0.3);
@@ -492,6 +634,12 @@
     /* /derive:source */
 
     /* Blue scale */
+    /**
+     * @token-group color-blue
+     * @matches --blue-*
+     * @category color
+     * @role Blue scale (alpha steps 1–9) plus opaque variants; default source for `--primary`
+     */
     --blue-1: oklch(from var(--blue) l c h / 0.1);
     --blue-2: oklch(from var(--blue) l c h / 0.2);
     --blue-3: oklch(from var(--blue) l c h / 0.3);
@@ -516,6 +664,12 @@
     /* /derive:source */
 
     /* Neutral gray scale */
+    /**
+     * @token-group color-gray
+     * @matches --gray, --slate, --gray-*
+     * @category color
+     * @role Neutral gray scale plus the `--gray` and `--slate` hue anchors; backbone for UI chrome and disabled states
+     */
     --gray: oklch(0.5 0.02 270);
     --slate: oklch(0.52 0.04 255);
     --gray-1: oklch(from var(--gray) l c h / 0.1);
@@ -542,6 +696,12 @@
     /* /derive:source */
 
     /* Slate scale */
+    /**
+     * @token-group color-slate
+     * @matches --slate-*
+     * @category color
+     * @role Slate scale (alpha steps 1–9) plus opaque variants; cooler neutral alternative to `--gray-*`
+     */
     --slate-1: oklch(from var(--slate) l c h / 0.1);
     --slate-2: oklch(from var(--slate) l c h / 0.2);
     --slate-3: oklch(from var(--slate) l c h / 0.3);
@@ -566,6 +726,12 @@
     /* /derive:source */
 
     /* White - Static color (does not change with light/dark mode) */
+    /**
+     * @token-group color-white
+     * @matches --white, --white-*
+     * @category color
+     * @role Pure white anchor plus alpha + opaque scales; static across light/dark theme (does NOT swap)
+     */
     --white: oklch(1 0 0);
     --white-05: oklch(from var(--white) l c h / 0.05);
     --white-1: oklch(from var(--white) l c h / 0.1);
@@ -592,6 +758,12 @@
     /* /derive:source */
 
     /* Black - Static color (does not change with light/dark mode) */
+    /**
+     * @token-group color-black
+     * @matches --black, --black-*
+     * @category color
+     * @role Pure black anchor plus alpha + opaque scales; static across light/dark theme (does NOT swap)
+     */
     --black: oklch(0 0 0);
     --black-05: oklch(from var(--black) l c h / 0.05);
     --black-1: oklch(from var(--black) l c h / 0.1);
@@ -618,12 +790,24 @@
     /* /derive:source */
 
     /* Foreground / background literals */
+    /**
+     * @token-group fg-bg-literals
+     * @matches --fg-light, --fg-dark, --bg-light, --bg-dark
+     * @category color
+     * @role Literal light/dark text and surface anchors used by `light-dark()` to compute `--fg` and `--bg`
+     */
     --fg-light: #050505;
     --fg-dark: #fff;
     --bg-light: #fff;
     --bg-dark: #050505;
 
     /* Easing Tokens - Using linear() for modern, natural motion */
+    /**
+     * @token-group easing
+     * @matches --ease-*
+     * @category motion
+     * @role Easing curves expressed with `linear()` for natural motion; choose smooth for UI, bounce for affordances, emphasized for hero transitions
+     */
     --ease-smooth: linear(
       0,
       0.0039,
@@ -674,6 +858,13 @@
     );
 
     /* Duration Tokens - Semantic motion scale, see docs/adr/0008 */
+    /**
+     * @token-group duration
+     * @matches --d-*
+     * @category motion
+     * @role Semantic motion duration scale; reach for these instead of raw seconds so motion feels consistent across components. See docs/adr/0008.
+     * @scale instant, fast, base, slow, emphatic
+     */
     --d-instant: 0.1s;
     --d-fast: 0.15s;
     --d-base: 0.2s;
@@ -681,6 +872,13 @@
     --d-emphatic: 0.4s;
 
     /* Z-Index Tokens - Stacking tier vocabulary, see docs/adr/0008 */
+    /**
+     * @token-group z-index
+     * @matches --z-*
+     * @category z-index
+     * @role Stacking-context vocabulary; pick by purpose (overlay, sticky, modal, toast), not by raw number. See docs/adr/0008.
+     * @scale base, raised, overlay, sticky, modal, toast
+     */
     --z-base: 0;
     --z-raised: 1;
     --z-overlay: 10;
@@ -695,6 +893,12 @@
      * ===================================================================== */
 
     /* Theme-resolved fg/bg */
+    /**
+     * @token-group color-fg
+     * @matches --fg, --fg-05, --fg-1, --fg-2, --fg-3, --fg-4, --fg-5, --fg-6, --fg-7, --fg-8, --fg-9, --fg-opaque-*
+     * @category color
+     * @role Foreground (text + icon) semantic color; resolves to light or dark via `light-dark()`. Use `--fg-N` for muted/secondary text and borders, `--fg-opaque-N` when transparency would composite poorly.
+     */
     --fg: light-dark(var(--fg-light), var(--fg-dark));
     /* derive:source */
     --fg-05: oklch(from var(--fg) l c h / 0.05);
@@ -722,6 +926,12 @@
     --fg-opaque-9: color-mix(in oklab, var(--fg), var(--fg) 90%);
     /* /derive:source */
 
+    /**
+     * @token-group color-bg
+     * @matches --bg, --bg-05, --bg-1, --bg-2, --bg-3, --bg-4, --bg-5, --bg-6, --bg-7, --bg-8, --bg-9, --bg-opaque-*
+     * @category color
+     * @role Background (surface) semantic color; resolves to light or dark via `light-dark()`. Use `--bg-N` for layered surface depth, `--bg-opaque-N` when stacking against transparency-sensitive content.
+     */
     --bg: light-dark(var(--bg-light), var(--bg-dark));
     /* derive:source */
     --bg-05: oklch(from var(--bg) l c h / 0.05);
@@ -750,6 +960,12 @@
     /* /derive:source */
 
     /* Status colors */
+    /**
+     * @token-group status-colors
+     * @matches --primary, --accent, --error, --warning, --success
+     * @category color
+     * @role Semantic role colors that derive scales (`--primary-*`, `--error-*`, etc.); rethemes follow when you reassign these
+     */
     --primary: var(--blue);
     --accent: var(--primary);
     --error: var(--red);
@@ -757,6 +973,12 @@
     --success: var(--green);
 
     /* Primary scale */
+    /**
+     * @token-group color-primary
+     * @matches --primary-*
+     * @category color
+     * @role Alpha (1–9) and opaque scales derived from `--primary`; reach for these on accent surfaces and CTAs
+     */
     /* derive:source */
     --primary-1: oklch(from var(--primary) l c h / 0.1);
     --primary-2: oklch(from var(--primary) l c h / 0.2);
@@ -783,6 +1005,12 @@
     /* /derive:source */
 
     /* Error scale */
+    /**
+     * @token-group color-error
+     * @matches --error-*
+     * @category color
+     * @role Alpha (1–9) and opaque scales derived from `--error`; use for destructive actions and validation surfaces
+     */
     /* derive:source */
     --error-1: oklch(from var(--error) l c h / 0.1);
     --error-2: oklch(from var(--error) l c h / 0.2);
@@ -809,6 +1037,12 @@
     /* /derive:source */
 
     /* Warning scale */
+    /**
+     * @token-group color-warning
+     * @matches --warning-*
+     * @category color
+     * @role Alpha (1–9) and opaque scales derived from `--warning`; use for caution states that aren't destructive
+     */
     /* derive:source */
     --warning-1: oklch(from var(--warning) l c h / 0.1);
     --warning-2: oklch(from var(--warning) l c h / 0.2);
@@ -835,6 +1069,12 @@
     /* /derive:source */
 
     /* Success scale */
+    /**
+     * @token-group color-success
+     * @matches --success-*
+     * @category color
+     * @role Alpha (1–9) and opaque scales derived from `--success`; use for confirmation and positive feedback surfaces
+     */
     /* derive:source */
     --success-1: oklch(from var(--success) l c h / 0.1);
     --success-2: oklch(from var(--success) l c h / 0.2);
@@ -862,6 +1102,12 @@
 
     /* UI primitives */
     /* Shadows */
+    /**
+     * @token-group shadows
+     * @matches --shadow-*
+     * @category shadow
+     * @role Elevation shadow ramp; pick by stacking order (`1` = subtle inline, `6` = drawn-up overlay), each step uses `light-dark()` so the shadow stays visible in dark mode
+     */
     --shadow-1:
       0 0 1px 0.5px light-dark(rgb(0 0 0 / 0.05), rgb(0 0 0 / 0.5)),
       0 2px 2px light-dark(rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.3));
@@ -882,11 +1128,22 @@
       0 16px 32px light-dark(rgb(0 0 0 / 0.16), rgb(0 0 0 / 0.6)),
       0 24px 48px light-dark(rgb(0 0 0 / 0.18), rgb(0 0 0 / 0.5));
 
+    /**
+     * @token --box
+     * @category shadow
+     * @role Composite shadow for the `.box` pattern; soft inset highlight + tiny drop, designed to read as paper rather than elevated surface
+     */
     --box:
       0 1px 2px rgb(0 0 0 / 0.04), inset -1px 1px 2px rgb(255 255 255 / 0.1),
       inset 1px 1px 2px rgb(255 255 255 / 0.1);
 
     /* Border Tokens */
+    /**
+     * @token-group borders
+     * @matches --border-*
+     * @category border
+     * @role Pre-composed `border` shorthand tokens (style + width + `--fg`-derived color); set `border: var(--border-2)` instead of stacking width and color manually
+     */
     --border-05: solid 1px var(--fg-05);
     --border-1: solid 1px var(--fg-2);
     --border-2: solid 2px var(--fg-2);
@@ -895,10 +1152,21 @@
     --border-5: solid 5px var(--fg-2);
 
     /* Focus ring tokens — consumed by base, components, and utilities */
+    /**
+     * @token-group focus-ring
+     * @matches --focus-ring, --focus-ring-offset, --focus-ring-offset-inset
+     * @category border
+     * @role Outline + offset values for `:focus-visible`; consumed by every interactive surface so the focus indicator stays consistent (use `--focus-ring-offset-inset` when the element clips its outline)
+     */
     --focus-ring: 2px solid var(--fg);
     --focus-ring-offset: 2px;
     --focus-ring-offset-inset: -2px;
 
+    /**
+     * @token --l
+     * @category color
+     * @role Auto-contrast lightness helper used by `auto-color` to flip text between dark and light against `currentColor`; do not set directly
+     */
     /* Automatic contrast helper */
     --l: clamp(0, (l / var(--l-threshold, 0.623) - 1) * -infinity, 1);
 
@@ -1484,6 +1752,12 @@
   select {
     font-family: inherit;
   }
+  /**
+   * @pattern-group font-size
+   * @members fs-xs, fs-base, fs-s, fs-m, fs-l, fs-xl, fs-xxl, fs-xxxl
+   * @role Fluid type-size utilities; each class sets `--fl` to a level on the modular scale (-1 = caption, 0 = body, 6 = display)
+   * @example <p class="fs-l">A heading-sized paragraph</p>
+   */
   .fs-xs {
     --fl: -1;
   }
@@ -1945,6 +2219,14 @@
     }
   }
 
+  /**
+   * @pattern close
+   * @role A round, red close button for dialogs/drawers/dismissible panels; designed to be the most explicit "go away" affordance
+   * @example
+   *   <button class="close" aria-label="Close">
+   *     <svg aria-hidden="true">...</svg>
+   *   </button>
+   */
   .close {
     --size: 2rem;
 
@@ -2007,11 +2289,22 @@
 @layer utilities {
   /* UTILITIES */
 
+  /**
+   * @pattern readable
+   * @role Constrain content to a comfortable reading width (~900px) without imposing a hard column; place on long-form text wrappers
+   * @example <article class="readable"><p>…long-form copy…</p></article>
+   */
   .readable {
     max-inline-size: 900px;
     inline-size: 100%;
   }
 
+  /**
+   * @pattern narrow
+   * @role Tighter content width (~50ch) for forms, dialogs, and single-column UI; configurable via `--narrow-width`
+   * @example <form class="narrow center">…</form>
+   * @modifiers center
+   */
   .narrow {
     max-inline-size: var(--narrow-width, 50ch);
     inline-size: 100%;
@@ -2021,11 +2314,22 @@
     }
   }
 
+  /**
+   * @pattern flex
+   * @role Flex row primitive with gap honoring `--gap`; reach for it when a one-line cluster of items wraps naturally
+   * @example <div class="flex"><button>One</button><button>Two</button></div>
+   */
   .flex {
     display: flex;
     gap: var(--gap, 1rem);
   }
 
+  /**
+   * @pattern grid
+   * @role CSS grid container with `--gap`; with `.auto`, lays out a responsive auto-fit grid using `--grid-min`
+   * @example <div class="grid auto" style="--grid-min: 200px"><div>…</div><div>…</div></div>
+   * @modifiers auto
+   */
   .grid {
     display: grid;
     gap: var(--gap, 1rem);
@@ -2038,6 +2342,12 @@
     }
   }
 
+  /**
+   * @pattern split
+   * @role Two-pane horizontal split with items pushed to the ends; container query collapses to vertical at <500px so it adapts to its parent, not the viewport
+   * @example <div class="split"><h2>Section title</h2><a href="/more">See all</a></div>
+   * @modifiers even, vertical, center
+   */
   .split {
     display: flex;
     gap: var(--gap, 1rem);
@@ -2062,6 +2372,11 @@
     }
   }
 
+  /**
+   * @pattern visually-hidden
+   * @role Hide content from sighted users but keep it available to screen readers and copy/paste; pair with form labels and icon-only buttons
+   * @example <button>Save <span class="visually-hidden">project</span></button>
+   */
   .visually-hidden {
     position: absolute;
     overflow: hidden;
@@ -2073,6 +2388,11 @@
     border: 0px;
   }
 
+  /**
+   * @pattern no-list
+   * @role Strip default `<ul>`/`<ol>` styling (bullets, spacing) without changing semantics
+   * @example <ul class="no-list"><li>Item</li><li>Item</li></ul>
+   */
   .no-list {
     list-style: none;
     margin: 0;
@@ -2083,6 +2403,17 @@
     }
   }
 
+  /**
+   * @pattern row
+   * @role Vertical rhythm between content blocks by default; inside `<form>`/`<fieldset>`, repurposes as a label+input stack (see ADR-0003)
+   * @example
+   *   <form>
+   *     <div class="row">
+   *       <label for="name">Name</label>
+   *       <input id="name" type="text">
+   *     </div>
+   *   </form>
+   */
   .row {
     margin-block: var(--vs-m);
   }
@@ -2106,6 +2437,15 @@
     margin-block-end: 0;
   }
 
+  /**
+   * @pattern form-actions
+   * @role Trailing button bar for a form; container-query stacks buttons full-width when the bar gets narrow, so labels don't truncate on small screens
+   * @example
+   *   <div class="form-actions">
+   *     <button type="button" class="minimal">Cancel</button>
+   *     <button type="submit">Save</button>
+   *   </div>
+   */
   .form-actions {
     container-type: inline-size;
     display: flex;
@@ -2133,18 +2473,38 @@
     }
   }
 
+  /**
+   * @pattern no-margin
+   * @role Zero out an element's block margin; useful when a heading or paragraph needs to sit flush against its container
+   * @example <h2 class="no-margin">Tight heading</h2>
+   */
   .no-margin {
     margin: 0;
   }
 
+  /**
+   * @pattern self-start
+   * @role Push a flex/grid child to the cross-axis start; common on form `<label>` next to multi-line controls
+   * @example <div class="split"><label class="self-start">Notes</label><textarea></textarea></div>
+   */
   .self-start {
     align-self: start;
   }
 
+  /**
+   * @pattern full
+   * @role Force an element to its container's full inline size; useful for buttons inside narrow forms
+   * @example <button class="full">Continue</button>
+   */
   .full {
     inline-size: 100%;
   }
 
+  /**
+   * @pattern reset
+   * @role Reset native button/anchor chrome (background, border, padding, color) so a `<button>` or `<a>` can act as a plain interactive surface without restyling everything by hand
+   * @example <button class="reset"><svg aria-hidden="true">…</svg></button>
+   */
   .reset {
     appearance: none;
     background: none;
@@ -2162,6 +2522,12 @@
   }
 
   /* Text alignment */
+  /**
+   * @pattern-group text-alignment
+   * @members text-center, text-end
+   * @role Logical text-alignment helpers; `text-end` flips with writing direction so RTL content lines up correctly
+   * @example <p class="text-center">Centered copy</p>
+   */
   .text-center {
     text-align: center;
   }
@@ -2169,6 +2535,11 @@
     text-align: end;
   }
 
+  /**
+   * @pattern circle
+   * @role Square element clipped to a circle; configurable via `--size`. Default 40px works for avatars, icon buttons, and dot indicators
+   * @example <button class="circle" style="--size: 32px"><svg aria-hidden="true">…</svg></button>
+   */
   .circle {
     --size: 40px;
     border-radius: var(--size);
@@ -2177,7 +2548,16 @@
     height: var(--size);
   }
 
-  /* Aspect Ratio Utilities */
+  /**
+   * @pattern-group aspect-ratios
+   * @members aspect-square, aspect-video, aspect-4-3, aspect-21-9, aspect-custom
+   * @role Lock an element to a fixed aspect ratio; use on media containers so images and embeds don't reflow as they load
+   * @example
+   *   <div class="aspect-video">
+   *     <img src="/poster.jpg" alt="">
+   *   </div>
+   * @related card
+   */
   .aspect-square {
     aspect-ratio: 1 / 1;
   }
@@ -2210,6 +2590,12 @@
   }
 
   /* Transition Utilities - Use the easing tokens */
+  /**
+   * @pattern-group transitions
+   * @members transition, transition-fast, transition-slow, transition-bounce, transition-none
+   * @role Pre-composed `transition: all <duration> <easing>` utilities built from `--d-*` + `--ease-*`; one-class affordance for elements that animate on hover/active/state
+   * @example <a href="/x" class="transition">Hover me</a>
+   */
   .transition {
     transition: all var(--d-base) var(--ease-smooth);
   }
@@ -2234,6 +2620,15 @@
    * light-dark() only accepts <color>, not <image>, so we use
    * light-dark() on each color stop variable, then compose the gradient. */
 
+  /**
+   * @pattern-group gradients
+   * @members gradient-sunset, gradient-ocean, gradient-aurora, gradient-midnight, gradient-dawn, gradient-forest, gradient-lavender, gradient-neon, gradient-slate, gradient-surface, gradient-text
+   * @role Curated, theme-aware gradient utilities — each stop swaps via `light-dark()` so the gradient stays legible across modes. `gradient-text` clips text to a gradient via `background-clip`
+   * @example
+   *   <section class="gradient-aurora">
+   *     <h1 class="gradient-text gradient-aurora">Northern lights</h1>
+   *   </section>
+   */
   .gradient-sunset {
     --g1: light-dark(oklch(0.92 0.08 80), oklch(0.58 0.19 60));
     --g2: light-dark(oklch(0.82 0.15 45), oklch(0.45 0.22 35));
@@ -2348,6 +2743,16 @@
  */
 
   /* Card Grid Layout - Auto-fill responsive card grid */
+  /**
+   * @pattern layout-card
+   * @role Auto-fill responsive card grid; columns fit themselves based on `--layout-min-card-width` (default 290px), no breakpoints needed
+   * @example
+   *   <div class="layout-card">
+   *     <article class="card">…</article>
+   *     <article class="card">…</article>
+   *     <article class="card">…</article>
+   *   </div>
+   */
   .layout-card {
     display: grid;
     grid-template-columns: repeat(
@@ -2358,6 +2763,17 @@
   }
 
   /* Sidebar Layout - Sidebar + main content area */
+  /**
+   * @pattern layout-sidebar
+   * @role Two-column shell: fixed-width sidebar + flexible main. Sidebar is always the first DOM child for SR order; `.invert` flips visual placement. Collapses to one column under 768px (via container query or media query). Composes with `.drawer` so the sidebar becomes a popover on mobile.
+   * @example
+   *   <div class="layout-sidebar">
+   *     <nav>…</nav>
+   *     <main>…</main>
+   *   </div>
+   * @modifiers narrow, wide, invert, fill, fixed, layout-readable
+   * @related layout-three-col, layout-split
+   */
   .layout-sidebar {
     display: grid;
     grid-template-columns: 250px 1fr;
@@ -2524,6 +2940,17 @@
   }
 
   /* Split Layout - 50/50 two column layout */
+  /**
+   * @pattern layout-split
+   * @role Two equal columns side by side; stacks under 768px. `.no-stack` keeps it side-by-side at small widths
+   * @example
+   *   <div class="layout-split">
+   *     <section>Left</section>
+   *     <section>Right</section>
+   *   </div>
+   * @modifiers no-stack
+   * @related layout-sidebar, split
+   */
   .layout-split {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -2542,6 +2969,17 @@
   }
 
   /* Three Column Layout - Three equal columns */
+  /**
+   * @pattern layout-three-col
+   * @role Three equal columns; collapses to two columns under 1024px and one column under 768px
+   * @example
+   *   <div class="layout-three-col">
+   *     <section>One</section>
+   *     <section>Two</section>
+   *     <section>Three</section>
+   *   </div>
+   * @related layout-split, layout-sidebar
+   */
   .layout-three-col {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -2562,6 +3000,17 @@
   }
 
   /* Readable Layout - Max-width for optimal readability */
+  /**
+   * @pattern layout-readable
+   * @role Outer page container that caps width to `--layout-max-width` (default 1200px) and pads the inline edges; the routine wrapper for every page's main content
+   * @example
+   *   <main class="layout-readable">
+   *     <h1>Page title</h1>
+   *     <section>…</section>
+   *   </main>
+   * @modifiers center, end
+   * @related readable, layout-card, layout-sidebar
+   */
   .layout-readable {
     inline-size: 100%;
     max-inline-size: var(--layout-max-width, var(--max-width, 1200px));
@@ -2577,6 +3026,17 @@
     margin-inline-start: auto;
   }
 
+  /**
+   * @pattern layout-holy-grail
+   * @role Three-zone horizontal rail layout (auto | 1fr | auto); use for icon-rail + main + side-rail combinations. Collapses to one column under 768px. See ADR-0010 for the rails repurposing.
+   * @example
+   *   <div class="layout-holy-grail">
+   *     <nav class="icon-rail">…</nav>
+   *     <main>…</main>
+   *     <aside>…</aside>
+   *   </div>
+   * @related layout-rail, layout-sidebar
+   */
   .layout-holy-grail {
     display: grid;
     grid-template-columns: auto 1fr auto;
@@ -2596,11 +3056,26 @@
   }
 
   /* Section spacing */
+  /**
+   * @pattern section
+   * @role Block-padded section divider; reach for it to separate hero, features, and footer regions of a page
+   * @example <section class="section"><h2>Features</h2>…</section>
+   */
   .section {
     padding-block: var(--section-padding, var(--pad-xxxl));
   }
 
   /* Stack Layout - Vertical flexbox stack */
+  /**
+   * @pattern stack
+   * @role Vertical flexbox with `--gap` between children; resets default block margins on children so spacing is one consistent knob
+   * @example
+   *   <div class="stack">
+   *     <h2>Title</h2>
+   *     <p>Lead paragraph</p>
+   *     <p>Body copy</p>
+   *   </div>
+   */
   .stack {
     display: flex;
     flex-direction: column;
@@ -2614,6 +3089,17 @@
   }
 
   /* Cluster Layout - Horizontal wrapping list with gap */
+  /**
+   * @pattern cluster
+   * @role Wrapping horizontal row with small gap (0.5rem default); used for chip rows, tag collections, button groups that should reflow gracefully
+   * @example
+   *   <div class="cluster">
+   *     <span class="tag">design</span>
+   *     <span class="tag">research</span>
+   *     <span class="tag">prototype</span>
+   *   </div>
+   * @modifiers center
+   */
   .cluster {
     display: flex;
     flex-wrap: wrap;
@@ -2626,6 +3112,17 @@
   }
 
   /* Carousel Layout - Horizontal scroll with scroll snap */
+  /**
+   * @pattern carousel
+   * @role Horizontal scroll-snapping row; each direct child snaps to start. Use for media strips, recommended-item rails, anything that benefits from native trackpad/swipe scrolling
+   * @example
+   *   <div class="carousel">
+   *     <article class="card">…</article>
+   *     <article class="card">…</article>
+   *     <article class="card">…</article>
+   *   </div>
+   * @related reel, swipe
+   */
   .carousel {
     display: flex;
     gap: var(--gap, 1rem);
@@ -2640,6 +3137,16 @@
   }
 
   /* Reel Layout - Vertical scroll with scroll snap */
+  /**
+   * @pattern reel
+   * @role Vertical scroll-snapping column capped at `--reel-height` (default 80vh); use for full-section feeds where each item should snap into view
+   * @example
+   *   <div class="reel">
+   *     <section>Slide 1</section>
+   *     <section>Slide 2</section>
+   *   </div>
+   * @related carousel, swipe
+   */
   .reel {
     display: flex;
     flex-direction: column;
@@ -2655,6 +3162,17 @@
     }
   }
 
+  /**
+   * @pattern swipe
+   * @role Three-pane scroll-snap (left button | content | right button) for swipe-revealable controls; common pattern for inbox row actions and onboarding steps
+   * @example
+   *   <div class="swipe">
+   *     <button>Archive</button>
+   *     <article>…content…</article>
+   *     <button>Delete</button>
+   *   </div>
+   * @modifiers stop
+   */
   .swipe {
     container-type: inline-size;
     display: grid;
@@ -2718,6 +3236,16 @@
 
   /* Boxes */
 
+  /**
+   * @pattern box
+   * @role Low-emphasis container for grouping related content; the most neutral surface in the system
+   * @example
+   *   <div class="box">
+   *     <p>Settings saved automatically.</p>
+   *   </div>
+   * @modifiers ghost, invisible, glow, semi-gloss
+   * @prefer-over custom: bare <div> with manual padding and border
+   */
   .box {
     background: var(--fg-05);
     padding: var(--pad-m);
@@ -2746,6 +3274,18 @@
 
   /* Card */
 
+  /**
+   * @pattern card
+   * @role Primary content surface for grouping related media + text; direct `<header>`/`<footer>`/`<img>`/`<picture>`/`<figure>` children bleed edge-to-edge automatically. Use `.linked` when the whole card is a single hyperlink and `.featured` to highlight the active one.
+   * @example
+   *   <article class="card">
+   *     <header><h3>Project alpha</h3></header>
+   *     <p>Status copy goes here.</p>
+   *     <footer><a href="/projects/alpha">Open →</a></footer>
+   *   </article>
+   * @modifiers linked, featured
+   * @related stat-card, feature-card, callout, box
+   */
   .card {
     background: var(--bg);
     border: var(--border-1);
@@ -2865,6 +3405,16 @@
 
   /* Stat Card */
 
+  /**
+   * @pattern stat-card
+   * @role A card that surfaces a single metric: `<small>` label + `<strong>` value. Use for dashboards, KPI strips, and summary panels — pick this over a generic `.card` whenever the payload is one number.
+   * @example
+   *   <article class="stat-card">
+   *     <small>Active users</small>
+   *     <strong>1,284</strong>
+   *   </article>
+   * @related card, feature-card
+   */
   .stat-card {
     background: var(--bg);
     border: var(--border-1);
@@ -2892,6 +3442,16 @@
 
   /* Feature Card */
 
+  /**
+   * @pattern feature-card
+   * @role A larger, hover-lifting card for marketing feature grids; pairs with `.layout-card` to make a row of features
+   * @example
+   *   <article class="feature-card">
+   *     <h3>Realtime sync</h3>
+   *     <p>Changes propagate without polling.</p>
+   *   </article>
+   * @related card, stat-card
+   */
   .feature-card {
     background: var(--bg);
     border: 1px solid var(--fg-1);
@@ -2938,6 +3498,18 @@
 
   /* Table of Contents */
 
+  /**
+   * @pattern toc
+   * @role In-page table-of-contents nav; styles a nested `<ol>` into a vertical rail with current-item highlight via `aria-current="true"`
+   * @example
+   *   <nav class="toc" aria-label="On this page">
+   *     <h2>Contents</h2>
+   *     <ol>
+   *       <li><a href="#intro">Intro</a></li>
+   *       <li><a href="#usage" aria-current="true">Usage</a></li>
+   *     </ol>
+   *   </nav>
+   */
   .toc {
     > * {
       margin: 0;
@@ -2994,6 +3566,15 @@
 
   /* Newsletter */
 
+  /**
+   * @pattern newsletter
+   * @role Tinted `--primary` block for newsletter signup CTAs and similar full-bleed callouts; designed to sit inside an article flow
+   * @example
+   *   <aside class="newsletter">
+   *     <h3>Get the weekly digest</h3>
+   *     <form>…</form>
+   *   </aside>
+   */
   .newsletter {
     background: var(--primary-1);
     border: 1px solid var(--primary-2);
@@ -3003,6 +3584,18 @@
 
   /* UI Elements */
 
+  /**
+   * @pattern header
+   * @role Page header bar: logo + nav + actions on a horizontal flex row; styles inline-list `<nav>` automatically. `.sticky` pins it to the top with `--z-overlay`, `.border` adds a subtle hairline.
+   * @example
+   *   <header class="header sticky border">
+   *     <a href="/" class="logo">…</a>
+   *     <nav><ul><li><a href="/x">X</a></li></ul></nav>
+   *     <button>Sign in</button>
+   *   </header>
+   * @modifiers border, sticky, readable
+   * @related footer, app-shell
+   */
   .header {
     display: flex;
     gap: var(--gap, 1rem);
@@ -3044,6 +3637,17 @@
     }
   }
 
+  /**
+   * @pattern callout
+   * @role Inline emphasis block for notes, warnings, errors, and confirmations; an icon as the first child gets the semantic accent color automatically. `.fill` swaps from hairline to filled tint.
+   * @example
+   *   <aside class="callout warning fill">
+   *     <svg aria-hidden="true">…</svg>
+   *     <p>Heads-up: this action can't be undone.</p>
+   *   </aside>
+   * @modifiers stack, fill, warning, error, ghost, success
+   * @related card
+   */
   .callout {
     /* Hairline default · neutral surface, 1px border, semantic icon. */
     --callout-accent: var(--blue);
@@ -3111,6 +3715,14 @@
 
   /* Pull Quote */
 
+  /**
+   * @pattern pull-quote
+   * @role Inline-start-bordered italic quote block for editorial articles; use on `<blockquote>` for semantics
+   * @example
+   *   <blockquote class="pull-quote">
+   *     "If you can't measure it, you can't improve it."
+   *   </blockquote>
+   */
   .pull-quote {
     --fl: 2;
     font-style: italic;
@@ -3122,6 +3734,14 @@
     line-height: var(--lh);
   }
 
+  /**
+   * @pattern table
+   * @role Wrapper that gives a `<table>` rounded borders and horizontal overflow scrolling without forcing the data layout
+   * @example
+   *   <div class="table">
+   *     <table>…</table>
+   *   </div>
+   */
   .table {
     overflow-x: auto;
     border: var(--border-2);
@@ -3230,6 +3850,14 @@
     cursor: pointer;
   }
 
+  /**
+   * @pattern form-option-row
+   * @role Inline checkbox/radio + label row; cursor pointer on the whole row so the affordance reads as one click target
+   * @example
+   *   <label class="form-option-row">
+   *     <input type="checkbox"> Remember me
+   *   </label>
+   */
   .form-option-row {
     display: inline-flex;
     align-items: center;
@@ -3241,6 +3869,15 @@
     }
   }
 
+  /**
+   * @pattern search
+   * @role Wrap an `<input>` + leading SVG icon so the icon overlays the input's inline-start padding; native search-input affordance without inventing a new control
+   * @example
+   *   <label class="search">
+   *     <svg aria-hidden="true">…</svg>
+   *     <input type="search" placeholder="Search">
+   *   </label>
+   */
   .search {
     position: relative;
 
@@ -3261,6 +3898,17 @@
     }
   }
 
+  /**
+   * @pattern dropzone
+   * @role File-upload drop target with dashed border + icon + label; the `<input type="file">` is overlaid full-bleed so the whole area is clickable. Toggle `.dragover` from JS during drag events.
+   * @example
+   *   <label class="dropzone">
+   *     <svg aria-hidden="true">…</svg>
+   *     <span>Drop files or click to upload</span>
+   *     <input type="file">
+   *   </label>
+   * @modifiers dragover
+   */
   .dropzone {
     position: relative;
     display: flex;
@@ -3376,6 +4024,12 @@
  *   Adds 80% opacity to text, letting background color bleed through
  *   for a subtle tinted text effect.
  */
+  /**
+   * @pattern auto-color
+   * @role Auto-choose black or white text against any `--bg-color`, including transparent ones, by computing effective lightness against the active theme; `.chroma` lets the background tint bleed through the text
+   * @example <div class="auto-color" style="--bg-color: var(--teal-5)">Always legible</div>
+   * @modifiers chroma
+   */
   .auto-color {
     --threshold: 0.6;
     --light-text-l: 1;
@@ -3429,6 +4083,12 @@
   }
 
   /* Muted text utilities */
+  /**
+   * @pattern-group muted-text
+   * @members text-muted, text-faint
+   * @role De-emphasized text colors; `text-muted` for secondary copy, `text-faint` for tertiary/placeholder
+   * @example <p class="text-muted">Updated 5 minutes ago.</p>
+   */
   .text-muted {
     color: var(--fg-5);
   }
@@ -3437,6 +4097,12 @@
   }
 
   /* Surface - subtle background for section alternation */
+  /**
+   * @pattern surface
+   * @role Subtle off-`--bg` background for section alternation; overridable via `--surface-bg` for theme accents
+   * @example <section class="surface section">…</section>
+   * @related box, callout
+   */
   .surface {
     background: var(--surface-bg, var(--fg-05));
   }
@@ -3752,6 +4418,19 @@
 
   /* Breadcrumbs */
 
+  /**
+   * @pattern breadcrumbs
+   * @role Wrap a `<nav><ul>` of links into a breadcrumb trail; `--separator` controls the divider character; mark the current page with `aria-current="page"`
+   * @example
+   *   <nav class="breadcrumbs" aria-label="Breadcrumb">
+   *     <ul>
+   *       <li><a href="/">Home</a></li>
+   *       <li><a href="/projects">Projects</a></li>
+   *       <li aria-current="page">Alpha</li>
+   *     </ul>
+   *   </nav>
+   * @related pagination
+   */
   .breadcrumbs {
     --separator: "/";
 
@@ -3796,6 +4475,21 @@
 
   /* Pagination */
 
+  /**
+   * @pattern pagination
+   * @role Page-number nav bar: trailing border, gap, and `aria-current="page"` styling on the active link
+   * @example
+   *   <nav class="pagination" aria-label="Page">
+   *     <a href="/p/1">Prev</a>
+   *     <ul>
+   *       <li><a href="/p/1">1</a></li>
+   *       <li><a href="/p/2" aria-current="page">2</a></li>
+   *       <li><a href="/p/3">3</a></li>
+   *     </ul>
+   *     <a href="/p/3">Next</a>
+   *   </nav>
+   * @related breadcrumbs
+   */
   .pagination {
     display: flex;
     align-items: center;
@@ -3831,6 +4525,19 @@
 
   /* Sidebar Navigation */
 
+  /**
+   * @pattern sidebar-nav
+   * @role Themed vertical nav for sidebars: pressable rows, active highlight via `[aria-current="page"]`, headings via `.sidebar-nav-heading`. Compose with `.minimal` or `.ghost` for variants; `.compact` tightens icon/padding for dense rails.
+   * @example
+   *   <nav class="sidebar-nav" aria-label="Sections">
+   *     <a href="/inbox" aria-current="page">Inbox</a>
+   *     <a href="/sent">Sent</a>
+   *     <h3 class="sidebar-nav-heading">Folders</h3>
+   *     <a href="/archive">Archive</a>
+   *   </nav>
+   * @modifiers minimal, ghost, compact
+   * @related layout-sidebar, list-nav
+   */
   .sidebar-nav {
     --sidebar-nav-icon-size: 20px;
     --sidebar-nav-indent: 1.5rem;
@@ -4266,6 +4973,18 @@
 
   /* Footer */
 
+  /**
+   * @pattern footer
+   * @role Page footer; container-query collapses nested `.grid` columns under 600px. Underline-on-hover handled automatically for inner links
+   * @example
+   *   <footer class="footer">
+   *     <div class="grid">
+   *       <nav><h4>Product</h4><a href="/x">…</a></nav>
+   *       <nav><h4>Company</h4><a href="/y">…</a></nav>
+   *     </div>
+   *   </footer>
+   * @related header
+   */
   .footer {
     container-type: inline-size;
 
@@ -4292,6 +5011,21 @@
 
   /* Dropdown Menu */
 
+  /**
+   * @pattern dropdown
+   * @role Anchor-positioned dropdown trigger; sibling `.dropdown-menu[popover]` uses CSS `position-anchor` to attach. `.end` aligns the menu to the inline-end edge.
+   * @example
+   *   <div class="dropdown">
+   *     <button popovertarget="m">Open</button>
+   *     <div id="m" class="dropdown-menu" popover>
+   *       <a href="/x">Action</a>
+   *       <hr>
+   *       <button>Sign out</button>
+   *     </div>
+   *   </div>
+   * @modifiers end
+   * @related dropdown-header
+   */
   .dropdown {
     position: relative;
     display: inline-block;
@@ -4392,6 +5126,16 @@
     transform-origin: top right;
   }
 
+  /**
+   * @pattern dropdown-header
+   * @role Small uppercase section heading inside a `.dropdown-menu` to group related items
+   * @example
+   *   <div class="dropdown-menu" popover>
+   *     <p class="dropdown-header">Workspace</p>
+   *     <a href="/x">Switch</a>
+   *   </div>
+   * @related dropdown
+   */
   .dropdown-header {
     padding: var(--pad-s) var(--pad-m);
     color: var(--fg-5);
@@ -4400,6 +5144,15 @@
 
   /* Tooltip - uses CSS anchor positioning */
 
+  /**
+   * @pattern tooltip
+   * @role Anchor wrapper for a hover/focus tip. Two usage forms: (1) rich pattern — wrap a trigger and a sibling `.tip` element; (2) standalone — set `aria-label` on a trigger inside `.tooltip` and the pseudo-element renders the text. Tip surface styling is shared between both forms.
+   * @example
+   *   <span class="tooltip">
+   *     <button>?</button>
+   *     <span class="tip">Detailed help text</span>
+   *   </span>
+   */
   .tooltip {
     anchor-scope: --tooltip;
     anchor-name: --tooltip;
@@ -4497,6 +5250,17 @@
 
   /* Avatar */
 
+  /**
+   * @pattern avatar
+   * @role Circular user image or initials. Wrap an `<img>` to crop it to a circle, or use a `<button>` for clickable avatars. Size via `--avatar-size` or the size modifiers.
+   * @example
+   *   <span class="avatar">
+   *     <img src="/me.jpg" alt="">
+   *   </span>
+   *   <button class="avatar l bordered">JD</button>
+   * @modifiers bordered, xs, s, l, xl
+   * @related circle
+   */
   .avatar {
     --avatar-size: 2.5rem;
     display: inline-flex;
@@ -4664,6 +5428,17 @@
   }
 
   /* Input Group - Connected input + button */
+  /**
+   * @pattern input-group
+   * @role Visually connect an `<input>` to a trailing `<button>` (search submit, copy-to-clipboard, etc.) without a gap between them. `.stack-mobile` reverts to a stacked layout under 640px.
+   * @example
+   *   <div class="input-group">
+   *     <input type="email" placeholder="you@example.com">
+   *     <button type="submit">Subscribe</button>
+   *   </div>
+   * @modifiers stack-mobile
+   * @related search
+   */
   .input-group {
     display: flex;
     align-items: stretch;
@@ -4719,6 +5494,16 @@
 
   /* Chat */
 
+  /**
+   * @pattern chat-thread
+   * @role Outer scroll container for a chat conversation; wraps a sequence of `.chat-row` items with consistent gap
+   * @example
+   *   <div class="chat-thread">
+   *     <div class="chat-row">…</div>
+   *     <div class="chat-row self">…</div>
+   *   </div>
+   * @related chat-row, chat-message, chat-composer
+   */
   .chat-thread {
     display: flex;
     flex-direction: column;
@@ -4726,6 +5511,16 @@
     padding: var(--chat-thread-padding, var(--pad-l));
   }
 
+  /**
+   * @pattern chat-row
+   * @role A single row in a chat thread; `.self` flips the row's justification to inline-end so the user's own messages align right
+   * @example
+   *   <div class="chat-row self">
+   *     <div class="chat-message"><div class="bubble">Hello!</div></div>
+   *   </div>
+   * @modifiers self
+   * @related chat-thread, chat-message
+   */
   .chat-row {
     display: flex;
     justify-content: flex-start;
@@ -4739,11 +5534,34 @@
     align-items: flex-end;
   }
 
+  /**
+   * @pattern chat-message
+   * @role Width-capped column inside a `.chat-row`; constrains line length to `--chat-message-max-inline` (72ch default)
+   * @example
+   *   <div class="chat-row">
+   *     <div class="chat-message">
+   *       <div class="bubble">Long message text…</div>
+   *     </div>
+   *   </div>
+   * @related chat-row, bubble
+   */
   .chat-message {
     inline-size: min(100%, var(--chat-message-max-inline, 72ch));
     min-inline-size: 0;
   }
 
+  /**
+   * @pattern chat-composer
+   * @role Bottom-aligned composer bar: input field on the left, send button on the right; designed to dock at the foot of a `.chat-thread`
+   * @example
+   *   <form class="chat-composer">
+   *     <div class="input-group">
+   *       <input placeholder="Message">
+   *       <button>Send</button>
+   *     </div>
+   *   </form>
+   * @related chat-thread, input-group, composer
+   */
   .chat-composer {
     display: flex;
     align-items: flex-end;
@@ -4755,6 +5573,12 @@
     min-inline-size: 0;
   }
 
+  /**
+   * @pattern bubble
+   * @role Speech-bubble surface (rounded, padded, capped at `--bubble-max-inline`); used by chat messages and any short callout that wants a "spoken" feel
+   * @example <div class="bubble"><p>Quick note</p></div>
+   * @related chat-message, callout
+   */
   .bubble {
     --bubble-bg: var(--fg-05);
     --bubble-border: var(--fg-2);
@@ -4942,6 +5766,15 @@
 
   /* Chip */
 
+  /**
+   * @pattern chip
+   * @role Pressable, pill-shaped filter chip; toggle selected state via `aria-pressed="true"` or `.selected`. Use a `<button>` for keyboard/SR ergonomics
+   * @example
+   *   <button class="chip" aria-pressed="true">Design</button>
+   *   <button class="chip">Engineering</button>
+   * @modifiers selected, mini
+   * @related tag
+   */
   .chip {
     display: inline-flex;
     align-items: center;
@@ -5022,6 +5855,15 @@
 
   /* Tag - Rounded status/metadata pills */
 
+  /**
+   * @pattern tag
+   * @role Pill-shaped status badge for metadata; tinted with `--tag-color` (default `--primary`). Compose with `.muted` for a low-key version, swap `--tag-color` for semantic tints (success, warning, error)
+   * @example
+   *   <span class="tag" style="--tag-color: var(--success)">Active</span>
+   *   <a class="tag" href="/tag/design">design</a>
+   * @modifiers muted, success, warning, error, info
+   * @related chip
+   */
   .tag {
     --tag-color: var(--primary);
     --tag-bg-top: light-dark(
@@ -5173,6 +6015,23 @@
 
   /* List Navigation - Clickable navigation rows */
 
+  /**
+   * @pattern list-nav
+   * @role Vertical stack of card-like nav rows; each row is a button/link with an optional leading icon and trailing description. Use for settings panes, action menus, and primary mobile nav
+   * @example
+   *   <nav class="list-nav">
+   *     <a href="/profile">
+   *       <svg aria-hidden="true">…</svg>
+   *       Profile
+   *       <small>Edit your account info</small>
+   *     </a>
+   *     <a href="/billing">
+   *       <svg aria-hidden="true">…</svg>
+   *       Billing
+   *     </a>
+   *   </nav>
+   * @related sidebar-nav, tabs
+   */
   .list-nav {
     display: flex;
     flex-direction: column;
@@ -5254,6 +6113,18 @@
 
   /* Tabs - Pure CSS tabs using details/summary with grid and subgrid */
 
+  /**
+   * @pattern tabs
+   * @role Pure-CSS tabs using `<details>` + grid subgrid for keyboard-driven exclusive selection (no JS). Set `--tab-count` to match the number of tabs. `.boxed` swaps to card-style tabs that connect to the panel below.
+   * @example
+   *   <div class="tabs" style="--tab-count: 3">
+   *     <details name="t" open style="--n: 1"><summary>Overview</summary><p>Panel A</p></details>
+   *     <details name="t" style="--n: 2"><summary>Details</summary><p>Panel B</p></details>
+   *     <details name="t" style="--n: 3"><summary>Activity</summary><p>Panel C</p></details>
+   *   </div>
+   * @modifiers boxed
+   * @related list-nav
+   */
   .tabs {
     display: grid;
     grid-template-columns: repeat(var(--tab-count, 3), minmax(100px, 1fr));
@@ -5526,6 +6397,17 @@
 
   /* Mobile App Patterns */
 
+  /**
+   * @pattern app-shell
+   * @role Top-level mobile-first container: sticky `<header>` + scrolling `<main>` + sticky `<footer>`, with safe-area insets baked in. Reach for it as the page-level wrapper for app-like UIs (not marketing pages).
+   * @example
+   *   <div class="app-shell">
+   *     <header>…</header>
+   *     <main>…content…</main>
+   *     <footer class="bottom-nav">…</footer>
+   *   </div>
+   * @related bottom-nav, bottom-sheet, safe-area
+   */
   /* App Shell - Mobile-first app container respecting safe areas */
   .app-shell {
     display: grid;
@@ -5564,6 +6446,16 @@
     background: var(--bg);
   }
 
+  /**
+   * @pattern bottom-nav
+   * @role Floating bottom tab bar for mobile apps; pinned with safe-area inset, rounded pill shape. Mark the current section with `aria-current="page"` or `.active` for the highlighted state
+   * @example
+   *   <nav class="bottom-nav" aria-label="Sections">
+   *     <a href="/" aria-current="page"><svg aria-hidden="true">…</svg><span>Home</span></a>
+   *     <a href="/inbox"><svg aria-hidden="true">…</svg><span>Inbox</span></a>
+   *   </nav>
+   * @related app-shell, list-nav
+   */
   /* Bottom Navigation - Fixed tab bar for mobile apps */
   .bottom-nav {
     position: fixed;
@@ -5623,6 +6515,16 @@
   }
 
   /* Bottom Sheet - Drawer from bottom */
+  /**
+   * @pattern bottom-sheet
+   * @role Mobile-style bottom-anchored sheet panel; pseudo-element renders the grip handle, safe-area inset baked into the bottom padding. For full popover/transition behavior compose with `.drawer` (decks)
+   * @example
+   *   <div class="bottom-sheet">
+   *     <h3>Share</h3>
+   *     <div class="cluster">…</div>
+   *   </div>
+   * @related app-shell
+   */
   .bottom-sheet {
     position: fixed;
     inset-block-end: 0;
@@ -5638,6 +6540,7 @@
     z-index: var(--z-modal);
   }
 
+  /* Bottom Sheet pseudo-grip — separate rule, not a primary def. */
   .bottom-sheet::before {
     content: "";
     display: block;
@@ -5650,6 +6553,12 @@
 
   /* Mobile Utilities */
 
+  /**
+   * @pattern-group safe-area
+   * @members safe-top, safe-bottom, safe-x
+   * @role Pad an element by the device's safe-area inset; reach for these on fixed/sticky bars that need to clear the notch / home indicator
+   * @example <header class="safe-top">…</header>
+   */
   .safe-top {
     padding-top: var(--safe-top);
   }
@@ -5662,6 +6571,11 @@
     padding-inline: var(--safe-left) var(--safe-right);
   }
 
+  /**
+   * @pattern hide-scrollbar
+   * @role Hide native scrollbars while keeping overflow scrolling functional; use sparingly — only when the scroll affordance is communicated some other way (snap, fade edges, gesture hints)
+   * @example <div class="carousel hide-scrollbar">…</div>
+   */
   .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -5671,6 +6585,11 @@
     display: none;
   }
 
+  /**
+   * @pattern momentum-scroll
+   * @role Enable iOS momentum scrolling + contained overscroll on a scrollable container; pair with `overflow-y: auto`
+   * @example <div class="reel momentum-scroll">…</div>
+   */
   .momentum-scroll {
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
@@ -5699,6 +6618,19 @@
    * via .layout-rail below). Drop in agent switchers, tool palettes,
    * workspace shells. Optional .status dot affordance per row.
    * --------------------------------------------------------------------- */
+  /**
+   * @pattern icon-rail
+   * @role Narrow vertical column of icon buttons; general-purpose nav rail for agent switchers, tool palettes, workspace shells. Mark the current tool with `aria-current="page"` or `aria-pressed="true"`. Optional `.status` dot per button.
+   * @example
+   *   <nav class="icon-rail" aria-label="Tools">
+   *     <a href="/" class="brand"><svg aria-hidden="true">…</svg></a>
+   *     <button aria-pressed="true"><svg aria-hidden="true">…</svg></button>
+   *     <button><svg aria-hidden="true">…</svg><span class="status"></span></button>
+   *     <div class="spacer"></div>
+   *     <button><svg aria-hidden="true">…</svg></button>
+   *   </nav>
+   * @related layout-rail, sidebar-nav, bottom-nav
+   */
   .icon-rail {
     --rail-size: 4rem;
     display: flex;
@@ -5781,6 +6713,17 @@
    * inline-size the rail / list / workbench hide; reveal them via a
    * <button class="drawer-toggle"> + <[popover].drawer> pair.
    * --------------------------------------------------------------------- */
+  /**
+   * @pattern layout-rail
+   * @role Three-column shell (rail + sub-sidebar + main), optional 4th workbench pane. Container-query-driven mobile collapse at <768px; reveal hidden columns via `.drawer-toggle` + `[popover].drawer` pair (see ADR-0010).
+   * @example
+   *   <div class="layout-rail">
+   *     <nav class="icon-rail">…</nav>
+   *     <nav class="chat-list">…</nav>
+   *     <main>…</main>
+   *   </div>
+   * @related icon-rail, layout-sidebar, layout-holy-grail
+   */
   .layout-rail {
     display: grid;
     grid-template-columns: auto auto 1fr;
@@ -5876,6 +6819,19 @@
    * General-purpose transcript line for AI tool calls, deploy logs,
    * build steps, activity feeds. Reads as a single row that may expand.
    * --------------------------------------------------------------------- */
+  /**
+   * @pattern log-card
+   * @role Compact transcript row with monospace label, optional status slot, and an optional `<pre>` body; use for AI tool calls, deploy logs, build steps, activity feeds
+   * @example
+   *   <article class="log-card">
+   *     <header>
+   *       <span class="label">tool: bash</span>
+   *       <span class="status">2.3s</span>
+   *     </header>
+   *     <pre>$ pnpm test</pre>
+   *   </article>
+   * @related card, callout, bubble
+   */
   .log-card {
     display: flex;
     flex-direction: column;
@@ -5920,6 +6876,20 @@
    * controls next to the text input. Also useful for comment + post
    * surfaces — anywhere a textarea has adjacent affordances.
    * --------------------------------------------------------------------- */
+  /**
+   * @pattern composer
+   * @role Multi-line text input + inline toolbar; supersedes `.chat-composer` when you need model/tool/attach controls. Also fits comment + post surfaces — anywhere a textarea has adjacent affordances
+   * @example
+   *   <form class="composer">
+   *     <textarea placeholder="Ask anything"></textarea>
+   *     <div class="toolbar">
+   *       <button type="button">Attach</button>
+   *       <div class="spacer"></div>
+   *       <button type="submit">Send</button>
+   *     </div>
+   *   </form>
+   * @related chat-composer, input-group
+   */
   .composer {
     display: flex;
     flex-direction: column;
@@ -5974,6 +6944,22 @@
    * Pairs with .layout-rail.with-workbench. Artifact viewer, properties
    * inspector, code preview — IDE-shaped surfaces.
    * --------------------------------------------------------------------- */
+  /**
+   * @pattern workbench-panel
+   * @role Right-aligned IDE-style pane: header bar with inline tabs + scrollable body. Pairs with `.layout-rail.with-workbench` for artifact viewers, properties inspectors, code previews
+   * @example
+   *   <aside class="workbench-panel">
+   *     <header>
+   *       <h3>Artifact</h3>
+   *       <div class="tabs">
+   *         <button aria-pressed="true">Preview</button>
+   *         <button>Source</button>
+   *       </div>
+   *     </header>
+   *     <div class="body">…</div>
+   *   </aside>
+   * @related layout-rail, tabs
+   */
   .workbench-panel {
     display: flex;
     flex-direction: column;
@@ -6142,6 +7128,11 @@
     page-break-inside: avoid;
   }
 
+  /**
+   * @pattern no-print
+   * @role Hide an element when the page is printed; only takes effect inside `@media print`. Use on nav, ads, and other screen-only chrome
+   * @example <nav class="no-print">…</nav>
+   */
   .no-print {
     display: none;
   }
