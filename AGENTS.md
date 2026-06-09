@@ -15,6 +15,21 @@ Utilities, elements, blocks, and templates. Highly configurable. Endlessly theme
 
 Every primary class definition and every token at `:root` inside `@layer base` requires a structured annotation comment (`@pattern`, `@pattern-group`, `@token`, or `@token-group`). `npm run lint:graffiti` enforces this and emits `registry.json`. Full rules and examples in [docs/ANNOTATION-SPEC.md](docs/ANNOTATION-SPEC.md).
 
+## Authoring docs demos
+
+Demos live in `src/docs/demos/*.svelte` and are auto-discovered (`registry.ts`). Each one renders the live preview **and** supplies the source shown in the collapsible "Code" panel. `CodeExample` auto-detects the language: plain markup highlights as `html`, anything with Svelte syntax (`<script>`, `{@html}`, `{#each}`, runes, …) highlights as `svelte`.
+
+**Graffiti is a CSS library, not a Svelte one. The Code panel must always display framework-free HTML.** Never let Svelte syntax leak into what users see and copy.
+
+Most demos are pure markup, so their `.svelte` source already reads as HTML — nothing extra needed. The problem case is a demo that *must* use a Svelte construct to render. The known example: the customizable-`<select>` pattern (`appearance: base-select`, used by `.reactions`). Svelte's compiler rejects the required native nesting — `<button>`/`<selectedcontent>` inside `<select>`, and `<span>` inside `<option>` (`node_invalid_placement`) — even on current Svelte (5.43+). The only way to render it is `{@html}` with the markup as a string. That's a render-time workaround, **not** something users should ever see.
+
+**Mechanism — `.html` companion file.** A demo `<Name>.svelte` may have a sibling `<Name>.html`. When present, `registry.ts` shows that hand-authored HTML in the Code panel while the `.svelte` still renders the preview. Rule of thumb:
+
+- Demo renders as plain markup → just the `.svelte`, no companion.
+- Demo needs Svelte to render but should *display* as HTML → add `<Name>.html` with the clean, copy-pasteable markup.
+
+Keep the `.html` companion in sync with whatever the `.svelte` actually renders. Reference implementation: `src/docs/demos/Reactions.svelte` (renders via `{@html}`) + `src/docs/demos/Reactions.html` (what the Code panel shows). Do **not** "fix" such a demo by watering down the library CSS to dodge the Svelte compiler — the library code stays faithful; the docs harness adapts.
+
 ## Browser Testing
 
 When using chrome-devtools MCP or any browser automation, **always use the port defined in `vite.config.ts`** (currently `6124`). Do NOT assume default ports like `5173`.

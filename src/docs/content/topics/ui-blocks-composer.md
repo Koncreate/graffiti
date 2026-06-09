@@ -8,8 +8,8 @@ when_to_use: AI chat surfaces, comment and post composers, email drafts — anyw
 classes:
   - .composer
   - .composer > textarea
-  - .composer > .toolbar
-  - .composer > .toolbar > .spacer
+  - .toolbar
+  - .toolbar > .spacer
 demos:
   - Composer
 tags:
@@ -45,9 +45,10 @@ anywhere a textarea has adjacent affordances.
   Pure CSS, no JS.
 - `> textarea`, `> input[type="text"]` — borderless inputs that inherit the
   composer's surface. `resize: none`; size with `rows`.
-- `> .toolbar` — horizontal action row. Children are typically icon buttons,
-  chips, or a `.spacer` to push the submit to the trailing end.
-- `> .toolbar > .spacer` — `flex: 1` push-to-end helper.
+- `.toolbar` — the public [`.toolbar`](/elements#toolbar) control row, consumed
+  directly. Children are typically icon buttons, chips, or a `.spacer` to push
+  the submit to the trailing end; the composer adds only its own inline padding.
+- `.toolbar > .spacer` — `flex: 1` push-to-end helper.
 
 ## Mobile Behavior
 

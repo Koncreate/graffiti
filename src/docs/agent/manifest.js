@@ -171,6 +171,22 @@ export const baseSection = {
       llmsFile: "variables.txt",
     },
     {
+      slug: "highlight",
+      title: "Highlighted text",
+      whenToUse:
+        "Highlighting matched search terms or emphasized phrases in running text.",
+      classes: ["mark"],
+      routeAnchor: "#highlight",
+    },
+    {
+      slug: "figure",
+      title: "Figures and captions",
+      whenToUse:
+        "Pairing media or a quotation with a descriptive or attributing caption.",
+      classes: ["figure", "figcaption"],
+      routeAnchor: "#figure",
+    },
+    {
       slug: "dividers",
       title: "Dividers",
       whenToUse: "Simple section breaks using native horizontal rules.",
@@ -250,6 +266,14 @@ export const utilitiesSection = {
       llmsFile: "utilities.txt",
     },
     {
+      slug: "skip-link",
+      title: "Skip Link",
+      whenToUse:
+        "Bypass-navigation link, hidden until keyboard focus, that jumps to the main content.",
+      classes: [".skip-link"],
+      routeAnchor: "#skip-link",
+    },
+    {
       slug: "font-sizing",
       title: "Font sizing utilities",
       whenToUse:
@@ -287,6 +311,14 @@ export const elementsSection = {
       classes: [".button", ".primary", ".ghost", ".minimal", ".mini"],
       routeAnchor: "",
       llmsFile: "buttons.txt",
+    },
+    {
+      slug: "icon-button",
+      title: ".icon-button",
+      whenToUse: "Icon-only actions: toolbar controls, close affordances, overflow menus.",
+      classes: [".icon-button", ".icon-button.ghost", ".icon-button.mini"],
+      routeAnchor: "",
+      llmsFile: "icon-button.txt",
     },
     {
       slug: "card",
@@ -372,7 +404,7 @@ export const elementsSection = {
       slug: "table",
       title: ".table",
       whenToUse: "Responsive table wrapper and default table styling.",
-      classes: [".table"],
+      classes: [".table", ".table.zebra", ".table.sticky"],
       routeAnchor: "",
       llmsFile: "tables.txt",
     },
@@ -411,8 +443,8 @@ export const elementsSection = {
     {
       slug: "input-group",
       title: "Input group",
-      whenToUse: "Input plus attached action button patterns.",
-      classes: [".input-group"],
+      whenToUse: "Input plus attached action button or inert affix patterns.",
+      classes: [".input-group", ".input-group > .affix"],
       routeAnchor: "#forms",
       llmsFile: "input-group.txt",
     },
@@ -431,6 +463,22 @@ export const elementsSection = {
       classes: [".dropzone"],
       routeAnchor: "#file-dropzone",
       llmsFile: "dropzone.txt",
+    },
+    {
+      slug: "toolbar",
+      title: "Toolbar",
+      whenToUse:
+        "Editor control strips, card action rows, and composer footers that should wrap gracefully.",
+      classes: [".toolbar", ".toolbar > .separator", ".toolbar > .spacer"],
+      routeAnchor: "#toolbar",
+    },
+    {
+      slug: "rating",
+      title: "Rating",
+      whenToUse:
+        "Showing an average score or collecting a star rating without JavaScript.",
+      classes: [".rating"],
+      routeAnchor: "#rating",
     },
   ],
 };
@@ -489,6 +537,14 @@ export const uiBlocksSection = {
       classes: [".app-shell", ".bottom-nav", ".bottom-sheet", ".drawer"],
       routeAnchor: "",
       llmsFile: "mobile.txt",
+    },
+    {
+      slug: "fab",
+      title: "Floating action button",
+      whenToUse:
+        "A single high-emphasis action pinned above the safe area while content scrolls.",
+      classes: [".fab", ".button", ".circle"],
+      routeAnchor: "#fab",
     },
     {
       slug: "header",

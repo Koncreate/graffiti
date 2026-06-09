@@ -92,10 +92,11 @@ Or just on the summary:
 
 ## Styling Details
 
-- Smooth height animation using `@starting-style` and `allow-discrete`
+- Smooth open/close height animation: `details::details-content` transitions `block-size` from `0` to `auto`, unlocked by `interpolate-size: allow-keywords` at `:root` so the `auto` keyword is interpolable. The initial open of an `[open]` element animates in via `@starting-style`.
 - Custom `›` arrow indicator that rotates on open
 - Proper focus-visible states
 - No JavaScript required
+- Respects `prefers-reduced-motion`: keyword interpolation is only enabled when motion is allowed, and the global reduced-motion guard short-circuits the transition duration, so the panel snaps open/closed instead of animating.
 
 ## Exclusive Accordion (One Open at a Time)
 

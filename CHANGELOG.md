@@ -1,5 +1,148 @@
 # @drop-in/graffiti
 
+## 4.32.0
+
+### Minor Changes
+
+- Add the `.reactions` emoji reaction picker element.
+
+  ### What changed
+  - `.reactions` — an emoji reaction picker built on a native `<select>` with `appearance: base-select`. The whole control is a single class on the `<select>`: the trigger shows the chosen reaction and the picker opens as a horizontal bar of emoji `<option>`s. Zero JavaScript. It is token-driven (`var(--shadow-4)` elevation, `--br-l`/`--br-xl` radii, `--fg-05`/`--fg-1` surfaces, `--focus-ring`, and the motion tokens); the only component-local knob is `--reaction-size` (default `1.35rem`). The bar opens centred above the trigger (`position-area: block-start` + `justify-self: anchor-center`) and flips below via `position-try-fallbacks: flip-block` when there isn't room. Lives in the `components` layer.
+
+  ### Migration notes
+  - No breaking changes, purely additive. Use:
+
+    ```html
+    <select class="reactions" aria-label="React">
+      <button><selectedcontent></selectedcontent></button>
+      <option value="like" selected>
+        👍<span class="visually-hidden"> Like</span>
+      </option>
+      <option value="love">❤️<span class="visually-hidden"> Love</span></option>
+      <option value="haha">😂<span class="visually-hidden"> Haha</span></option>
+    </select>
+    ```
+
+    Give the `<select>` an `aria-label` and each emoji a `.visually-hidden` text label so the choice is announced. Where customizable `<select>` is unsupported, the `<button>` / `<selectedcontent>` children are ignored and the element degrades to a normal native dropdown of the same options — no JavaScript shim.
+
+## 4.31.0
+
+### Minor Changes
+
+- Add the `.fab` floating action button pattern.
+
+  ### What changed
+  - `.fab` — a circular, fixed-position, elevated primary action pinned to the bottom-inline-end corner and held clear of the device safe area. It is composition-first: pair it with `.button` (surface, color variant, hover lift, focus ring) and `.circle` (round footprint); `.fab` adds only the fixed positioning, `--z-sticky` layering, and `var(--shadow-4)` elevation, mirroring the `.bottom-nav` safe-area idiom. Default `--size: 56px`. Lives in the `components` layer.
+
+  ### Migration notes
+  - No breaking changes, purely additive. Use `<button class="button primary circle fab" aria-label="Compose"><svg aria-hidden="true">…</svg></button>`. Always supply an `aria-label` since it is icon-only. The hover lift comes from `.button` and degrades under `prefers-reduced-motion`; `.fab` adds no animation of its own.
+
+- Add static field affixes to `.input-group`.
+
+  ### What changed
+  - `.input-group > .affix` — a new inert adornment slot for a leading currency symbol (`$`) or a trailing unit (`kg`, `%`, `USD`). The affix mirrors the native input's `--fg-05` fill, `--border-1` hairline, and `--br-m` radius and flattens the touching corners so the affix and input read as one continuous control.
+  - The affix is non-interactive (`pointer-events: none`, `user-select: none`) — the real value lives in the input, so it works with native HTML + CSS and zero JavaScript.
+  - `.input-group.stack-mobile` now also re-rounds and re-borders `.affix` children when the group breaks into a vertical stack under 640px.
+
+  ### Migration notes
+  - No breaking changes. Existing `.input-group` markup (input + button) is unaffected; the affix is purely additive.
+
+- Add the `.rating` star-rating pattern in two zero-JS forms.
+
+  ### What changed
+  - `.rating` (display form) — a read-only five-star meter. Set `--rating` (0–5, decimals allowed) on a `<span class="rating">` and the fill is clipped to `--rating / 5`, so half- and quarter-stars render faithfully. Filled stars use the semantic `--warning` token; the empty track uses `--fg-2`. Retint via `--rating-on` / `--rating-off`, resize via `--rating-size`. Pair with `role="img"` + `aria-label` for the announced value.
+  - `.rating` (input form) — apply the same class to a `<fieldset class="rating">` of five reversed `radio` + `label` pairs. It collects a real form value, supports keyboard selection and a hover preview, and degrades to native radio buttons when the styling is unavailable. Lives in the `components` layer.
+
+  ### Migration notes
+  - No breaking changes, purely additive. The hover/checked transition is short-circuited under `prefers-reduced-motion` by the global motion guard; `.rating` adds no animation of its own.
+
+- Add the `.skip-link` utility — a zero-JS bypass-navigation anchor.
+
+  ### What changed
+  - `.skip-link` — screen-reader-only until it receives keyboard focus, then reveals as a pinned pill at the top inline-start of the page with the standard focus ring. Reuses the visibility idiom alongside `.visually-hidden` and lives in the `utilities` layer.
+
+  ### Migration notes
+  - No breaking changes. Add `<a class="skip-link" href="#main">Skip to content</a>` as the first focusable element and point it at your main landmark.
+
+- Add a `.sticky` modifier for `.table` that pins the header row while the body scrolls.
+
+  ### What changed
+  - `.table.sticky` — turns the table wrapper into a vertical scroll context (capped by `--table-max-height`, default `70vh`) and pins each `<th>` via `position: sticky` so the header stays visible while rows scroll. Pure CSS, zero JavaScript; composes with `.zebra`. Header cells use an opaque `var(--bg)` so scrolling rows do not show through.
+
+  ### Migration notes
+  - No breaking changes. Existing `.table` and `.table.zebra` markup is unaffected.
+  - A scroll-shadow-under-header affordance (via scroll-state container queries) is deferred until that feature gains broad browser support.
+
+- Add a public `.toolbar` control-bar pattern and refactor `.composer` to consume it.
+
+  ### What changed
+  - `.toolbar` — new public horizontal control bar: a wrapping flex row of buttons
+    and controls. Two slot children: `.toolbar > .spacer` (a `flex: 1` push-to-end
+    helper, already an established slot convention) and `.toolbar > .separator`
+    (a new hairline vertical divider for grouping related controls).
+  - `.composer` now consumes the public `.toolbar` instead of defining a private
+    `.composer > .toolbar` from scratch. The private layout rules (flex, align,
+    gap) and the private `.composer > .toolbar > .spacer` were removed; the
+    composer keeps only its own `padding-inline` as a context override, and the
+    now-redundant `@container rail-shell` `flex-wrap: wrap` override was dropped
+    since `.toolbar` ships `flex-wrap: wrap` by default.
+
+  ### Migration notes
+  - No breaking changes. `.composer` markup is unchanged — it already rendered a
+    `<div class="toolbar">` with a `.spacer` child, which is now the public
+    pattern. The previously component-internal `.composer > .toolbar` selectors
+    (private surface per ADR-0011) are subsumed by the new public `.toolbar`.
+
+- Add classless `<figure>` / `<figcaption>` base styling.
+
+  ### What changed
+  - Native `<figure>` now gets vertical rhythm via the `--vs-*` spacing scale.
+  - Native `<figcaption>` renders one fluid step smaller (`--fl: -1`) in the muted `--fg-5` color.
+  - Documented under the Base route as "Figures and captions" with a demo covering captioned media and quotations.
+
+  ### Migration notes
+  - No breaking changes. These are classless base-element rules; `.card > figure` edge-bleed styling continues to win via higher specificity.
+
+- Add a canonical `.icon-button` pattern for icon-only actions.
+
+  ### What changed
+  - `.icon-button` — square button for an icon-only action (toolbar control, close affordance, overflow menu). Standardizes glyph size, square padding, and focus ring instead of re-deriving them per consumer. Composes with the existing button variants (`.primary`, `.ghost`, `.minimal`, `.mini`).
+  - Classless glyph sizing: any `<svg>` inside a `<button>` / `.button` is sized from `--button-icon-size` (default `1.15em`), so label+icon and icon-only buttons share one optical glyph size.
+  - Classless auto-square: a `button[aria-label]:has(> svg:only-child)` collapses to a square footprint with no class, while the `aria-label` requirement keeps the control accessible.
+
+  ### Migration notes
+  - No breaking changes. The new behavior is additive; the classless rules only enhance buttons that contain an `<svg>`. Existing buttons with text labels are unaffected.
+
+- Theme the native `<mark>` element with the highlighter scale.
+
+  ### What changed
+  - `<mark>` now gets classless base styling: a translucent tint from the previously-unused `--highlighter` scale (`--highlighter-3`), inherited text color, small inline padding, and `--br-xs` rounding. It degrades to the system `Mark`/`MarkText` colors under forced-colors.
+  - Documented in the Base docs as a new "Highlighted Text" topic with a demo.
+
+  ### Migration notes
+  - No breaking changes. This is additive classless base styling; override the tint by reassigning the `--highlighter` token scale.
+
+### Patch Changes
+
+- Fix the `<details>`/accordion height animation that was a no-op.
+
+  ### What changed
+  - Added `interpolate-size: allow-keywords` at `:root` so the authored `details::details-content` transition from `block-size: 0` to `auto` is actually interpolable. Open/close now animates height smoothly instead of snapping.
+  - Scoped the declaration to `@media (prefers-reduced-motion: no-preference)` and relied on the existing global reduced-motion duration guard, so the panel snaps instead of animating when motion is reduced (ADR-0001).
+  - Documented the working animation and reduced-motion behavior in the Accordion topic.
+
+  ### Migration notes
+  - No breaking changes. No new classes or tokens; the previously-inert `@starting-style`/`block-size` transition simply works now. `interpolate-size` inherits from `:root` document-wide.
+
+- Fix dangling `.prose` reference in the editorial theme.
+
+  ### What changed
+  - Retargeted the editorial drop-cap (`.theme-editorial … ::first-letter`) from the non-existent `.prose` class to the public `.readable` long-form container, so the flourish actually applies and no rule dangles.
+  - Updated the canonical theme fixture (`CanonicalFixture.svelte`) to use `.readable` instead of `.prose`.
+
+  ### Migration notes
+  - No breaking changes. `.prose` was never a shipped class; long-form content should already be wrapped in `.readable`, which now also receives the editorial drop-cap.
+
 ## 4.30.0
 
 ### Minor Changes

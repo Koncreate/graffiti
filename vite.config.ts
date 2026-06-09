@@ -10,6 +10,7 @@ export default defineConfig({
   },
   server: {
     port: 6124, // GRAF in leet (G=6, R=1, A=2, F=4)
+    allowedHosts: [".robo.online"], // tailnet proxy via Caddy
   },
   preview: {
     port: 6124,

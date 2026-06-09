@@ -90,8 +90,8 @@ Cross-referenced against shadcn/ui (Radix-based, modern baseline), Radix Themes 
 | Pattern | Status | Notes |
 |---|---|---|
 | Button | ✅ | Base element + `.button` utility; variants `.ghost`, `.primary`, `.minimal` etc. |
-| Icon button | 🟡 | Compose `<button>` + svg; no formal `.icon-button` class |
-| Floating action button (FAB) | 🔴 | Position-fixed circular button. Small gap. Pure CSS. |
+| Icon button | ✅ | `.icon-button` (square footprint + glyph sizing); classless auto-square for `button[aria-label]:has(>svg:only-child)` |
+| Floating action button (FAB) | ✅ | `.fab` adds fixed positioning + `var(--shadow-4)` elevation; compose with `.button` + `.circle`. Safe-area-aware (`--safe-bottom`/`--safe-right`), `--z-sticky`. Pure CSS. |
 | Button group | 🟡 | Compose with `.cluster`. No formal `.button-group` |
 | Split button (button + dropdown) | ⚫ | Needs JS for dropdown state |
 | Busy / loading button | 🟢 | Dex `hwitb7hy` (`button[aria-busy="true"]`) |
@@ -199,7 +199,7 @@ Cross-referenced against shadcn/ui (Radix-based, modern baseline), Radix Themes 
 | ✅ Shipped | ~55 patterns | Healthy baseline coverage |
 | 🟢 Planned (Dex/ADR) | 11 patterns | Already designed in this grilling cycle |
 | 🟡 Partial | 13 patterns | Primitives exist; canonical pattern missing |
-| 🔴 Missing (real gap, HTML+CSS feasible) | 6 patterns | Hover card, FAB, floating-label inputs, figure/figcaption, rating stars, `<mark>` styling, master-detail layout |
+| 🔴 Missing (real gap, HTML+CSS feasible) | 6 patterns | Hover card, floating-label inputs, figure/figcaption, rating stars, `<mark>` styling, master-detail layout |
 | ⚫ Out of scope | ~17 patterns | JS-required (Decks) or template-level composition |
 
 ## Triage of the 6 real remaining gaps
@@ -207,7 +207,6 @@ Cross-referenced against shadcn/ui (Radix-based, modern baseline), Radix Themes 
 | Pattern | Size | Why it's a real gap |
 |---|---|---|
 | Hover card | M | Tooltips are non-interactive; users routinely need a tooltip that can contain links + persists on hover. Pure CSS via anchor positioning + `:hover` |
-| Floating action button (FAB) | S | Single class with position-fixed shape; mobile apps need this routinely |
 | Master-detail layout | M | List + detail pane with deep-linking. Composes from existing primitives but the canonical shape isn't formalized |
 | Figure / figcaption | S | Pure base-layer element styling; no opinion shipped today |
 | Rating stars | S | CSS-only pattern (radio buttons + `:checked ~ *`); commonly needed |
@@ -215,10 +214,13 @@ Cross-referenced against shadcn/ui (Radix-based, modern baseline), Radix Themes 
 
 ## Partials worth elevating
 
-The 13 🟡 entries are mostly "compose with existing primitives" — not real gaps, but the absence of a canonical class means authors reinvent. The two most worth promoting:
+The remaining 🟡 entries are mostly "compose with existing primitives" — not real gaps, but the absence of a canonical class means authors reinvent. Most worth promoting:
 
-1. **`.icon-button`** — `<button>` containing only an SVG/icon. Currently composed ad-hoc; sizing, padding, focus-ring are routinely re-derived. A single class would standardize.
-2. **`.toolbar`** — horizontal action group with consistent gap, alignment, overflow behavior. Compose-with-`.cluster` works but the resulting CSS varies per consumer.
+1. **`.toolbar`** — horizontal action group with consistent gap, alignment, overflow behavior. Compose-with-`.cluster` works but the resulting CSS varies per consumer.
+
+Shipped since this list was written:
+
+- **`.icon-button`** — `<button>` containing only an SVG/icon. Standardizes glyph size, square padding, and focus ring; a classless auto-square rule covers `button[aria-label]:has(>svg:only-child)`.
 
 ## What this matrix doesn't tell you
 

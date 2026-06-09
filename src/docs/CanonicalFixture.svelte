@@ -113,8 +113,8 @@
     </div>
   </dialog>
 
-  <!-- Prose: long-form typography surface. h1+h2+long paragraph (for ::first-letter)+blockquote. -->
-  <article class="prose stack">
+  <!-- Readable: long-form typography surface. h1+h2+long paragraph (for ::first-letter)+blockquote. -->
+  <article class="readable stack">
     <h1>The Quiet Geometry of Type</h1>
     <h2>Notes on rhythm, contrast, and the page</h2>
     <p>

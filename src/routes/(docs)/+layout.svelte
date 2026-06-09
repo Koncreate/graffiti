@@ -4,12 +4,41 @@
 
 <script lang="ts">
   import { page } from "$app/state";
+  import { afterNavigate } from "$app/navigation";
   const version = __APP_VERSION__;
   import { getDocsContentGraph } from "../../docs/content/runtime.js";
   import * as docsRuntime from "../../docs/content/runtime.js";
   import type { FontSettings, ThemeValues, BorderRadiusSettings } from "$lib/types";
   import ThemeControls from "../../docs/ThemeControls.svelte";
+  import CommandPalette from "../../docs/CommandPalette.svelte";
   import Icon from "./Icon.svelte";
+
+  let search_open = $state(false);
+
+  // The mobile nav is a `popover` drawer (`#docs-mobile-nav`). On desktop the
+  // toggle that opens it is hidden by the framework, so it's never shown there.
+  let drawer_el: HTMLElement | undefined = $state();
+  function closeDrawer() {
+    if (drawer_el?.matches(":popover-open")) drawer_el.hidePopover();
+  }
+  function openSearch() {
+    search_open = true;
+    closeDrawer();
+  }
+
+  // Close the drawer after navigating. Real navigations fire afterNavigate;
+  // same-page hash links (sub-topic anchors) don't, so also close on any link
+  // click inside the drawer (wired imperatively to keep the <aside> clean).
+  afterNavigate(() => closeDrawer());
+  $effect(() => {
+    const el = drawer_el;
+    if (!el) return;
+    const onClick = (event: Event) => {
+      if ((event.target as HTMLElement)?.closest("a")) closeDrawer();
+    };
+    el.addEventListener("click", onClick);
+    return () => el.removeEventListener("click", onClick);
+  });
 
   // Preset CSS files are pulled in here so the Aesthetic selector in
   // ThemeControls can apply a `.theme-*` class on <html> and the styles
@@ -116,7 +145,64 @@
   });
 </script>
 
+{#snippet navLinks()}
+  <button type="button" class="cmdk-trigger" onclick={openSearch}>
+    <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16">
+      <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2" />
+      <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+    </svg>
+    <span>Search</span>
+    <kbd>⌘K</kbd>
+  </button>
+
+  <div class="sidebar-nav-heading">Start</div>
+  <a aria-current={page.url.pathname === "/" ? "page" : null} href="/">
+    <Icon name="sparkles" /> Get Started
+  </a>
+
+  <div class="sidebar-nav-heading">Foundations</div>
+  {#each docsRoutes as route (route.key)}
+    {#if route.key === "elements"}
+      <div class="sidebar-nav-heading">Library</div>
+    {/if}
+    <a
+      aria-current={page.url.pathname.startsWith(route.path) ? "page" : null}
+      href={route.path}
+      title={route.introTitle}
+    >
+      <Icon name={routeIcon[route.path]} /> {route.navLabel}
+    </a>
+    {#if page.url.pathname.startsWith(route.path)}
+      {#each route.topics as topic (topic.id)}
+        <a href={`${route.path}#${topic.id}`} class="sub">{topic.title}</a>
+      {/each}
+    {/if}
+  {/each}
+  <a
+    aria-current={page.url.pathname.startsWith("/templates") ? "page" : null}
+    href="/templates"
+  >
+    <Icon name="grid" /> Templates
+  </a>
+
+  <div class="sidebar-nav-heading">Customize</div>
+  <a
+    aria-current={page.url.pathname.startsWith("/themes") ? "page" : null}
+    href="/themes"
+  >
+    <Icon name="palette" /> Themes
+  </a>
+  <a
+    aria-current={page.url.pathname.startsWith("/changelog") ? "page" : null}
+    href="/changelog"
+  >
+    <Icon name="history" /> Changelog
+  </a>
+{/snippet}
+
 <ThemeControls bind:theme_values bind:font_settings bind:border_radius />
+
+<CommandPalette bind:open={search_open} />
 
 <div
   style:--fg-light={theme_values.fg_light}
@@ -164,6 +250,34 @@
        .sidebar-nav's row borders/gradients. Strip it inside the nav. */
     .sidebar-nav a {
       text-decoration: none;
+    }
+
+    .cmdk-trigger {
+      display: flex;
+      align-items: center;
+      gap: var(--vs-s);
+      width: 100%;
+      margin-block-end: var(--vs-s);
+      padding: var(--pad-s) var(--pad-m);
+      border: 1px solid var(--fg-2);
+      border-radius: var(--br-s);
+      background: var(--fg-05);
+      color: var(--fg-7);
+      cursor: pointer;
+      font-size: var(--fs-base);
+    }
+    .cmdk-trigger:hover {
+      border-color: var(--primary);
+      color: var(--fg);
+    }
+    .cmdk-trigger span {
+      flex: 1;
+      text-align: left;
+    }
+    .cmdk-trigger kbd {
+      font-size: var(--fs-xs);
+      font-family: var(--font-mono, monospace);
+      color: var(--fg-6);
     }
   </style>
   <header class="header readable">
@@ -239,57 +353,7 @@
       style="top: 44px; max-height: calc(100dvh - 44px);"
     >
       <nav class="sidebar-nav compact" style="--sn-color: var(--primary);">
-        <div class="sidebar-nav-heading">Start</div>
-        <a aria-current={page.url.pathname === "/" ? "page" : null} href="/">
-          <Icon name="sparkles" /> Get Started
-        </a>
-
-        <div class="sidebar-nav-heading">Foundations</div>
-        {#each docsRoutes as route (route.key)}
-          {#if route.key === "elements"}
-            <div class="sidebar-nav-heading">Library</div>
-          {/if}
-          <a
-            aria-current={page.url.pathname.startsWith(route.path)
-              ? "page"
-              : null}
-            href={route.path}
-            title={route.introTitle}
-          >
-            <Icon name={routeIcon[route.path]} /> {route.navLabel}
-          </a>
-          {#if page.url.pathname.startsWith(route.path)}
-            {#each route.topics as topic (topic.id)}
-              <a href={`${route.path}#${topic.id}`} class="sub">{topic.title}</a>
-            {/each}
-          {/if}
-        {/each}
-        <a
-          aria-current={page.url.pathname.startsWith("/templates")
-            ? "page"
-            : null}
-          href="/templates"
-        >
-          <Icon name="grid" /> Templates
-        </a>
-
-        <div class="sidebar-nav-heading">Customize</div>
-        <a
-          aria-current={page.url.pathname.startsWith("/themes")
-            ? "page"
-            : null}
-          href="/themes"
-        >
-          <Icon name="palette" /> Themes
-        </a>
-        <a
-          aria-current={page.url.pathname.startsWith("/changelog")
-            ? "page"
-            : null}
-          href="/changelog"
-        >
-          <Icon name="history" /> Changelog
-        </a>
+        {@render navLinks()}
       </nav>
       <div
         class="cluster"
@@ -302,9 +366,31 @@
       class="stack layout-readable center"
       style="padding: 0 var(--pad-l) var(--pad-xxxl); --layout-gap: 4rem;"
     >
+      <button
+        class="drawer-toggle ghost icon-button"
+        popovertarget="docs-mobile-nav"
+        aria-label="Open navigation"
+        style="align-self: start; margin-block-start: var(--pad-m);"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" /></svg>
+      </button>
+
       {@render children()}
     </section>
   </div>
+
+  <!-- Standalone popover drawer (outside .layout-sidebar). The flex layout
+       lives on an inner wrapper, NOT the popover itself — a display-setting
+       class on the popover would override the UA's closed-hide and leak it
+       onto every page. -->
+  <aside bind:this={drawer_el} id="docs-mobile-nav" popover class="drawer">
+    <div class="stack" style="--gap: var(--vs-m); padding: var(--pad-m); block-size: 100%;">
+      <nav class="sidebar-nav compact" style="--sn-color: var(--primary);">
+        {@render navLinks()}
+      </nav>
+      <small style="margin-block-start: auto; padding-inline: var(--pad-s); color: var(--fg-7);">v{version}</small>
+    </div>
+  </aside>
 
   <footer class="footer layout-readable stack" style="--max-width: 1400px; margin-top: var(--vs-xl); padding-block: var(--pad-xl);">
     <div class="grid auto" style="--grid-min: 140px;">

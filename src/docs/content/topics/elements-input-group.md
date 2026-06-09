@@ -7,9 +7,11 @@ summary: Input field with connected button.
 when_to_use: Input plus attached action button patterns.
 classes:
   - .input-group
+  - .input-group > .affix
   - .input-group.stack-mobile
 demos:
   - InputGroup
+  - InputGroupAffix
   - Select
 tags:
   - elements
@@ -51,6 +53,37 @@ Use for copy-to-clipboard, search with button, URL sharing, or any input that ne
 <div class="input-group">
   <input type="text" value="some-value" />
   <button class="mini">Copy</button>
+</div>
+```
+
+## Static Affixes
+
+Add an inert `.affix` child for a leading currency symbol or a trailing unit. The affix shares the input's fill, hairline border, and radius so the seam reads as one continuous control. It is non-interactive (`pointer-events: none`, `user-select: none`) — purely a visual adornment, with the real value living in the input.
+
+- Use a leading `.affix` as the first child for symbols like `$` or `€`.
+- Use a trailing `.affix` as the last child for units like `kg`, `%`, or `USD`.
+- You can combine both around a single input.
+- Pair with `type="number"` plus `inputmode` so mobile keyboards match the expected entry.
+
+```html
+<div class="input-group">
+  <span class="affix">$</span>
+  <input type="number" inputmode="decimal" placeholder="0.00" />
+</div>
+```
+
+```html
+<div class="input-group">
+  <input type="number" inputmode="numeric" placeholder="Weight" />
+  <span class="affix">kg</span>
+</div>
+```
+
+```html
+<div class="input-group">
+  <span class="affix">$</span>
+  <input type="number" inputmode="decimal" placeholder="0.00" />
+  <span class="affix">USD</span>
 </div>
 ```
 

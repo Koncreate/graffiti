@@ -3,7 +3,7 @@
  *
  * Cream paper, warm ink, deep brick-red accent. Fraunces serif at a *modest*
  * type ratio with generous line-height — editorial-restrained, not display-
- * loud. Hairline borders, no shadows. Small drop-cap on prose openers
+ * loud. Hairline borders, no shadows. Small drop-cap on `.readable` openers
  * (current-color, no decorative tint). The voice is "essay", not "magazine
  * cover".
  *
@@ -54,8 +54,8 @@
     font-weight: 600;
   }
 
-  /* Small drop cap on prose openers — current-color, modest size. */
-  .theme-editorial .prose > p:first-of-type::first-letter {
+  /* Small drop cap on `.readable` openers — current-color, modest size. */
+  .theme-editorial .readable > p:first-of-type::first-letter {
     font-size: 2.6em;
     font-weight: 700;
     float: inline-start;

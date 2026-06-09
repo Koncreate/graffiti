@@ -8,8 +8,10 @@ when_to_use: Responsive table wrapper and default table styling.
 classes:
   - .table
   - .table.zebra
+  - .table.sticky
 demos:
   - Table
+  - TableSticky
 tags:
   - elements
   - data
@@ -54,6 +56,33 @@ Add `.zebra` to the wrapper for alternating row backgrounds (`var(--fg-05)` on e
   </table>
 </div>
 ```
+
+## Sticky Header
+
+Add `.sticky` to the wrapper to pin the header row while the body scrolls vertically. The wrapper becomes a vertical scroll context capped by `--table-max-height` (defaults to `70vh`), and each `<th>` uses `position: sticky` so it stays visible on top of the scrolling cells:
+
+```html
+<div class="table sticky" style="--table-max-height: 24rem">
+  <table>
+    <thead>
+      <tr>
+        <th>Project</th>
+        <th>Owner</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- many rows … -->
+    </tbody>
+  </table>
+</div>
+```
+
+- Pure CSS, zero JavaScript — `position: sticky` does all the work.
+- The header `<th>` cells get an opaque `var(--bg)` so scrolling rows do not show through.
+- `.sticky` composes with `.zebra` on the same wrapper.
+- Override the scroll height with `--table-max-height` (e.g. `--table-max-height: 24rem`).
+
+A future enhancement could add a scroll-shadow under the header that appears only while the body is scrolled, using scroll-state container queries (`@container scroll-state(scrollable: top)`); it is deferred until that feature has broad browser support.
 
 ## Why the Wrapper?
 

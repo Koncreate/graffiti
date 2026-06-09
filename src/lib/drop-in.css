@@ -32,6 +32,16 @@
 
   /* Typography */
   :root {
+    /* Enable interpolation of keyword sizes (e.g. block-size: auto ↔ 0) so the
+       authored details::details-content height transition actually animates.
+       Inherits document-wide from :root. Guarded for reduced-motion below so
+       keyword interpolation is only enabled when motion is allowed; the global
+       prefers-reduced-motion duration guard further short-circuits the
+       transition. See docs/adr/0001. */
+    @media (prefers-reduced-motion: no-preference) {
+      interpolate-size: allow-keywords;
+    }
+
     /* =====================================================================
      * Tier 1: Literal tokens — concrete primitives
      * Colors, lengths, durations, raw scales. These are what consumers
@@ -1800,6 +1810,39 @@
     border-block-start: var(--border-1);
   }
 
+  mark {
+    background: var(--highlighter-9);
+    color: var(--black);
+    padding-inline: 0.15em;
+    border-radius: var(--br-xs);
+
+    @media (forced-colors: active) {
+      background: Mark;
+      color: MarkText;
+    }
+  }
+
+  figure {
+    margin-block: var(--vs-l);
+    margin-inline: 0;
+  }
+
+  figure > :is(img, picture, video, canvas, svg) {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+    border-radius: var(--br-m);
+  }
+
+  figcaption {
+    --fl: -1;
+    margin-block-start: var(--vs-s);
+    line-height: var(--lh-s);
+    color: var(--fg-5);
+    max-inline-size: 65ch;
+    text-wrap: pretty;
+  }
+
   button,
   .button {
     --button-color: var(--gray-5);
@@ -2219,6 +2262,48 @@
     }
   }
 
+  /* Normalize the SVG glyph inside any button so icons inherit a consistent
+     optical size from the local --button-icon-size default. Classless: this
+     enhances every <button>/.button that contains an icon, so a label+icon
+     button and an icon-only button share one glyph size. */
+  :is(button, .button) > svg {
+    inline-size: var(--button-icon-size, 1.15em);
+    block-size: var(--button-icon-size, 1.15em);
+    flex: none;
+  }
+
+  /* Auto-square any icon-only control: a labelled trigger (aria-label) whose
+     ONLY child is an SVG collapses to a square footprint without needing a
+     class. Reuses --icon-button-pad so it matches the explicit .icon-button.
+     The aria-label requirement keeps the affordance accessible (icon-only
+     controls must be named — the library's convention via .tip). */
+  :is(button, .button)[aria-label]:has(> svg:only-child) {
+    --icon-button-pad: var(--pad-s);
+    padding: var(--icon-button-pad);
+    aspect-ratio: 1;
+  }
+
+  /**
+   * @pattern icon-button
+   * @role Compact, square button for an icon-only action (toolbar control, close affordance, overflow menu). Standardizes glyph size, square padding, and focus ring instead of re-deriving them ad-hoc. Pair with `aria-label` so the control is named for assistive tech, exactly as `.tip` expects.
+   * @example
+   *   <button class="icon-button" aria-label="Edit">
+   *     <svg aria-hidden="true">…</svg>
+   *   </button>
+   * @modifiers ghost, minimal, primary, mini
+   * @prefer-over custom: a bare <button> with hand-tuned svg sizing and square padding
+   * @related circle, close
+   */
+  .icon-button {
+    --icon-button-pad: var(--pad-s);
+    padding: var(--icon-button-pad);
+    aspect-ratio: 1;
+
+    &.mini {
+      --icon-button-pad: var(--pad-xs);
+    }
+  }
+
   /**
    * @pattern close
    * @role A round, red close button for dialogs/drawers/dismissible panels; designed to be the most explicit "go away" affordance
@@ -2386,6 +2471,32 @@
     margin: -1px;
     padding: 0px;
     border: 0px;
+  }
+
+  /**
+   * @pattern skip-link
+   * @role Bypass-navigation anchor that stays screen-reader-only until it receives keyboard focus, then reveals as a pinned pill at the top of the page; place it as the first focusable element with `href` pointing at the main landmark
+   * @example <a class="skip-link" href="#main">Skip to content</a>
+   * @related visually-hidden
+   */
+  .skip-link {
+    position: absolute;
+    inset-block-start: var(--pad-s);
+    inset-inline-start: 50%;
+    z-index: var(--z-modal);
+    padding: var(--pad-s) var(--pad-m);
+    background: var(--bg);
+    color: var(--fg);
+    border-radius: var(--br-m);
+    box-shadow: var(--shadow-3);
+    translate: -50% -150%;
+    transition: translate var(--d-fast) var(--ease-smooth);
+
+    &:focus-visible {
+      translate: -50% 0;
+      outline: var(--focus-ring);
+      outline-offset: var(--focus-ring-offset);
+    }
   }
 
   /**
@@ -3738,9 +3849,10 @@
    * @pattern table
    * @role Wrapper that gives a `<table>` rounded borders and horizontal overflow scrolling without forcing the data layout
    * @example
-   *   <div class="table">
+   *   <div class="table sticky">
    *     <table>…</table>
    *   </div>
+   * @modifiers zebra, sticky
    */
   .table {
     overflow-x: auto;
@@ -3775,6 +3887,18 @@
 
   .table.zebra tbody tr:nth-child(even) {
     background-color: var(--fg-05);
+  }
+
+  .table.sticky {
+    overflow-y: auto;
+    max-block-size: var(--table-max-height, 70vh);
+  }
+
+  .table.sticky thead th {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: var(--z-raised);
+    background: var(--bg);
   }
 
   /*Forms*/
@@ -5427,14 +5551,15 @@
     }
   }
 
-  /* Input Group - Connected input + button */
+  /* Input Group - Connected input + button or inert affix */
   /**
    * @pattern input-group
-   * @role Visually connect an `<input>` to a trailing `<button>` (search submit, copy-to-clipboard, etc.) without a gap between them. `.stack-mobile` reverts to a stacked layout under 640px.
+   * @role Visually connect an `<input>` to a trailing `<button>` (search submit, copy-to-clipboard, etc.) without a gap between them. A `.affix` child slots in an inert static adornment instead — a leading currency symbol or a trailing unit — sharing the same border and radius so it reads as one control. `.stack-mobile` reverts to a stacked layout under 640px.
    * @example
    *   <div class="input-group">
-   *     <input type="email" placeholder="you@example.com">
-   *     <button type="submit">Subscribe</button>
+   *     <span class="affix">$</span>
+   *     <input type="number" inputmode="decimal" placeholder="0.00">
+   *     <span class="affix">USD</span>
    *   </div>
    * @modifiers stack-mobile
    * @related search
@@ -5465,6 +5590,47 @@
       }
     }
 
+    /* Inert static adornment (leading currency, trailing unit, etc.).
+       Mirrors the native input surface (--fg-05 fill, --border-1 hairline)
+       so the seam reads as a single continuous control. */
+    > .affix {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+      padding-inline: var(--pad-m);
+      color: var(--fg-5);
+      background-color: var(--fg-05);
+      border: var(--border-1);
+      border-radius: var(--br-m);
+      white-space: nowrap;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* Leading affix: square the inline-end corners and drop the touching
+       border so it sits flush against the following input. */
+    > .affix:first-child {
+      border-start-end-radius: 0;
+      border-end-end-radius: 0;
+      border-inline-end: none;
+    }
+
+    > .affix:first-child + input {
+      border-start-start-radius: 0;
+      border-end-start-radius: 0;
+    }
+
+    /* Trailing affix: square the inline-start corners; the preceding input
+       already drops its inline-end radius via the > input rule above. */
+    > input + .affix:last-child {
+      border-start-start-radius: 0;
+      border-end-start-radius: 0;
+      border-inline-start: none;
+    }
+
+    /* When a leading affix precedes an input that is itself followed by a
+       button/.button, the input keeps both edges squared (handled above). */
+
     /* Focus states - ensure outline is visible above siblings */
     > input:focus-visible {
       z-index: var(--z-raised);
@@ -5485,8 +5651,10 @@
         }
 
         > button,
-        > .button {
+        > .button,
+        > .affix {
           border-radius: var(--br-m);
+          border-inline: var(--border-1);
         }
       }
     }
@@ -6013,6 +6181,121 @@
     }
   }
 
+  /* Rating - Star rating, zero-JS display + native-radio input forms */
+
+  /**
+   * @pattern rating
+   * @role Five-star rating in two zero-JS forms. Display form: put a `--rating` (0–5, decimals allowed) on a `<span class="rating">` for a read-only, partial-fill star meter — always pair it with an `aria-label`. Input form: a `<fieldset class="rating">` of five reversed `radio` + `label` pairs fills on `:checked`/`:hover` with pure CSS and degrades to native radios when styling is unavailable.
+   * @example
+   *   <span class="rating" style="--rating: 3.5" role="img" aria-label="Rated 3.5 out of 5"></span>
+   *
+   *   <fieldset class="rating">
+   *     <legend class="visually-hidden">Rate this</legend>
+   *     <input type="radio" id="r5" name="rate" value="5" /><label for="r5" aria-label="5 stars"></label>
+   *     <input type="radio" id="r4" name="rate" value="4" /><label for="r4" aria-label="4 stars"></label>
+   *     <input type="radio" id="r3" name="rate" value="3" /><label for="r3" aria-label="3 stars"></label>
+   *     <input type="radio" id="r2" name="rate" value="2" /><label for="r2" aria-label="2 stars"></label>
+   *     <input type="radio" id="r1" name="rate" value="1" /><label for="r1" aria-label="1 star"></label>
+   *   </fieldset>
+   * @related tag
+   */
+  .rating {
+    /* Shared star geometry */
+    --rating-size: 1.6em;
+    --rating-gap: 0.1em;
+    --rating-on: var(--warning);
+    --rating-off: var(--fg-2);
+    /* Solid five-pointed star, used as a mask so the fill is tokenized */
+    --rating-star: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l2.95 5.98 6.6.96-4.77 4.65 1.13 6.57L12 17.02 6.09 20.16l1.13-6.57L2.45 8.94l6.6-.96L12 2z'/%3E%3C/svg%3E");
+
+    /* Display form: a 5-star track with a clipped fill overlay.
+       Track and overlay share one identical star grid (same width, same
+       star size, gaps distributed by `space`), so they paint pixel-aligned;
+       the overlay is then clipped to the rating fraction. */
+    display: inline-block;
+    inline-size: calc(var(--rating-size) * 5 + var(--rating-gap) * 4);
+    block-size: var(--rating-size);
+    line-height: 1;
+    vertical-align: middle;
+    position: relative;
+
+    /* Empty track: 5 stars with gaps evenly distributed by `space` */
+    background: var(--rating-off);
+    mask: var(--rating-star) left / var(--rating-size) 100% space;
+
+    /* Filled overlay: same full-width star grid, clipped to --rating / 5 */
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--rating-on);
+      mask: var(--rating-star) left / var(--rating-size) 100% space;
+      clip-path: inset(0 calc(100% - var(--rating, 0) / 5 * 100%) 0 0);
+    }
+
+    /* Input form: native radios + labels, reversed source order so that
+       :checked / :hover fill the current star and every star before it via
+       the general-sibling combinator. Zero JS, degrades to native radios. */
+    &:is(fieldset) {
+      display: inline-flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      align-items: center;
+      gap: var(--rating-gap);
+      border: 0;
+      margin: 0;
+      padding: 0;
+      /* Reset display-form paint that doesn't apply to the input form */
+      inline-size: auto;
+      background: none;
+      mask: none;
+
+      > input[type="radio"] {
+        /* Keep focusable + accessible, hide the native control visual */
+        position: absolute;
+        inline-size: 1px;
+        block-size: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+      }
+
+      > label {
+        /* Match the display span's font size so `--rating-size` (an em value)
+           resolves to the same star size in both forms — base `label` is
+           --fl: -1, which would render the input stars smaller. */
+        --fl: 0;
+        inline-size: var(--rating-size);
+        block-size: var(--rating-size);
+        cursor: pointer;
+        background: var(--rating-off);
+        mask: var(--rating-star) center / contain no-repeat;
+        transition: background var(--d-base) var(--ease-smooth);
+      }
+
+      /* Checked star and all that follow in source (= visually before it) */
+      > input:checked ~ label {
+        background: var(--rating-on);
+      }
+
+      /* Hover preview takes precedence while pointing */
+      &:hover > label {
+        background: var(--rating-off);
+      }
+      > label:hover,
+      > label:hover ~ label {
+        background: var(--rating-on);
+      }
+
+      /* Keyboard focus ring on the active label */
+      > input:focus-visible + label {
+        outline: var(--focus-ring);
+        outline-offset: var(--focus-ring-offset);
+        border-radius: var(--br-xs);
+      }
+    }
+  }
+
   /* List Navigation - Clickable navigation rows */
 
   /**
@@ -6514,6 +6797,38 @@
     backdrop-filter: blur(20px);
   }
 
+  /**
+   * @pattern fab
+   * @role Floating action button: a circular, fixed-position primary control pinned to the bottom-inline-end corner, clear of the safe-area inset. Compose with `.button` for surface/states and `.circle` for the round footprint; `.fab` adds only the fixed positioning + elevation. Always give it an `aria-label` since it carries a single icon
+   * @example
+   *   <button class="button primary circle fab" aria-label="Compose">
+   *     <svg aria-hidden="true">…</svg>
+   *   </button>
+   * @related bottom-nav, circle
+   */
+  /* FAB - Floating action button, fixed above the safe area */
+  .fab {
+    --size: 56px;
+    /* Larger glyph so the icon reads at the standard 24px in a 56px footprint
+       instead of inheriting the small text-scale --button-icon-size. */
+    --button-icon-size: 24px;
+    position: fixed;
+    inset-block-end: calc(var(--safe-bottom) + var(--pad-l));
+    inset-inline-end: calc(var(--safe-right) + var(--pad-l));
+    z-index: var(--z-sticky);
+    box-shadow: var(--shadow-4);
+
+    /* Keep elevation rising on hover. .button's hover sets a full box-shadow
+       shorthand that would otherwise drop the FAB below its resting --shadow-4. */
+    &:hover {
+      box-shadow: var(--shadow-5);
+    }
+
+    &:active {
+      box-shadow: var(--shadow-3);
+    }
+  }
+
   /* Bottom Sheet - Drawer from bottom */
   /**
    * @pattern bottom-sheet
@@ -6783,9 +7098,6 @@
     .layout-rail .drawer-toggle {
       display: inline-flex;
     }
-    .composer > .toolbar {
-      flex-wrap: wrap;
-    }
   }
 
   /* -----------------------------------------------------------------------
@@ -6870,11 +7182,200 @@
   }
 
   /* -----------------------------------------------------------------------
+   * .toolbar — horizontal control bar
+   *
+   * A flex row of controls that wraps when cramped. Two slot children:
+   * `.spacer` pushes following controls to the inline-end, `.separator`
+   * draws a hairline divider between groups. Consumed by .composer.
+   * --------------------------------------------------------------------- */
+  /**
+   * @pattern toolbar
+   * @role Horizontal control bar: a wrapping flex row of buttons and controls. Slot a `.spacer` child to push trailing controls to the inline-end, or a `.separator` child to draw a hairline divider between groups
+   * @example
+   *   <div class="toolbar">
+   *     <button type="button">Bold</button>
+   *     <button type="button">Italic</button>
+   *     <span class="separator"></span>
+   *     <button type="button">Link</button>
+   *     <span class="spacer"></span>
+   *     <button type="button">Done</button>
+   *   </div>
+   * @related composer, cluster, icon-button
+   */
+  .toolbar {
+    display: flex;
+    align-items: center;
+    gap: var(--vs-xs);
+    flex-wrap: wrap;
+  }
+
+  .toolbar > .spacer {
+    flex: 1;
+  }
+
+  .toolbar > .separator {
+    inline-size: 1px;
+    align-self: stretch;
+    background: var(--fg-2);
+    margin-inline: var(--pad-xs);
+  }
+
+  /* Reactions - Emoji reaction picker on a customizable <select>, zero-JS */
+
+  /**
+   * @pattern reactions
+   * @role Emoji reaction picker built on a native `<select>` with `appearance: base-select`: the trigger shows the chosen reaction and the picker opens as a horizontal bar of emoji `<option>`s — no JavaScript. Where customizable-select is unsupported it degrades to a normal select dropdown. Give the control an `aria-label` and each emoji a `.visually-hidden` text label so the choice is announced.
+   * @example
+   *   <select class="reactions" aria-label="React">
+   *     <button><selectedcontent></selectedcontent></button>
+   *     <option value="like">👍<span class="visually-hidden"> Like</span></option>
+   *     <option value="love">❤️<span class="visually-hidden"> Love</span></option>
+   *     <option value="haha">😂<span class="visually-hidden"> Haha</span></option>
+   *   </select>
+   * @related rating, tag
+   */
+  .reactions {
+    /* Emoji glyph size in the trigger; the picker scales its options off this */
+    --reaction-size: 1.35rem;
+
+    /* Fallback when base-select is unsupported: keep the native select, but
+       size it to its content instead of the base 100%-wide form control. */
+    inline-size: max-content;
+    cursor: pointer;
+  }
+
+  /* Everything below opts the control + its picker into the customizable
+     `base-select` rendering, so the plain-select fallback above stays intact
+     in browsers without support. */
+  @supports (appearance: base-select) {
+    .reactions,
+    .reactions::picker(select) {
+      appearance: base-select;
+    }
+
+    /* Trigger: strip the base form-control chrome back to a bare glyph. */
+    .reactions {
+      border: 0;
+      padding: 0;
+      background: none;
+      box-shadow: none;
+      font-size: var(--reaction-size);
+      line-height: 1;
+    }
+
+    .reactions::picker-icon {
+      display: none;
+    }
+
+    /* The rendered trigger is the inner <button>: a round, quiet affordance
+       that highlights on hover/focus. */
+    .reactions button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-radius: var(--br-l);
+      padding: var(--pad-s);
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      line-height: 1;
+      cursor: pointer;
+      transition: background-color var(--d-fast) var(--ease-smooth);
+    }
+
+    .reactions button:hover {
+      background: var(--fg-05);
+    }
+
+    .reactions:focus-visible button,
+    .reactions button:focus-visible {
+      outline: var(--focus-ring);
+      outline-offset: var(--focus-ring-offset);
+    }
+
+    /* Picker: a horizontal reaction bar anchored under the trigger. Layout +
+       paint live on the base rule; `display` is toggled by :open so the closed
+       popover stays hidden and the entrance can animate from display:none. */
+    .reactions::picker(select) {
+      /* Float above the trigger and centre on it (the conventional reaction-bar
+         placement); flip below when there isn't room. `margin-block` gaps both
+         sides so the offset survives the flip. */
+      position-area: block-start;
+      justify-self: anchor-center;
+      position-try-fallbacks: flip-block;
+      margin-block: var(--vs-xs);
+      flex-direction: row;
+      gap: var(--pad-xs);
+      padding: var(--pad-xs);
+      border: var(--border-1);
+      border-radius: var(--br-xl);
+      background: var(--bg);
+      box-shadow: var(--shadow-4);
+      opacity: 0;
+      translate: 0 calc(-1 * var(--vs-xs));
+      transition:
+        opacity var(--d-fast) var(--ease-smooth),
+        translate var(--d-fast) var(--ease-smooth),
+        overlay var(--d-fast) allow-discrete,
+        display var(--d-fast) allow-discrete;
+    }
+
+    .reactions:open::picker(select) {
+      display: flex;
+      opacity: 1;
+      translate: 0 0;
+    }
+
+    @starting-style {
+      .reactions:open::picker(select) {
+        opacity: 0;
+        translate: 0 calc(-1 * var(--vs-xs));
+      }
+    }
+
+    /* Options: large emoji in a round hit-area that lifts on hover/focus. */
+    .reactions option {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      inline-size: 2.5rem;
+      block-size: 2.5rem;
+      padding: 0;
+      border-radius: 50%;
+      font-size: calc(var(--reaction-size) * 1.25);
+      line-height: 1;
+      cursor: pointer;
+      transition:
+        background-color var(--d-fast) var(--ease-smooth),
+        scale var(--d-fast) var(--ease-bounce);
+    }
+
+    .reactions option::checkmark {
+      display: none;
+    }
+
+    .reactions option:hover,
+    .reactions option:focus-visible {
+      background: var(--fg-1);
+      scale: 1.15;
+      outline: 0;
+    }
+
+    .reactions option:checked {
+      background: var(--fg-05);
+    }
+  }
+
+  /* -----------------------------------------------------------------------
    * .composer — multi-line input + inline toolbar
    *
    * Supersedes .chat-composer when you need model / tool / attach
    * controls next to the text input. Also useful for comment + post
    * surfaces — anywhere a textarea has adjacent affordances.
+   *
+   * Consumes the public .toolbar for its control row; only adds the
+   * composer-specific inline padding as a context override.
    * --------------------------------------------------------------------- */
   /**
    * @pattern composer
@@ -6927,15 +7428,10 @@
     outline: 0;
   }
 
+  /* Composer-specific delta: the public .toolbar supplies layout
+     (flex, align, gap, wrap) and the .spacer / .separator slots. */
   .composer > .toolbar {
-    display: flex;
-    align-items: center;
-    gap: var(--vs-xs);
     padding-inline: var(--pad-xs);
-  }
-
-  .composer > .toolbar > .spacer {
-    flex: 1;
   }
 
   /* -----------------------------------------------------------------------

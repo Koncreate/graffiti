@@ -2,14 +2,37 @@
   "sourceFile": "src/lib/drop-in.css",
   "patterns": [
     {
+      "name": "icon-button",
+      "role": "Compact, square button for an icon-only action (toolbar control, close affordance, overflow menu). Standardizes glyph size, square padding, and focus ring instead of re-deriving them ad-hoc. Pair with `aria-label` so the control is named for assistive tech, exactly as `.tip` expects.",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 2286,
+        "declarationLine": 2297
+      },
+      "example": "<button class=\"icon-button\" aria-label=\"Edit\">\n    <svg aria-hidden=\"true\">…</svg>\n  </button>",
+      "modifiers": [
+        "ghost",
+        "minimal",
+        "primary",
+        "mini"
+      ],
+      "preferOver": "custom: a bare <button> with hand-tuned svg sizing and square padding",
+      "related": [
+        "circle",
+        "close"
+      ]
+    },
+    {
       "name": "close",
       "role": "A round, red close button for dialogs/drawers/dismissible panels; designed to be the most explicit \"go away\" affordance",
       "since": null,
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 2222,
-        "declarationLine": 2230
+        "annotationLine": 2307,
+        "declarationLine": 2315
       },
       "example": "<button class=\"close\" aria-label=\"Close\">\n    <svg aria-hidden=\"true\">...</svg>\n  </button>",
       "modifiers": [],
@@ -23,8 +46,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 2292,
-        "declarationLine": 2297
+        "annotationLine": 2377,
+        "declarationLine": 2382
       },
       "example": "<article class=\"readable\"><p>…long-form copy…</p></article>",
       "modifiers": [],
@@ -38,8 +61,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 2302,
-        "declarationLine": 2308
+        "annotationLine": 2387,
+        "declarationLine": 2393
       },
       "example": "<form class=\"narrow center\">…</form>",
       "modifiers": [
@@ -55,8 +78,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 2317,
-        "declarationLine": 2322
+        "annotationLine": 2402,
+        "declarationLine": 2407
       },
       "example": "<div class=\"flex\"><button>One</button><button>Two</button></div>",
       "modifiers": [],
@@ -70,8 +93,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 2327,
-        "declarationLine": 2333
+        "annotationLine": 2412,
+        "declarationLine": 2418
       },
       "example": "<div class=\"grid auto\" style=\"--grid-min: 200px\"><div>…</div><div>…</div></div>",
       "modifiers": [
@@ -87,8 +110,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 2345,
-        "declarationLine": 2351
+        "annotationLine": 2430,
+        "declarationLine": 2436
       },
       "example": "<div class=\"split\"><h2>Section title</h2><a href=\"/more\">See all</a></div>",
       "modifiers": [
@@ -106,13 +129,30 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 2375,
-        "declarationLine": 2380
+        "annotationLine": 2460,
+        "declarationLine": 2465
       },
       "example": "<button>Save <span class=\"visually-hidden\">project</span></button>",
       "modifiers": [],
       "preferOver": null,
       "related": []
+    },
+    {
+      "name": "skip-link",
+      "role": "Bypass-navigation anchor that stays screen-reader-only until it receives keyboard focus, then reveals as a pinned pill at the top of the page; place it as the first focusable element with `href` pointing at the main landmark",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 2476,
+        "declarationLine": 2482
+      },
+      "example": "<a class=\"skip-link\" href=\"#main\">Skip to content</a>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "visually-hidden"
+      ]
     },
     {
       "name": "no-list",
@@ -121,8 +161,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 2391,
-        "declarationLine": 2396
+        "annotationLine": 2502,
+        "declarationLine": 2507
       },
       "example": "<ul class=\"no-list\"><li>Item</li><li>Item</li></ul>",
       "modifiers": [],
@@ -136,8 +176,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 2406,
-        "declarationLine": 2417
+        "annotationLine": 2517,
+        "declarationLine": 2528
       },
       "example": "<form>\n    <div class=\"row\">\n      <label for=\"name\">Name</label>\n      <input id=\"name\" type=\"text\">\n    </div>\n  </form>",
       "modifiers": [],
@@ -151,8 +191,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 2440,
-        "declarationLine": 2449
+        "annotationLine": 2551,
+        "declarationLine": 2560
       },
       "example": "<div class=\"form-actions\">\n    <button type=\"button\" class=\"minimal\">Cancel</button>\n    <button type=\"submit\">Save</button>\n  </div>",
       "modifiers": [],
@@ -166,8 +206,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 2476,
-        "declarationLine": 2481
+        "annotationLine": 2587,
+        "declarationLine": 2592
       },
       "example": "<h2 class=\"no-margin\">Tight heading</h2>",
       "modifiers": [],
@@ -181,8 +221,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 2485,
-        "declarationLine": 2490
+        "annotationLine": 2596,
+        "declarationLine": 2601
       },
       "example": "<div class=\"split\"><label class=\"self-start\">Notes</label><textarea></textarea></div>",
       "modifiers": [],
@@ -196,8 +236,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 2494,
-        "declarationLine": 2499
+        "annotationLine": 2605,
+        "declarationLine": 2610
       },
       "example": "<button class=\"full\">Continue</button>",
       "modifiers": [],
@@ -211,8 +251,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 2503,
-        "declarationLine": 2508
+        "annotationLine": 2614,
+        "declarationLine": 2619
       },
       "example": "<button class=\"reset\"><svg aria-hidden=\"true\">…</svg></button>",
       "modifiers": [],
@@ -226,8 +266,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 2538,
-        "declarationLine": 2543
+        "annotationLine": 2649,
+        "declarationLine": 2654
       },
       "example": "<button class=\"circle\" style=\"--size: 32px\"><svg aria-hidden=\"true\">…</svg></button>",
       "modifiers": [],
@@ -241,8 +281,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 2746,
-        "declarationLine": 2756
+        "annotationLine": 2857,
+        "declarationLine": 2867
       },
       "example": "<div class=\"layout-card\">\n    <article class=\"card\">…</article>\n    <article class=\"card\">…</article>\n    <article class=\"card\">…</article>\n  </div>",
       "modifiers": [],
@@ -256,8 +296,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 2766,
-        "declarationLine": 2777
+        "annotationLine": 2877,
+        "declarationLine": 2888
       },
       "example": "<div class=\"layout-sidebar\">\n    <nav>…</nav>\n    <main>…</main>\n  </div>",
       "modifiers": [
@@ -281,8 +321,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 2943,
-        "declarationLine": 2954
+        "annotationLine": 3054,
+        "declarationLine": 3065
       },
       "example": "<div class=\"layout-split\">\n    <section>Left</section>\n    <section>Right</section>\n  </div>",
       "modifiers": [
@@ -301,8 +341,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 2972,
-        "declarationLine": 2983
+        "annotationLine": 3083,
+        "declarationLine": 3094
       },
       "example": "<div class=\"layout-three-col\">\n    <section>One</section>\n    <section>Two</section>\n    <section>Three</section>\n  </div>",
       "modifiers": [],
@@ -319,8 +359,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 3003,
-        "declarationLine": 3014
+        "annotationLine": 3114,
+        "declarationLine": 3125
       },
       "example": "<main class=\"layout-readable\">\n    <h1>Page title</h1>\n    <section>…</section>\n  </main>",
       "modifiers": [
@@ -341,8 +381,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 3029,
-        "declarationLine": 3040
+        "annotationLine": 3140,
+        "declarationLine": 3151
       },
       "example": "<div class=\"layout-holy-grail\">\n    <nav class=\"icon-rail\">…</nav>\n    <main>…</main>\n    <aside>…</aside>\n  </div>",
       "modifiers": [],
@@ -359,8 +399,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 3059,
-        "declarationLine": 3064
+        "annotationLine": 3170,
+        "declarationLine": 3175
       },
       "example": "<section class=\"section\"><h2>Features</h2>…</section>",
       "modifiers": [],
@@ -374,8 +414,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 3069,
-        "declarationLine": 3079
+        "annotationLine": 3180,
+        "declarationLine": 3190
       },
       "example": "<div class=\"stack\">\n    <h2>Title</h2>\n    <p>Lead paragraph</p>\n    <p>Body copy</p>\n  </div>",
       "modifiers": [],
@@ -389,8 +429,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 3092,
-        "declarationLine": 3103
+        "annotationLine": 3203,
+        "declarationLine": 3214
       },
       "example": "<div class=\"cluster\">\n    <span class=\"tag\">design</span>\n    <span class=\"tag\">research</span>\n    <span class=\"tag\">prototype</span>\n  </div>",
       "modifiers": [
@@ -406,8 +446,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 3115,
-        "declarationLine": 3126
+        "annotationLine": 3226,
+        "declarationLine": 3237
       },
       "example": "<div class=\"carousel\">\n    <article class=\"card\">…</article>\n    <article class=\"card\">…</article>\n    <article class=\"card\">…</article>\n  </div>",
       "modifiers": [],
@@ -424,8 +464,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 3140,
-        "declarationLine": 3150
+        "annotationLine": 3251,
+        "declarationLine": 3261
       },
       "example": "<div class=\"reel\">\n    <section>Slide 1</section>\n    <section>Slide 2</section>\n  </div>",
       "modifiers": [],
@@ -442,8 +482,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 3165,
-        "declarationLine": 3176
+        "annotationLine": 3276,
+        "declarationLine": 3287
       },
       "example": "<div class=\"swipe\">\n    <button>Archive</button>\n    <article>…content…</article>\n    <button>Delete</button>\n  </div>",
       "modifiers": [
@@ -459,8 +499,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 3239,
-        "declarationLine": 3249
+        "annotationLine": 3350,
+        "declarationLine": 3360
       },
       "example": "<div class=\"box\">\n    <p>Settings saved automatically.</p>\n  </div>",
       "modifiers": [
@@ -479,8 +519,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 3277,
-        "declarationLine": 3289
+        "annotationLine": 3388,
+        "declarationLine": 3400
       },
       "example": "<article class=\"card\">\n    <header><h3>Project alpha</h3></header>\n    <p>Status copy goes here.</p>\n    <footer><a href=\"/projects/alpha\">Open →</a></footer>\n  </article>",
       "modifiers": [
@@ -502,8 +542,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 3408,
-        "declarationLine": 3418
+        "annotationLine": 3519,
+        "declarationLine": 3529
       },
       "example": "<article class=\"stat-card\">\n    <small>Active users</small>\n    <strong>1,284</strong>\n  </article>",
       "modifiers": [],
@@ -520,8 +560,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 3445,
-        "declarationLine": 3455
+        "annotationLine": 3556,
+        "declarationLine": 3566
       },
       "example": "<article class=\"feature-card\">\n    <h3>Realtime sync</h3>\n    <p>Changes propagate without polling.</p>\n  </article>",
       "modifiers": [],
@@ -538,8 +578,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 3501,
-        "declarationLine": 3513
+        "annotationLine": 3612,
+        "declarationLine": 3624
       },
       "example": "<nav class=\"toc\" aria-label=\"On this page\">\n    <h2>Contents</h2>\n    <ol>\n      <li><a href=\"#intro\">Intro</a></li>\n      <li><a href=\"#usage\" aria-current=\"true\">Usage</a></li>\n    </ol>\n  </nav>",
       "modifiers": [],
@@ -553,8 +593,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 3569,
-        "declarationLine": 3578
+        "annotationLine": 3680,
+        "declarationLine": 3689
       },
       "example": "<aside class=\"newsletter\">\n    <h3>Get the weekly digest</h3>\n    <form>…</form>\n  </aside>",
       "modifiers": [],
@@ -568,8 +608,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 3587,
-        "declarationLine": 3599
+        "annotationLine": 3698,
+        "declarationLine": 3710
       },
       "example": "<header class=\"header sticky border\">\n    <a href=\"/\" class=\"logo\">…</a>\n    <nav><ul><li><a href=\"/x\">X</a></li></ul></nav>\n    <button>Sign in</button>\n  </header>",
       "modifiers": [
@@ -590,8 +630,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 3640,
-        "declarationLine": 3651
+        "annotationLine": 3751,
+        "declarationLine": 3762
       },
       "example": "<aside class=\"callout warning fill\">\n    <svg aria-hidden=\"true\">…</svg>\n    <p>Heads-up: this action can't be undone.</p>\n  </aside>",
       "modifiers": [
@@ -614,8 +654,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 3718,
-        "declarationLine": 3726
+        "annotationLine": 3829,
+        "declarationLine": 3837
       },
       "example": "<blockquote class=\"pull-quote\">\n    \"If you can't measure it, you can't improve it.\"\n  </blockquote>",
       "modifiers": [],
@@ -629,11 +669,14 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 3737,
-        "declarationLine": 3745
+        "annotationLine": 3848,
+        "declarationLine": 3857
       },
-      "example": "<div class=\"table\">\n    <table>…</table>\n  </div>",
-      "modifiers": [],
+      "example": "<div class=\"table sticky\">\n    <table>…</table>\n  </div>",
+      "modifiers": [
+        "zebra",
+        "sticky"
+      ],
       "preferOver": null,
       "related": []
     },
@@ -644,8 +687,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 3853,
-        "declarationLine": 3861
+        "annotationLine": 3977,
+        "declarationLine": 3985
       },
       "example": "<label class=\"form-option-row\">\n    <input type=\"checkbox\"> Remember me\n  </label>",
       "modifiers": [],
@@ -659,8 +702,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 3872,
-        "declarationLine": 3881
+        "annotationLine": 3996,
+        "declarationLine": 4005
       },
       "example": "<label class=\"search\">\n    <svg aria-hidden=\"true\">…</svg>\n    <input type=\"search\" placeholder=\"Search\">\n  </label>",
       "modifiers": [],
@@ -674,8 +717,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 3901,
-        "declarationLine": 3912
+        "annotationLine": 4025,
+        "declarationLine": 4036
       },
       "example": "<label class=\"dropzone\">\n    <svg aria-hidden=\"true\">…</svg>\n    <span>Drop files or click to upload</span>\n    <input type=\"file\">\n  </label>",
       "modifiers": [
@@ -691,8 +734,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 4027,
-        "declarationLine": 4033
+        "annotationLine": 4151,
+        "declarationLine": 4157
       },
       "example": "<div class=\"auto-color\" style=\"--bg-color: var(--teal-5)\">Always legible</div>",
       "modifiers": [
@@ -708,8 +751,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 4100,
-        "declarationLine": 4106
+        "annotationLine": 4224,
+        "declarationLine": 4230
       },
       "example": "<section class=\"surface section\">…</section>",
       "modifiers": [],
@@ -726,8 +769,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 4421,
-        "declarationLine": 4434
+        "annotationLine": 4545,
+        "declarationLine": 4558
       },
       "example": "<nav class=\"breadcrumbs\" aria-label=\"Breadcrumb\">\n    <ul>\n      <li><a href=\"/\">Home</a></li>\n      <li><a href=\"/projects\">Projects</a></li>\n      <li aria-current=\"page\">Alpha</li>\n    </ul>\n  </nav>",
       "modifiers": [],
@@ -743,8 +786,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 4478,
-        "declarationLine": 4493
+        "annotationLine": 4602,
+        "declarationLine": 4617
       },
       "example": "<nav class=\"pagination\" aria-label=\"Page\">\n    <a href=\"/p/1\">Prev</a>\n    <ul>\n      <li><a href=\"/p/1\">1</a></li>\n      <li><a href=\"/p/2\" aria-current=\"page\">2</a></li>\n      <li><a href=\"/p/3\">3</a></li>\n    </ul>\n    <a href=\"/p/3\">Next</a>\n  </nav>",
       "modifiers": [],
@@ -760,8 +803,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 4528,
-        "declarationLine": 4541
+        "annotationLine": 4652,
+        "declarationLine": 4665
       },
       "example": "<nav class=\"sidebar-nav\" aria-label=\"Sections\">\n    <a href=\"/inbox\" aria-current=\"page\">Inbox</a>\n    <a href=\"/sent\">Sent</a>\n    <h3 class=\"sidebar-nav-heading\">Folders</h3>\n    <a href=\"/archive\">Archive</a>\n  </nav>",
       "modifiers": [
@@ -782,8 +825,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 4976,
-        "declarationLine": 4988
+        "annotationLine": 5100,
+        "declarationLine": 5112
       },
       "example": "<footer class=\"footer\">\n    <div class=\"grid\">\n      <nav><h4>Product</h4><a href=\"/x\">…</a></nav>\n      <nav><h4>Company</h4><a href=\"/y\">…</a></nav>\n    </div>\n  </footer>",
       "modifiers": [],
@@ -799,8 +842,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 5014,
-        "declarationLine": 5029
+        "annotationLine": 5138,
+        "declarationLine": 5153
       },
       "example": "<div class=\"dropdown\">\n    <button popovertarget=\"m\">Open</button>\n    <div id=\"m\" class=\"dropdown-menu\" popover>\n      <a href=\"/x\">Action</a>\n      <hr>\n      <button>Sign out</button>\n    </div>\n  </div>",
       "modifiers": [
@@ -818,8 +861,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 5129,
-        "declarationLine": 5139
+        "annotationLine": 5253,
+        "declarationLine": 5263
       },
       "example": "<div class=\"dropdown-menu\" popover>\n    <p class=\"dropdown-header\">Workspace</p>\n    <a href=\"/x\">Switch</a>\n  </div>",
       "modifiers": [],
@@ -835,8 +878,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 5147,
-        "declarationLine": 5156
+        "annotationLine": 5271,
+        "declarationLine": 5280
       },
       "example": "<span class=\"tooltip\">\n    <button>?</button>\n    <span class=\"tip\">Detailed help text</span>\n  </span>",
       "modifiers": [],
@@ -850,8 +893,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 5253,
-        "declarationLine": 5264
+        "annotationLine": 5377,
+        "declarationLine": 5388
       },
       "example": "<span class=\"avatar\">\n    <img src=\"/me.jpg\" alt=\"\">\n  </span>\n  <button class=\"avatar l bordered\">JD</button>",
       "modifiers": [
@@ -868,15 +911,15 @@
     },
     {
       "name": "input-group",
-      "role": "Visually connect an `<input>` to a trailing `<button>` (search submit, copy-to-clipboard, etc.) without a gap between them. `.stack-mobile` reverts to a stacked layout under 640px.",
+      "role": "Visually connect an `<input>` to a trailing `<button>` (search submit, copy-to-clipboard, etc.) without a gap between them. A `.affix` child slots in an inert static adornment instead — a leading currency symbol or a trailing unit — sharing the same border and radius so it reads as one control. `.stack-mobile` reverts to a stacked layout under 640px.",
       "since": null,
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 5431,
-        "declarationLine": 5442
+        "annotationLine": 5555,
+        "declarationLine": 5567
       },
-      "example": "<div class=\"input-group\">\n    <input type=\"email\" placeholder=\"you@example.com\">\n    <button type=\"submit\">Subscribe</button>\n  </div>",
+      "example": "<div class=\"input-group\">\n    <span class=\"affix\">$</span>\n    <input type=\"number\" inputmode=\"decimal\" placeholder=\"0.00\">\n    <span class=\"affix\">USD</span>\n  </div>",
       "modifiers": [
         "stack-mobile"
       ],
@@ -892,8 +935,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 5497,
-        "declarationLine": 5507
+        "annotationLine": 5665,
+        "declarationLine": 5675
       },
       "example": "<div class=\"chat-thread\">\n    <div class=\"chat-row\">…</div>\n    <div class=\"chat-row self\">…</div>\n  </div>",
       "modifiers": [],
@@ -911,8 +954,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 5514,
-        "declarationLine": 5524
+        "annotationLine": 5682,
+        "declarationLine": 5692
       },
       "example": "<div class=\"chat-row self\">\n    <div class=\"chat-message\"><div class=\"bubble\">Hello!</div></div>\n  </div>",
       "modifiers": [
@@ -931,8 +974,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 5537,
-        "declarationLine": 5548
+        "annotationLine": 5705,
+        "declarationLine": 5716
       },
       "example": "<div class=\"chat-row\">\n    <div class=\"chat-message\">\n      <div class=\"bubble\">Long message text…</div>\n    </div>\n  </div>",
       "modifiers": [],
@@ -949,8 +992,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 5553,
-        "declarationLine": 5565
+        "annotationLine": 5721,
+        "declarationLine": 5733
       },
       "example": "<form class=\"chat-composer\">\n    <div class=\"input-group\">\n      <input placeholder=\"Message\">\n      <button>Send</button>\n    </div>\n  </form>",
       "modifiers": [],
@@ -968,8 +1011,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 5576,
-        "declarationLine": 5582
+        "annotationLine": 5744,
+        "declarationLine": 5750
       },
       "example": "<div class=\"bubble\"><p>Quick note</p></div>",
       "modifiers": [],
@@ -986,8 +1029,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 5769,
-        "declarationLine": 5778
+        "annotationLine": 5937,
+        "declarationLine": 5946
       },
       "example": "<button class=\"chip\" aria-pressed=\"true\">Design</button>\n  <button class=\"chip\">Engineering</button>",
       "modifiers": [
@@ -1006,8 +1049,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 5858,
-        "declarationLine": 5867
+        "annotationLine": 6026,
+        "declarationLine": 6035
       },
       "example": "<span class=\"tag\" style=\"--tag-color: var(--success)\">Active</span>\n  <a class=\"tag\" href=\"/tag/design\">design</a>",
       "modifiers": [
@@ -1023,14 +1066,31 @@
       ]
     },
     {
+      "name": "rating",
+      "role": "Five-star rating in two zero-JS forms. Display form: put a `--rating` (0–5, decimals allowed) on a `<span class=\"rating\">` for a read-only, partial-fill star meter — always pair it with an `aria-label`. Input form: a `<fieldset class=\"rating\">` of five reversed `radio` + `label` pairs fills on `:checked`/`:hover` with pure CSS and degrades to native radios when styling is unavailable.",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 6186,
+        "declarationLine": 6202
+      },
+      "example": "<span class=\"rating\" style=\"--rating: 3.5\" role=\"img\" aria-label=\"Rated 3.5 out of 5\"></span>\n\n  <fieldset class=\"rating\">\n    <legend class=\"visually-hidden\">Rate this</legend>\n    <input type=\"radio\" id=\"r5\" name=\"rate\" value=\"5\" /><label for=\"r5\" aria-label=\"5 stars\"></label>\n    <input type=\"radio\" id=\"r4\" name=\"rate\" value=\"4\" /><label for=\"r4\" aria-label=\"4 stars\"></label>\n    <input type=\"radio\" id=\"r3\" name=\"rate\" value=\"3\" /><label for=\"r3\" aria-label=\"3 stars\"></label>\n    <input type=\"radio\" id=\"r2\" name=\"rate\" value=\"2\" /><label for=\"r2\" aria-label=\"2 stars\"></label>\n    <input type=\"radio\" id=\"r1\" name=\"rate\" value=\"1\" /><label for=\"r1\" aria-label=\"1 star\"></label>\n  </fieldset>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "tag"
+      ]
+    },
+    {
       "name": "list-nav",
       "role": "Vertical stack of card-like nav rows; each row is a button/link with an optional leading icon and trailing description. Use for settings panes, action menus, and primary mobile nav",
       "since": null,
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 6018,
-        "declarationLine": 6035
+        "annotationLine": 6301,
+        "declarationLine": 6318
       },
       "example": "<nav class=\"list-nav\">\n    <a href=\"/profile\">\n      <svg aria-hidden=\"true\">…</svg>\n      Profile\n      <small>Edit your account info</small>\n    </a>\n    <a href=\"/billing\">\n      <svg aria-hidden=\"true\">…</svg>\n      Billing\n    </a>\n  </nav>",
       "modifiers": [],
@@ -1047,8 +1107,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 6116,
-        "declarationLine": 6128
+        "annotationLine": 6399,
+        "declarationLine": 6411
       },
       "example": "<div class=\"tabs\" style=\"--tab-count: 3\">\n    <details name=\"t\" open style=\"--n: 1\"><summary>Overview</summary><p>Panel A</p></details>\n    <details name=\"t\" style=\"--n: 2\"><summary>Details</summary><p>Panel B</p></details>\n    <details name=\"t\" style=\"--n: 3\"><summary>Activity</summary><p>Panel C</p></details>\n  </div>",
       "modifiers": [
@@ -1066,8 +1126,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 6400,
-        "declarationLine": 6412
+        "annotationLine": 6683,
+        "declarationLine": 6695
       },
       "example": "<div class=\"app-shell\">\n    <header>…</header>\n    <main>…content…</main>\n    <footer class=\"bottom-nav\">…</footer>\n  </div>",
       "modifiers": [],
@@ -1085,8 +1145,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 6449,
-        "declarationLine": 6460
+        "annotationLine": 6732,
+        "declarationLine": 6743
       },
       "example": "<nav class=\"bottom-nav\" aria-label=\"Sections\">\n    <a href=\"/\" aria-current=\"page\"><svg aria-hidden=\"true\">…</svg><span>Home</span></a>\n    <a href=\"/inbox\"><svg aria-hidden=\"true\">…</svg><span>Inbox</span></a>\n  </nav>",
       "modifiers": [],
@@ -1097,14 +1157,32 @@
       ]
     },
     {
+      "name": "fab",
+      "role": "Floating action button: a circular, fixed-position primary control pinned to the bottom-inline-end corner, clear of the safe-area inset. Compose with `.button` for surface/states and `.circle` for the round footprint; `.fab` adds only the fixed positioning + elevation. Always give it an `aria-label` since it carries a single icon",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 6800,
+        "declarationLine": 6810
+      },
+      "example": "<button class=\"button primary circle fab\" aria-label=\"Compose\">\n    <svg aria-hidden=\"true\">…</svg>\n  </button>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "bottom-nav",
+        "circle"
+      ]
+    },
+    {
       "name": "bottom-sheet",
       "role": "Mobile-style bottom-anchored sheet panel; pseudo-element renders the grip handle, safe-area inset baked into the bottom padding. For full popover/transition behavior compose with `.drawer` (decks)",
       "since": null,
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 6518,
-        "declarationLine": 6528
+        "annotationLine": 6833,
+        "declarationLine": 6843
       },
       "example": "<div class=\"bottom-sheet\">\n    <h3>Share</h3>\n    <div class=\"cluster\">…</div>\n  </div>",
       "modifiers": [],
@@ -1120,8 +1198,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 6574,
-        "declarationLine": 6579
+        "annotationLine": 6889,
+        "declarationLine": 6894
       },
       "example": "<div class=\"carousel hide-scrollbar\">…</div>",
       "modifiers": [],
@@ -1135,8 +1213,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 6588,
-        "declarationLine": 6593
+        "annotationLine": 6903,
+        "declarationLine": 6908
       },
       "example": "<div class=\"reel momentum-scroll\">…</div>",
       "modifiers": [],
@@ -1150,8 +1228,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 6621,
-        "declarationLine": 6634
+        "annotationLine": 6936,
+        "declarationLine": 6949
       },
       "example": "<nav class=\"icon-rail\" aria-label=\"Tools\">\n    <a href=\"/\" class=\"brand\"><svg aria-hidden=\"true\">…</svg></a>\n    <button aria-pressed=\"true\"><svg aria-hidden=\"true\">…</svg></button>\n    <button><svg aria-hidden=\"true\">…</svg><span class=\"status\"></span></button>\n    <div class=\"spacer\"></div>\n    <button><svg aria-hidden=\"true\">…</svg></button>\n  </nav>",
       "modifiers": [],
@@ -1169,8 +1247,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 6716,
-        "declarationLine": 6727
+        "annotationLine": 7031,
+        "declarationLine": 7042
       },
       "example": "<div class=\"layout-rail\">\n    <nav class=\"icon-rail\">…</nav>\n    <nav class=\"chat-list\">…</nav>\n    <main>…</main>\n  </div>",
       "modifiers": [],
@@ -1188,8 +1266,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 6822,
-        "declarationLine": 6835
+        "annotationLine": 7134,
+        "declarationLine": 7147
       },
       "example": "<article class=\"log-card\">\n    <header>\n      <span class=\"label\">tool: bash</span>\n      <span class=\"status\">2.3s</span>\n    </header>\n    <pre>$ pnpm test</pre>\n  </article>",
       "modifiers": [],
@@ -1201,14 +1279,51 @@
       ]
     },
     {
+      "name": "toolbar",
+      "role": "Horizontal control bar: a wrapping flex row of buttons and controls. Slot a `.spacer` child to push trailing controls to the inline-end, or a `.separator` child to draw a hairline divider between groups",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 7191,
+        "declarationLine": 7205
+      },
+      "example": "<div class=\"toolbar\">\n    <button type=\"button\">Bold</button>\n    <button type=\"button\">Italic</button>\n    <span class=\"separator\"></span>\n    <button type=\"button\">Link</button>\n    <span class=\"spacer\"></span>\n    <button type=\"button\">Done</button>\n  </div>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "composer",
+        "cluster",
+        "icon-button"
+      ]
+    },
+    {
+      "name": "reactions",
+      "role": "Emoji reaction picker built on a native `<select>` with `appearance: base-select`: the trigger shows the chosen reaction and the picker opens as a horizontal bar of emoji `<option>`s — no JavaScript. Where customizable-select is unsupported it degrades to a normal select dropdown. Give the control an `aria-label` and each emoji a `.visually-hidden` text label so the choice is announced.",
+      "since": null,
+      "deprecated": null,
+      "source": {
+        "file": "src/lib/drop-in.css",
+        "annotationLine": 7225,
+        "declarationLine": 7237
+      },
+      "example": "<select class=\"reactions\" aria-label=\"React\">\n    <button><selectedcontent></selectedcontent></button>\n    <option value=\"like\">👍<span class=\"visually-hidden\"> Like</span></option>\n    <option value=\"love\">❤️<span class=\"visually-hidden\"> Love</span></option>\n    <option value=\"haha\">😂<span class=\"visually-hidden\"> Haha</span></option>\n  </select>",
+      "modifiers": [],
+      "preferOver": null,
+      "related": [
+        "rating",
+        "tag"
+      ]
+    },
+    {
       "name": "composer",
       "role": "Multi-line text input + inline toolbar; supersedes `.chat-composer` when you need model/tool/attach controls. Also fits comment + post surfaces — anywhere a textarea has adjacent affordances",
       "since": null,
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 6879,
-        "declarationLine": 6893
+        "annotationLine": 7380,
+        "declarationLine": 7394
       },
       "example": "<form class=\"composer\">\n    <textarea placeholder=\"Ask anything\"></textarea>\n    <div class=\"toolbar\">\n      <button type=\"button\">Attach</button>\n      <div class=\"spacer\"></div>\n      <button type=\"submit\">Send</button>\n    </div>\n  </form>",
       "modifiers": [],
@@ -1225,8 +1340,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 6947,
-        "declarationLine": 6963
+        "annotationLine": 7443,
+        "declarationLine": 7459
       },
       "example": "<aside class=\"workbench-panel\">\n    <header>\n      <h3>Artifact</h3>\n      <div class=\"tabs\">\n        <button aria-pressed=\"true\">Preview</button>\n        <button>Source</button>\n      </div>\n    </header>\n    <div class=\"body\">…</div>\n  </aside>",
       "modifiers": [],
@@ -1243,8 +1358,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 7131,
-        "declarationLine": 7136
+        "annotationLine": 7627,
+        "declarationLine": 7632
       },
       "example": "<nav class=\"no-print\">…</nav>",
       "modifiers": [],
@@ -1260,7 +1375,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 1755
+        "annotationLine": 1765
       },
       "members": [
         "fs-xs",
@@ -1283,7 +1398,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 2525
+        "annotationLine": 2636
       },
       "members": [
         "text-center",
@@ -1300,7 +1415,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 2551
+        "annotationLine": 2662
       },
       "members": [
         "aspect-square",
@@ -1322,7 +1437,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 2593
+        "annotationLine": 2704
       },
       "members": [
         "transition",
@@ -1342,7 +1457,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 2623
+        "annotationLine": 2734
       },
       "members": [
         "gradient-sunset",
@@ -1368,7 +1483,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 4086
+        "annotationLine": 4210
       },
       "members": [
         "text-muted",
@@ -1385,7 +1500,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 6556
+        "annotationLine": 6871
       },
       "members": [
         "safe-top",
@@ -1405,8 +1520,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 42,
-        "declarationLine": 47
+        "annotationLine": 52,
+        "declarationLine": 57
       },
       "category": "typography"
     },
@@ -1417,8 +1532,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 1131,
-        "declarationLine": 1136
+        "annotationLine": 1141,
+        "declarationLine": 1146
       },
       "category": "shadow"
     },
@@ -1429,8 +1544,8 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 1165,
-        "declarationLine": 1171
+        "annotationLine": 1175,
+        "declarationLine": 1181
       },
       "category": "color"
     }
@@ -1443,7 +1558,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 51
+        "annotationLine": 61
       },
       "category": "layout",
       "matches": "--min-vw, --max-vw",
@@ -1460,7 +1575,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 61
+        "annotationLine": 71
       },
       "category": "typography",
       "matches": "--font-size-min, --font-size-max, --font-ratio-min, --font-ratio-max, --font-width-min, --font-width-max",
@@ -1481,7 +1596,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 75
+        "annotationLine": 85
       },
       "category": "spacing",
       "matches": "--vs-*",
@@ -1504,7 +1619,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 92
+        "annotationLine": 102
       },
       "category": "spacing",
       "matches": "--pad-*",
@@ -1526,7 +1641,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 108
+        "annotationLine": 118
       },
       "category": "radius",
       "matches": "--br-*",
@@ -1547,7 +1662,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 123
+        "annotationLine": 133
       },
       "category": "typography",
       "matches": "--lh, --lh-*",
@@ -1567,7 +1682,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 137
+        "annotationLine": 147
       },
       "category": "typography",
       "matches": "--fw-*",
@@ -1585,7 +1700,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 149
+        "annotationLine": 159
       },
       "category": "typography",
       "matches": "--ls-h*",
@@ -1603,7 +1718,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 161
+        "annotationLine": 171
       },
       "category": "color",
       "matches": "--yellow, --amber, --orange, --red, --pink, --purple, --indigo, --blue, --teal, --green, --lime, --highlighter, --brown",
@@ -1631,7 +1746,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 182
+        "annotationLine": 192
       },
       "category": "color",
       "matches": "--yellow-*",
@@ -1664,7 +1779,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 212
+        "annotationLine": 222
       },
       "category": "color",
       "matches": "--amber-*",
@@ -1697,7 +1812,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 242
+        "annotationLine": 252
       },
       "category": "color",
       "matches": "--orange-*",
@@ -1730,7 +1845,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 272
+        "annotationLine": 282
       },
       "category": "color",
       "matches": "--red-*",
@@ -1763,7 +1878,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 302
+        "annotationLine": 312
       },
       "category": "color",
       "matches": "--pink-*",
@@ -1796,7 +1911,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 332
+        "annotationLine": 342
       },
       "category": "color",
       "matches": "--purple-1, --purple-2, --purple-3, --purple-4, --purple-5, --purple-6, --purple-7, --purple-8, --purple-9, --purple-opaque-*",
@@ -1829,7 +1944,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 362
+        "annotationLine": 372
       },
       "category": "color",
       "matches": "--purple-deep, --purple-deep-*",
@@ -1863,7 +1978,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 425
+        "annotationLine": 435
       },
       "category": "color",
       "matches": "--indigo-*",
@@ -1896,7 +2011,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 455
+        "annotationLine": 465
       },
       "category": "color",
       "matches": "--green-*",
@@ -1929,7 +2044,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 485
+        "annotationLine": 495
       },
       "category": "color",
       "matches": "--lime-*",
@@ -1962,7 +2077,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 515
+        "annotationLine": 525
       },
       "category": "color",
       "matches": "--highlighter-*",
@@ -1995,7 +2110,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 577
+        "annotationLine": 587
       },
       "category": "color",
       "matches": "--brown-*",
@@ -2028,7 +2143,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 607
+        "annotationLine": 617
       },
       "category": "color",
       "matches": "--teal-*",
@@ -2061,7 +2176,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 637
+        "annotationLine": 647
       },
       "category": "color",
       "matches": "--blue-*",
@@ -2094,7 +2209,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 667
+        "annotationLine": 677
       },
       "category": "color",
       "matches": "--gray, --slate, --gray-*",
@@ -2129,7 +2244,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 699
+        "annotationLine": 709
       },
       "category": "color",
       "matches": "--slate-*",
@@ -2162,7 +2277,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 729
+        "annotationLine": 739
       },
       "category": "color",
       "matches": "--white, --white-*",
@@ -2197,7 +2312,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 761
+        "annotationLine": 771
       },
       "category": "color",
       "matches": "--black, --black-*",
@@ -2232,7 +2347,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 793
+        "annotationLine": 803
       },
       "category": "color",
       "matches": "--fg-light, --fg-dark, --bg-light, --bg-dark",
@@ -2251,7 +2366,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 805
+        "annotationLine": 815
       },
       "category": "motion",
       "matches": "--ease-*",
@@ -2269,7 +2384,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 861
+        "annotationLine": 871
       },
       "category": "motion",
       "matches": "--d-*",
@@ -2289,7 +2404,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 875
+        "annotationLine": 885
       },
       "category": "z-index",
       "matches": "--z-*",
@@ -2310,7 +2425,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 896
+        "annotationLine": 906
       },
       "category": "color",
       "matches": "--fg, --fg-05, --fg-1, --fg-2, --fg-3, --fg-4, --fg-5, --fg-6, --fg-7, --fg-8, --fg-9, --fg-opaque-*",
@@ -2345,7 +2460,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 929
+        "annotationLine": 939
       },
       "category": "color",
       "matches": "--bg, --bg-05, --bg-1, --bg-2, --bg-3, --bg-4, --bg-5, --bg-6, --bg-7, --bg-8, --bg-9, --bg-opaque-*",
@@ -2380,7 +2495,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 963
+        "annotationLine": 973
       },
       "category": "color",
       "matches": "--primary, --accent, --error, --warning, --success",
@@ -2400,7 +2515,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 976
+        "annotationLine": 986
       },
       "category": "color",
       "matches": "--primary-*",
@@ -2433,7 +2548,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 1008
+        "annotationLine": 1018
       },
       "category": "color",
       "matches": "--error-*",
@@ -2466,7 +2581,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 1040
+        "annotationLine": 1050
       },
       "category": "color",
       "matches": "--warning-*",
@@ -2499,7 +2614,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 1072
+        "annotationLine": 1082
       },
       "category": "color",
       "matches": "--success-*",
@@ -2532,7 +2647,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 1105
+        "annotationLine": 1115
       },
       "category": "shadow",
       "matches": "--shadow-*",
@@ -2553,7 +2668,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 1141
+        "annotationLine": 1151
       },
       "category": "border",
       "matches": "--border-*",
@@ -2574,7 +2689,7 @@
       "deprecated": null,
       "source": {
         "file": "src/lib/drop-in.css",
-        "annotationLine": 1155
+        "annotationLine": 1165
       },
       "category": "border",
       "matches": "--focus-ring, --focus-ring-offset, --focus-ring-offset-inset",
